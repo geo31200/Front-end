@@ -1,0 +1,27 @@
+<h1> Le détail du film </h1>
+
+<div>
+    <table>
+       <tbody> 
+           <tr>
+                <th id="title">Title : {{film.title}}</th>
+            </tr>
+            <tr>
+                <th id="year">Year : {{film.year}}</th>
+            </tr>
+            <tr>
+                <th id="duration">Duration : {{film.duration}} min</th>
+            </tr>
+            <tr>
+                <th id="genre">Genre : </th>
+            </tr>
+        </tbody>       
+    </table>
+
+    <button
+    (click)="goToUpgrateFilm(film)"
+    class="btn btn-info"
+    >
+    Upgrate this movie
+</button>
+</div>

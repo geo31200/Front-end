@@ -1,0 +1,19 @@
+table{
+
+    margin-left: 20px;
+}
+
+
+th{
+    font-size: 18px;
+    font-family: sans-serif;
+    height: 40px
+}
+
+#films{
+
+    height: 40px;
+    text-decoration: none;
+    color: black
+    
+}
