@@ -43,7 +43,8 @@ film.title = this.movieForm.value.title
 film.year = this.movieForm.value.year
 film.duration = this.movieForm.value.duration
 
-    this.filmService.postFilm(film).subscribe(data =>{
+    this.filmService.postFilm(film).subscribe(data =>
+      {
       console.log(data)
   })
   this.router.navigate(['/film'])

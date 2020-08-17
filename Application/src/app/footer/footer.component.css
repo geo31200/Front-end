@@ -1,17 +1,20 @@
+nav{
+    padding: 20px;    
+    margin-top: 10px;
+   
+    font-size: 18px;
+    background-color: rgba(117, 190, 218, 0.5);
+    position:absolute;
 
-a{
-position:absolute;
+    bottom:0;
 
-bottom:0;
+    width:100%;
 
-width:100%;
+    text-align: center;
 
-text-align: center;
+    text-decoration: none;
 
-text-decoration: none;
-
-color: black;
-
-padding-top:50px;
-
-}
+    color: black;
+    }
+    
+   

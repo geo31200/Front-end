@@ -19,10 +19,22 @@
       formControlName="duration" placeholder="Enter the movie's duration">
     </div>
 
+    <div class="form-group">
+      <label for="director">Director</label>
+      <!-- <select name="director" id="director">
+        <option value="">Choose one director</option>
+        <option *ngFor="Let person of persons | async" value="director">{{person.lastName}} - {{person.firstName}} - {{person.birthdate}}</option> 
+    </select> -->
+
+    
+    </div>
+
+    
     <button
     class="btn btn-success"
     (click)="addFilm()"
     [disabled]="movieForm.invalid"
+    type="submit"
     
     >
     Add Film

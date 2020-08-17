@@ -1,4 +1,11 @@
-<div >
+
+
+<div id="body" >
+
+  <div>
+    <button (click)="goToAddFilm()" class="btn btn-success"> Add movie </button>
+      </div>
+
     <table>
       <thead>
         <tr>
@@ -6,10 +13,12 @@
           
         </tr>
       </thead>
+
+
       <tbody>
         <tr id="films" *ngFor="let film of films | async">
           <td>
-            {{film.title}}
+            {{film.title}} ({{film.year}})
         </td>
         <td> 
           <button (click)="detailFilm(film)" class="btn btn-info">Detail's movie</button>
@@ -19,8 +28,9 @@
         </tr>
       </tbody>
     </table>
+    <div>
+      <button (click)="goToAddFilm()" class="btn btn-success"> Add movie </button>
+        </div>
   </div>
 
-  <div>
-<button (click)="goToAddFilm()" class="btn btn-success"> Add movie </button>
-  </div>
+ 

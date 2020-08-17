@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import { Film } from 'src/app/model/film';
 import { FilmService } from 'src/app/service/film.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-upgrate-film',
@@ -12,10 +11,12 @@ import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/fo
 })
 export class UpgrateFilmComponent implements OnInit {
 
-  public films : Observable<[Film]>;
+  
   public film : Film
   public idFilm : string
+  public title : string
   public movieForm: FormGroup;
+  
 
   constructor(
     private filmservice : FilmService,
@@ -24,25 +25,43 @@ export class UpgrateFilmComponent implements OnInit {
     private formBuilder: FormBuilder,
   ) { }
 
-  
+ 
 
   ngOnInit(): void {
     
+    this.film = this.route.snapshot.params['idFilm']
+
+   console.log("l'id du film est",this.film )
+
     this.movieForm = this.formBuilder.group({
       title: [ '', Validators.required ],
       year: [ '', Validators.required ],
       duration: [ '', Validators.required ]
     
     })
-
   }
 
+
 public upgrateFilm(){
-this.filmservice.upgrateFilm(this.film).subscribe(data => {
-  console.log(data)
-  this.film = new Film
+
+  
+  
+  let film = new Film;
+  
+  film.title = this.movieForm.value.title 
+  film.year = this.movieForm.value.year
+  film.duration = this.movieForm.value.duration
+
+this.filmservice.upgrateFilm(film).subscribe(data => {
+  console.log("c'est",data)
+  
 })
+console.log("le film est devenu : ",film)
+this.router.navigate(['/film'])
 
 }
 
+
 }
+
+

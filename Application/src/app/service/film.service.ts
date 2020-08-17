@@ -20,15 +20,19 @@ export class FilmService {
     return this.http.get(`${this.apiRoute}/idFilm?id=${idFilm}`);
   }
 
-  public postFilm(film : Film): Observable<any>{
-    return this.http.post(`${this.apiRoute}/addFilm`, film);
+  public getFilmByTitle(title: string): Observable<any> {
+    return this.http.get(`${this.apiRoute}/title?t=${title}`);
   }
-  public upgrateFilm( film : Film): Observable<any>{
-    return this.http.put(`${this.apiRoute}/modifyFilm?t=${film.title}&y=${film.year}&d=${film.duration}`, film);
+  public postFilm(film : Film): Observable<Film>{
+    return this.http.post<Film>(`${this.apiRoute}/addFilm`, film);
+  }
+
+  public upgrateFilm( film : Film): Observable<Film>{
+    return this.http.put<Film>(`${this.apiRoute}/modifyFilm?id=${film.idFilm}`, film);
    }
 
-  public deleteFilm(title : string): Observable<any>{
-    return this.http.delete(`${this.apiRoute}/deleteFilm?t=${title}`);
+  public deleteFilm(film : Film): Observable<Film>{
+    return this.http.delete<Film>(`${this.apiRoute}/deleteFilm?id=${film.idFilm}`);
   }
 
 }

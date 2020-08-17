@@ -3,17 +3,25 @@
 <div>
     <table>
        <tbody> 
-           <tr>
-                <th id="title">Title : {{film.title}}</th>
+           <tr>Title :
+                <td id="title"> {{film.title}}</td>
             </tr>
             <tr>
-                <th id="year">Year : {{film.year}}</th>
+                <td id="year">Year : {{film.year}}</td>
             </tr>
             <tr>
-                <th id="duration">Duration : {{film.duration}} min</th>
+                <td id="duration">Duration : {{film.duration}} min</td>
             </tr>
             <tr>
-                <th id="genre">Genre : </th>
+                <td id="genre">Director : {{person.lastName}}, {{person.firstName}}</td>
+                
+            </tr>
+            <tr>
+                <td id="genre">Genre : </td>
+            </tr>
+            <tr> 
+                <th id="actor"> Actors :</th>
+                <!-- <td *ngFor ="let person of persons | async" > </td> -->
             </tr>
         </tbody>       
     </table>

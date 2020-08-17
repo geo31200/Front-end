@@ -1,8 +1,10 @@
 nav{
+
+padding: 20px;    
 margin-top: 10px;
 margin-bottom: 25px;
 font-size: 18px;
-
+background-color: rgba(117, 190, 218, 0.5);
 }
 
 a{
