@@ -22,6 +22,15 @@ import { SerieComponent } from './home/serie/serie.component';
 import { SerieDetailComponent } from './home/serie/serie-detail/serie-detail.component';
 import { AddFilmComponent } from './home/film/add-film/add-film.component';
 import { UpgrateFilmComponent } from './home/film/upgrate-film/upgrate-film.component';
+import { AddDirectorComponent } from './home/person/director/add-director/add-director.component';
+import { UpgrateDirectorComponent } from './home/person/director/upgrate-director/upgrate-director.component';
+import { AddActorComponent } from './home/person/actor/add-actor/add-actor.component';
+import { UpgrateActorComponent } from './home/person/actor/upgrate-actor/upgrate-actor.component';
+
+
+
+
+
 
 @NgModule({
   declarations: [
@@ -43,6 +52,12 @@ import { UpgrateFilmComponent } from './home/film/upgrate-film/upgrate-film.comp
     
     SerieComponent,
     SerieDetailComponent,
+    AddDirectorComponent,
+    UpgrateDirectorComponent,
+    AddActorComponent,
+    UpgrateActorComponent,
+
+   
     
   ],
   imports: [

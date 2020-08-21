@@ -1,34 +1,56 @@
 <h1>Upgrate Movie</h1>
 <div>
-  <form  [formGroup]="movieForm">
+  <form [formGroup]="movieForm">
     <div class="form-group">
       <label for="title">Title </label>
-      <input type="text" class="form-control" id="title"  
-      formControlName="title" placeholder="Enter a title">
+      <input
+        type="text"
+        class="form-control"
+        id="title"
+        formControlName="title"
+        placeholder="Enter a title"
+      />
     </div>
-  
+
     <div class="form-group">
       <label for="year">Year</label>
-      <input type="text" class="form-control" id="year"  
-      formControlName="year" placeholder="Enter the year of movie's parution">
+      <input
+        type="text"
+        class="form-control"
+        id="year"
+        formControlName="year"
+        placeholder="Enter the year of movie's parution"
+      />
     </div>
 
     <div class="form-group">
       <label for="duration">Duration</label>
-      <input type="text" class="form-control" id="duration"  
-      formControlName="duration" placeholder="Enter the movie's duration">
+      <input
+        type="text"
+        class="form-control"
+        id="duration"
+        formControlName="duration"
+        placeholder="Enter the movie's duration"
+      />
     </div>
 
-    
+    <div class="form-group">
+      <label for="nameGenres">Genre</label>
 
+      <select id="nameGenres" class="form-control" formControlName="nameGenres">
+        <option *ngFor="let genre of allgenre" [ngValue]="genre">
+          {{ genre.nameGenres }}
+        </option>
+      </select>
+    </div>
 
     <button
-    class="btn btn-success"
-    (click)="upgrateFilm()"
-    [disabled]="movieForm.invalid"
-    
+      type="button"
+      class="btn btn-success"
+      (click)="upgrateFilm()"
+      [disabled]="movieForm.invalid"
     >
-    Upgrate Film
-</button>
+      Upgrate Film
+    </button>
   </form>
 </div>
