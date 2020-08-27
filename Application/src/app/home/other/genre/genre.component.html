@@ -1,1 +1,14 @@
 <h1>Genre</h1>
+
+<div>
+  <ul *ngFor="let genre of genres">
+    <li>
+      {{ genre.nameGenres }}
+      <button class="btn btn-danger" (click)="deleteGenre(genre)">
+        Delete
+      </button>
+    </li>
+  </ul>
+
+  <span (click)="goToAddGenre()">add new genre</span>
+</div>

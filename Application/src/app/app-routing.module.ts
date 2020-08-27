@@ -16,6 +16,8 @@ import { AddDirectorComponent } from './home/person/director/add-director/add-di
 import { UpgrateDirectorComponent } from './home/person/director/upgrate-director/upgrate-director.component';
 import { AddActorComponent } from './home/person/actor/add-actor/add-actor.component';
 import { UpgrateActorComponent } from './home/person/actor/upgrate-actor/upgrate-actor.component';
+import { GenreComponent } from './home/other/genre/genre.component';
+import { AddGenreComponent } from './home/other/genre/add-genre/add-genre.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -37,6 +39,9 @@ const routes: Routes = [
 
   { path: 'add-actor', component: AddActorComponent },
   { path: 'upgrate-actor/:idActor', component: UpgrateActorComponent },
+
+  { path: 'genre', component: GenreComponent },
+  { path: 'add-genre', component: AddGenreComponent },
 
   { path: 'contact', component: ContactComponent },
 

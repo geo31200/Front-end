@@ -12,3 +12,12 @@ span {
   cursor: pointer;
   color: blue;
 }
+.personName {
+  font-size: 14px;
+  font-family: fantasy;
+  color: black;
+  cursor: default;
+}
+h4 {
+  color: purple;
+}

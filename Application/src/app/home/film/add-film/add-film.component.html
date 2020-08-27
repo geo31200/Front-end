@@ -51,7 +51,10 @@
 
       <select id="director" class="form-control" formControlName="director">
         <option *ngFor="let person of alldirector" [ngValue]="person">
-          {{ person.lastName }} - {{ person.firstName }} -
+          <span class="personName">
+            {{ person.lastName }} - {{ person.firstName }}</span
+          >
+
           {{ person.birthdate }}
         </option>
       </select>
@@ -68,7 +71,9 @@
         <tbody>
           <tr id="actor" *ngFor="let person of allactor">
             <td>
-              {{ person.lastName }} - {{ person.firstName }} -
+              <span class="personName">
+                {{ person.lastName }} - {{ person.firstName }}</span
+              >
               {{ person.birthdate }}
             </td>
             <td>
@@ -82,24 +87,23 @@
       <span (click)="goToAddActor()">add new actor</span>
     </div>
 
-    <div *ngIf="show" class="form-group">
-      <span>
-        <label for="actor"> <h4>Actor added</h4> </label>
-        <div id="panier">
-          <ul *ngFor="let person of actors">
-            <li>
-              {{ person.lastName }} - {{ person.firstName }} -
-              {{ person.birthdate }}
-              <button
-                class="btn btn-danger"
-                (click)="deleteActorOnList(person)"
-              >
-                Delete
-              </button>
-            </li>
-          </ul>
-        </div></span
-      >
+    <div *ngIf="show" class="form-group" formControlName="actor">
+      <label for="actor"> </label>
+      <div id="panier">
+        <h4>Actor added</h4>
+        <ul *ngFor="let person of actors">
+          <li>
+            <span class="personName">
+              {{ person.lastName }} - {{ person.firstName }}</span
+            >
+
+            {{ person.birthdate }}
+            <button class="btn btn-danger" (click)="deleteActorOnList(person)">
+              Delete
+            </button>
+          </li>
+        </ul>
+      </div>
     </div>
 
     <button

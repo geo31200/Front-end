@@ -108,6 +108,12 @@ export class AddFilmComponent implements OnInit {
     this.router.navigate(['add-director']);
   }
 
+  //go To Add addActor
+
+  public goToAddActor() {
+    this.router.navigate(['add-actor']);
+  }
+
   //go To Add Genre
 
   public goToAddGenre() {
@@ -140,7 +146,4 @@ export class AddFilmComponent implements OnInit {
       );
     }
   }
-
-  // Submit actors
-  public validateActors() {}
 }

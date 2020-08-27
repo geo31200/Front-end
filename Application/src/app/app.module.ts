@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { OrderModule } from 'ngx-order-pipe';
 import { AppRoutingModule, routingComponent } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -29,6 +29,7 @@ import { GenreComponent } from './home/other/genre/genre.component';
 import { AddGenreComponent } from './home/other/genre/add-genre/add-genre.component';
 import { NationalityComponent } from './home/other/nationality/nationality.component';
 import { AddNationalityComponent } from './home/other/nationality/add-nationality/add-nationality.component';
+import { ActorDetailComponent } from './home/person/actor/actor-detail/actor-detail.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { AddNationalityComponent } from './home/other/nationality/add-nationalit
     AddGenreComponent,
     NationalityComponent,
     AddNationalityComponent,
+    ActorDetailComponent,
   ],
   imports: [
     BrowserModule,
@@ -69,6 +71,7 @@ import { AddNationalityComponent } from './home/other/nationality/add-nationalit
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
+    OrderModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
