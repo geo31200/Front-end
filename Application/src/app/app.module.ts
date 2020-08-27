@@ -25,6 +25,10 @@ import { AddDirectorComponent } from './home/person/director/add-director/add-di
 import { UpgrateDirectorComponent } from './home/person/director/upgrate-director/upgrate-director.component';
 import { AddActorComponent } from './home/person/actor/add-actor/add-actor.component';
 import { UpgrateActorComponent } from './home/person/actor/upgrate-actor/upgrate-actor.component';
+import { GenreComponent } from './home/other/genre/genre.component';
+import { AddGenreComponent } from './home/other/genre/add-genre/add-genre.component';
+import { NationalityComponent } from './home/other/nationality/nationality.component';
+import { AddNationalityComponent } from './home/other/nationality/add-nationality/add-nationality.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +56,10 @@ import { UpgrateActorComponent } from './home/person/actor/upgrate-actor/upgrate
 
     AddActorComponent,
     UpgrateActorComponent,
+    GenreComponent,
+    AddGenreComponent,
+    NationalityComponent,
+    AddNationalityComponent,
   ],
   imports: [
     BrowserModule,

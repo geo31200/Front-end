@@ -43,6 +43,7 @@
           {{ genre.nameGenres }} -
         </option>
       </select>
+      <span (click)="goToAddGenre()">add new genre</span>
     </div>
 
     <div class="form-group">
@@ -78,6 +79,7 @@
           </tr>
         </tbody>
       </table>
+      <span (click)="goToAddActor()">add new actor</span>
     </div>
 
     <div *ngIf="show" class="form-group">

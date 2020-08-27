@@ -108,6 +108,12 @@ export class AddFilmComponent implements OnInit {
     this.router.navigate(['add-director']);
   }
 
+  //go To Add Genre
+
+  public goToAddGenre() {
+    this.router.navigate(['add-genre']);
+  }
+
   // addActorsOnList
 
   public addActorOnList(person: Person) {
