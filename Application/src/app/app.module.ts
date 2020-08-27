@@ -30,6 +30,7 @@ import { AddGenreComponent } from './home/other/genre/add-genre/add-genre.compon
 import { NationalityComponent } from './home/other/nationality/nationality.component';
 import { AddNationalityComponent } from './home/other/nationality/add-nationality/add-nationality.component';
 import { ActorDetailComponent } from './home/person/actor/actor-detail/actor-detail.component';
+import { DirectorDetailComponent } from './home/person/director/director-detail/director-detail.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { ActorDetailComponent } from './home/person/actor/actor-detail/actor-det
     NationalityComponent,
     AddNationalityComponent,
     ActorDetailComponent,
+    DirectorDetailComponent,
   ],
   imports: [
     BrowserModule,
