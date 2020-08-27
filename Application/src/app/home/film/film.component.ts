@@ -12,7 +12,7 @@ import { stringify } from '@angular/compiler/src/util';
   styleUrls: ['./film.component.css'],
 })
 export class FilmComponent implements OnInit {
-  public films: Observable<[Film]>;
+  public films: Observable<Film[]>;
   public film: Film;
   public title: string;
   public idFilm: string;

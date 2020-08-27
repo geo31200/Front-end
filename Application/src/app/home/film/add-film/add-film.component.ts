@@ -7,6 +7,7 @@ import { Genre } from 'src/app/model/genre';
 import { Person } from 'src/app/model/person';
 import { PersonService } from 'src/app/service/person.service';
 import { GenreService } from 'src/app/service/genre.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-add-film',
@@ -21,7 +22,9 @@ export class AddFilmComponent implements OnInit {
   public movieForm: FormGroup;
   public allgenre: Genre[];
   public allactor: Person[];
-  public actors: Person;
+  public actors: Person[];
+  public actor: Person;
+  public show: boolean = false;
 
   constructor(
     private genreService: GenreService,
@@ -33,7 +36,7 @@ export class AddFilmComponent implements OnInit {
     this.film = new Film();
     this.director = new Person();
     this.genre = new Genre();
-    this.actors = new Person();
+    this.actors = [];
   }
 
   ngOnInit(): void {
@@ -51,6 +54,7 @@ export class AddFilmComponent implements OnInit {
     this.allActor();
   }
 
+  //add film
   public addFilm() {
     this.film.title = this.movieForm.value.title;
     this.film.year = this.movieForm.value.year;
@@ -64,8 +68,8 @@ export class AddFilmComponent implements OnInit {
     console.log('le director est', this.film.director);
 
     this.actors = this.movieForm.value.actor;
-    console.log("l'acteur choisi est : ", this.actors);
-    this.film.actors.push(this.actors);
+    console.log('les acteurs choisi sont : ', this.actors);
+    this.film.actors.push();
 
     this.filmService.postFilm(this.film).subscribe((data) => {
       console.log('le film est ', data);
@@ -74,6 +78,7 @@ export class AddFilmComponent implements OnInit {
     this.router.navigate(['/film']);
   }
 
+  // get genres
   public allGenre() {
     this.genreService.getAllGenre().subscribe((genre) => {
       this.allgenre = genre;
@@ -81,13 +86,15 @@ export class AddFilmComponent implements OnInit {
     });
   }
 
+  //get director
   public allDirector() {
-    this.personService.getAllDirecor().subscribe((director) => {
+    this.personService.getAllDirector().subscribe((director) => {
       this.alldirector = director;
       console.log('director', director);
     });
   }
 
+  // get actor
   public allActor() {
     this.personService.getAllActor().subscribe((actor) => {
       this.allactor = actor;
@@ -95,11 +102,39 @@ export class AddFilmComponent implements OnInit {
     });
   }
 
-  // director.lastName = this.movieForm.value.director
-  // director.firstName = this.movieForm.value.firstName
-  // director.birthdate = this.movieForm.value.birthdate
-  // this.personServive.postDirecor(director).subscribe(data =>
-  //   {
-  //   console.log("le director est ", data)
-  // })
+  //go To Add Director
+
+  public goToAddDirector() {
+    this.router.navigate(['add-director']);
+  }
+
+  // addActorsOnList
+
+  public addActorOnList(person: Person) {
+    const index = this.actors.indexOf(person);
+    if (index < 0) {
+      this.actors.push(person);
+      this.show = true;
+      console.log(person);
+    } else {
+      alert(
+        ` The actor, ${person.lastName}, ${person.firstName} has been already added`
+      );
+    }
+  }
+
+  //deleteActorOnList
+
+  public deleteActorOnList(person: Person) {
+    const index = this.actors.indexOf(person);
+    if (index >= 0) {
+      this.actors.splice(index, 1);
+      console.log(
+        `The actor, ${person.lastName}, ${person.firstName} has been deleted on the list of actors`
+      );
+    }
+  }
+
+  // Submit actors
+  public validateActors() {}
 }

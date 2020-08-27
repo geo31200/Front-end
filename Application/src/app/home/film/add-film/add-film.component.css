@@ -1,0 +1,14 @@
+div {
+  width: 75%;
+  margin-left: 15px;
+  padding-top: 10px;
+}
+
+#panier {
+  border: solid #32a1ce;
+}
+
+span {
+  cursor: pointer;
+  color: blue;
+}

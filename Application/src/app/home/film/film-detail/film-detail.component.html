@@ -24,11 +24,11 @@
       </tr>
       <tr>
         Genre :
-        <td id="genre">{{ film.genres }}</td>
+        <td id="genre">{{ film.genres | json }}</td>
       </tr>
       <tr>
         Actors :
-        <td id="actor">{{ film.actors }}</td>
+        <td id="actor">{{ film.actors | json }}</td>
         <!-- <td *ngFor ="let person of persons | async" > </td> -->
       </tr>
     </tbody>

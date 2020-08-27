@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { AppRoutingModule, routingComponent, } from './app-routing.module';
+import { AppRoutingModule, routingComponent } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -9,7 +9,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ConnexionComponent } from './connexion/connexion.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
@@ -26,11 +25,6 @@ import { AddDirectorComponent } from './home/person/director/add-director/add-di
 import { UpgrateDirectorComponent } from './home/person/director/upgrate-director/upgrate-director.component';
 import { AddActorComponent } from './home/person/actor/add-actor/add-actor.component';
 import { UpgrateActorComponent } from './home/person/actor/upgrate-actor/upgrate-actor.component';
-
-
-
-
-
 
 @NgModule({
   declarations: [
@@ -49,16 +43,15 @@ import { UpgrateActorComponent } from './home/person/actor/upgrate-actor/upgrate
 
     LivreComponent,
     LivreDetailComponent,
-    
+
     SerieComponent,
     SerieDetailComponent,
+
     AddDirectorComponent,
     UpgrateDirectorComponent,
+
     AddActorComponent,
     UpgrateActorComponent,
-
-   
-    
   ],
   imports: [
     BrowserModule,
@@ -67,9 +60,9 @@ import { UpgrateActorComponent } from './home/person/actor/upgrate-actor/upgrate
     NgbModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule,  
+    ReactiveFormsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

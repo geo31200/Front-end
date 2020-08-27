@@ -15,7 +15,8 @@
     <div class="form-group">
       <label for="year">Year</label>
       <input
-        type="text"
+        type="date"
+        min="1900-01-01"
         class="form-control"
         id="year"
         formControlName="year"
@@ -26,7 +27,7 @@
     <div class="form-group">
       <label for="duration">Duration</label>
       <input
-        type="text"
+        type="number"
         class="form-control"
         id="duration"
         formControlName="duration"
@@ -53,16 +54,50 @@
           {{ person.birthdate }}
         </option>
       </select>
+      <span (click)="goToAddDirector()">add new director</span>
     </div>
 
-    <div class="form-group">
-      <label for="actor">Actor</label>
-      <select multiple id="actor" class="form-control" formControlName="actor">
-        <option *ngFor="let person of allactor" [ngValue]="person">
-          {{ person.lastName }} - {{ person.firstName }} -
-          {{ person.birthdate }}
-        </option>
-      </select>
+    <div id="tableActor">
+      <table>
+        <thead>
+          <tr>
+            Actor
+          </tr>
+        </thead>
+        <tbody>
+          <tr id="actor" *ngFor="let person of allactor">
+            <td>
+              {{ person.lastName }} - {{ person.firstName }} -
+              {{ person.birthdate }}
+            </td>
+            <td>
+              <button (click)="addActorOnList(person)" class="btn btn-success">
+                addActorOnShop
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div *ngIf="show" class="form-group">
+      <span>
+        <label for="actor"> <h4>Actor added</h4> </label>
+        <div id="panier">
+          <ul *ngFor="let person of actors">
+            <li>
+              {{ person.lastName }} - {{ person.firstName }} -
+              {{ person.birthdate }}
+              <button
+                class="btn btn-danger"
+                (click)="deleteActorOnList(person)"
+              >
+                Delete
+              </button>
+            </li>
+          </ul>
+        </div></span
+      >
     </div>
 
     <button

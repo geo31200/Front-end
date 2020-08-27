@@ -12,10 +12,12 @@ import { ConnexionComponent } from './connexion/connexion.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AddFilmComponent } from './home/film/add-film/add-film.component';
 import { UpgrateFilmComponent } from './home/film/upgrate-film/upgrate-film.component';
-
+import { AddDirectorComponent } from './home/person/director/add-director/add-director.component';
+import { UpgrateDirectorComponent } from './home/person/director/upgrate-director/upgrate-director.component';
+import { AddActorComponent } from './home/person/actor/add-actor/add-actor.component';
+import { UpgrateActorComponent } from './home/person/actor/upgrate-actor/upgrate-actor.component';
 
 const routes: Routes = [
-
   { path: 'home', component: HomeComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 
@@ -30,26 +32,32 @@ const routes: Routes = [
   { path: 'livre', component: LivreComponent },
   { path: 'livre-detail', component: LivreDetailComponent },
 
+  { path: 'add-director', component: AddDirectorComponent },
+  { path: 'upgrate-director/:idDirector', component: UpgrateDirectorComponent },
+
+  { path: 'add-actor', component: AddActorComponent },
+  { path: 'upgrate-actor/:idActor', component: UpgrateActorComponent },
+
   { path: 'contact', component: ContactComponent },
 
   { path: 'connexion', component: ConnexionComponent },
-  { path: '**', component: PageNotFoundComponent }
+  { path: '**', component: PageNotFoundComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
-export const routingComponent =
-  [FilmComponent,
-    FilmDetailComponent,
-    AddFilmComponent,
-    UpgrateFilmComponent,
-    SerieComponent,
-    SerieDetailComponent,
-    LivreComponent,
-    LivreDetailComponent,
-    ContactComponent,
-    ConnexionComponent
-  ]
+export class AppRoutingModule {}
+export const routingComponent = [
+  FilmComponent,
+  FilmDetailComponent,
+  AddFilmComponent,
+  UpgrateFilmComponent,
+  SerieComponent,
+  SerieDetailComponent,
+  LivreComponent,
+  LivreDetailComponent,
+  ContactComponent,
+  ConnexionComponent,
+];
