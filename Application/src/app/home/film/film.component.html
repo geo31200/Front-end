@@ -1,36 +1,32 @@
-
-
-<div id="body" >
-
+<div id="body">
   <div>
-    <button (click)="goToAddFilm()" class="btn btn-success"> Add movie </button>
-      </div>
-
-    <table>
-      <thead>
-        <tr>
-          <th id="title">Title</th>
-          
-        </tr>
-      </thead>
-
-
-      <tbody>
-        <tr id="films" *ngFor="let film of films | async">
-          <td>
-            {{film.title}} ({{film.year}})
-        </td>
-        <td> 
-          <button (click)="detailFilm(film)" class="btn btn-info">Detail's movie</button>
-        </td>
-          <td>
-            <button (click)="deleteFilm(film)" class="btn btn-danger">Delete</button>
-        </tr>
-      </tbody>
-    </table>
-    <div>
-      <button (click)="goToAddFilm()" class="btn btn-success"> Add movie </button>
-        </div>
+    <button (click)="goToAddFilm()" class="btn btn-success">Add movie</button>
   </div>
 
- 
+  <table>
+    <thead>
+      <tr>
+        <th id="title">Title</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr id="films" *ngFor="let film of films | async">
+        <td>{{ film.title }} ({{ film.year | date: "yyyy" }})</td>
+        <td>
+          <button (click)="detailFilm(film)" class="btn btn-info">
+            Detail's movie
+          </button>
+        </td>
+        <td>
+          <button (click)="deleteFilm(film)" class="btn btn-danger">
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div>
+    <button (click)="goToAddFilm()" class="btn btn-success">Add movie</button>
+  </div>
+</div>

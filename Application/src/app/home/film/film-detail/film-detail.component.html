@@ -8,7 +8,7 @@
         <td id="title">{{ film.title }}</td>
       </tr>
       <tr>
-        Year :
+        Date :
         <td id="year">{{ film.year }}</td>
       </tr>
       <tr>
@@ -18,8 +18,7 @@
       <tr>
         Director :
         <td id="director">
-          {{ film.director.lastName }} - {{ film.director.firstName }}, born the
-          {{ film.director.birthdate }}
+          {{ film.director | json }}
         </td>
       </tr>
       <tr>

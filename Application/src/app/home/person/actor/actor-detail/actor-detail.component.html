@@ -1,1 +1,23 @@
-<p>actor-detail works!</p>
+<h1>{{ actor.firstName }} {{ actor.lastName }}</h1>
+
+<div>
+  <table>
+    <tbody>
+      <tr>
+        Birthdate :
+        <td id="birthdate">{{ actor.birthdate }}</td>
+      </tr>
+      <tr></tr>
+
+      <tr>
+        Films played :
+        <td id="films">{{ actor.film | json }}</td>
+        <!-- <td *ngFor ="let person of persons | async" > </td> -->
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- <button (click)="goToUpgrateActor(actor)" class="btn btn-info">
+    Upgrate this actor
+  </button> -->
+</div>

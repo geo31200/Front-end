@@ -31,6 +31,7 @@ import { NationalityComponent } from './home/other/nationality/nationality.compo
 import { AddNationalityComponent } from './home/other/nationality/add-nationality/add-nationality.component';
 import { ActorDetailComponent } from './home/person/actor/actor-detail/actor-detail.component';
 import { DirectorDetailComponent } from './home/person/director/director-detail/director-detail.component';
+import { PersonComponent } from './home/person/person.component';
 
 @NgModule({
   declarations: [
@@ -53,17 +54,21 @@ import { DirectorDetailComponent } from './home/person/director/director-detail/
     SerieComponent,
     SerieDetailComponent,
 
+    PersonComponent,
+
     AddDirectorComponent,
     UpgrateDirectorComponent,
+    DirectorDetailComponent,
 
+    ActorDetailComponent,
     AddActorComponent,
     UpgrateActorComponent,
+
     GenreComponent,
     AddGenreComponent,
+
     NationalityComponent,
     AddNationalityComponent,
-    ActorDetailComponent,
-    DirectorDetailComponent,
   ],
   imports: [
     BrowserModule,

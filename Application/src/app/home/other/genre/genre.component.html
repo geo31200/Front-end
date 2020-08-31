@@ -1,6 +1,7 @@
 <h1>Genre</h1>
 
 <div>
+  <span (click)="goToAddGenre()">add new genre</span>
   <ul *ngFor="let genre of genres">
     <li>
       {{ genre.nameGenres }}

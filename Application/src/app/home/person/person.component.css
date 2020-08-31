@@ -1,0 +1,23 @@
+div {
+  display: inline-block;
+  width: 50%;
+}
+span {
+  cursor: pointer;
+  color: blue;
+}
+.personName {
+  font-size: 14px;
+  font-family: fantasy;
+  color: black;
+
+  text-align: center;
+}
+
+td {
+  padding: 10px;
+}
+.person {
+  cursor: pointer;
+  width: 100%;
+}

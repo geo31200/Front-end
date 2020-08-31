@@ -15,6 +15,9 @@ import { Genre } from 'src/app/model/genre';
 export class FilmDetailComponent implements OnInit {
   public film: Film;
   public idFilm: string;
+  public director: Person;
+  public genre: Genre;
+  public actor: Person;
 
   constructor(
     private filmservice: FilmService,

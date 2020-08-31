@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Genre } from 'src/app/model/genre';
 import { GenreService } from 'src/app/service/genre.service';
+import { Person } from 'src/app/model/person';
 
 @Component({
   selector: 'app-upgrate-film',
@@ -15,9 +16,15 @@ export class UpgrateFilmComponent implements OnInit {
   public film: Film;
   public idFilm: string;
   public title: string;
+  public director: Person;
+  public genre: Genre;
+  public alldirector: Person[];
   public movieForm: FormGroup;
   public allgenre: Genre[];
-  public genre: Genre;
+  public allactor: Person[];
+  public actors: Person[];
+  public actor: Person;
+  public show: boolean = false;
 
   constructor(
     private genreService: GenreService,
@@ -38,25 +45,32 @@ export class UpgrateFilmComponent implements OnInit {
       duration: ['', Validators.required],
       nameGenres: ['', Validators.required],
     });
-
+    this.film = new Film();
+    this.director = new Person();
+    this.genre = new Genre();
+    this.actors = [];
     this.allGenre();
   }
 
   public upgrateFilm() {
-    let genre = new Genre();
-    let film = new Film();
+    this.film.title = this.movieForm.value.title;
+    this.film.year = this.movieForm.value.year;
+    this.film.duration = this.movieForm.value.duration;
 
-    film.title = this.movieForm.value.title;
-    film.year = this.movieForm.value.year;
-    film.duration = this.movieForm.value.duration;
-
-    genre.nameGenres = this.movieForm.value.nameGenres;
+    this.genre.nameGenres = this.movieForm.value.nameGenres;
     this.film.genres.push(this.genre);
 
-    this.filmservice.upgrateFilm(film).subscribe((data) => {
+    this.director = this.movieForm.value.director;
+    console.log('le director est', this.director);
+
+    this.actors = this.movieForm.value.actor;
+    console.log('les acteurs choisi sont : ', this.actors);
+    this.film.actors.push(...this.actors);
+
+    this.filmservice.upgrateFilm(this.film).subscribe((data) => {
       console.log("c'est", data);
     });
-    console.log('le film est devenu : ', film);
+    console.log('le film est devenu : ', this.film);
     this.router.navigate(['/film']);
   }
 

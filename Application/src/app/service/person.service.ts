@@ -75,7 +75,7 @@ export class PersonService {
   //delete
   public deleteDirector(person: Person): Observable<Person> {
     return this.http.delete<Person>(
-      `${this.apiRoute}/actor/deleteDirector?id=${person.idPerson}`
+      `${this.apiRoute}/director/deleteDirector?id=${person.idPerson}`
     );
   }
 

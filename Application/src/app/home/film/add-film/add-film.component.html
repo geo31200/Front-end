@@ -32,6 +32,8 @@
         id="duration"
         formControlName="duration"
         placeholder="Enter the movie's duration"
+        min="60"
+        max="240"
       />
     </div>
 
@@ -87,7 +89,7 @@
       <span (click)="goToAddActor()">add new actor</span>
     </div>
 
-    <div *ngIf="show" class="form-group" formControlName="actor">
+    <div *ngIf="show">
       <label for="actor"> </label>
       <div id="panier">
         <h4>Actor added</h4>

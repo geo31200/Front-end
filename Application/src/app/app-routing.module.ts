@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { FilmComponent } from './home/film/Film.component';
@@ -18,6 +18,9 @@ import { AddActorComponent } from './home/person/actor/add-actor/add-actor.compo
 import { UpgrateActorComponent } from './home/person/actor/upgrate-actor/upgrate-actor.component';
 import { GenreComponent } from './home/other/genre/genre.component';
 import { AddGenreComponent } from './home/other/genre/add-genre/add-genre.component';
+import { DirectorDetailComponent } from './home/person/director/director-detail/director-detail.component';
+import { ActorDetailComponent } from './home/person/actor/actor-detail/actor-detail.component';
+import { PersonComponent } from './home/person/person.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -34,11 +37,15 @@ const routes: Routes = [
   { path: 'livre', component: LivreComponent },
   { path: 'livre-detail', component: LivreDetailComponent },
 
+  { path: 'person', component: PersonComponent },
+
   { path: 'add-director', component: AddDirectorComponent },
-  { path: 'upgrate-director/:idDirector', component: UpgrateDirectorComponent },
+  { path: 'director-detail/:idPerson', component: DirectorDetailComponent },
+  { path: 'upgrate-director/:idPerson', component: UpgrateDirectorComponent },
 
   { path: 'add-actor', component: AddActorComponent },
-  { path: 'upgrate-actor/:idActor', component: UpgrateActorComponent },
+  { path: 'detail-actor/:idPerson', component: ActorDetailComponent },
+  { path: 'upgrate-actor/:idPerson', component: UpgrateActorComponent },
 
   { path: 'genre', component: GenreComponent },
   { path: 'add-genre', component: AddGenreComponent },
@@ -63,6 +70,15 @@ export const routingComponent = [
   SerieDetailComponent,
   LivreComponent,
   LivreDetailComponent,
+  GenreComponent,
+  AddGenreComponent,
+  PersonComponent,
+  UpgrateActorComponent,
+  ActorDetailComponent,
+  AddActorComponent,
+  UpgrateDirectorComponent,
+  DirectorDetailComponent,
+  AddDirectorComponent,
   ContactComponent,
   ConnexionComponent,
 ];

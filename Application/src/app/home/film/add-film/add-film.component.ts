@@ -7,7 +7,6 @@ import { Genre } from 'src/app/model/genre';
 import { Person } from 'src/app/model/person';
 import { PersonService } from 'src/app/service/person.service';
 import { GenreService } from 'src/app/service/genre.service';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-add-film',
@@ -46,7 +45,6 @@ export class AddFilmComponent implements OnInit {
       duration: ['', Validators.required],
       nameGenres: ['', Validators.required],
       director: ['', Validators.required],
-      actor: ['', Validators.required],
     });
 
     this.allDirector();
@@ -67,9 +65,9 @@ export class AddFilmComponent implements OnInit {
     this.film.director = this.movieForm.value.director;
     console.log('le director est', this.film.director);
 
-    this.actors = this.movieForm.value.actor;
-    console.log('les acteurs choisi sont : ', this.actors);
-    this.film.actors.push();
+    // this.actors = this.movieForm.value.actor;
+    // console.log('les acteurs choisi sont : ', this.actors);
+    this.film.actors.push(...this.actors);
 
     this.filmService.postFilm(this.film).subscribe((data) => {
       console.log('le film est ', data);
