@@ -32,6 +32,7 @@ import { AddNationalityComponent } from './home/other/nationality/add-nationalit
 import { ActorDetailComponent } from './home/person/actor/actor-detail/actor-detail.component';
 import { DirectorDetailComponent } from './home/person/director/director-detail/director-detail.component';
 import { PersonComponent } from './home/person/person.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
   declarations: [
@@ -79,6 +80,7 @@ import { PersonComponent } from './home/person/person.component';
     HttpClientModule,
     ReactiveFormsModule,
     OrderModule,
+    Ng2SearchPipeModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

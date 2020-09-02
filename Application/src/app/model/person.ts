@@ -5,10 +5,7 @@ export class Person {
   public lastName: string;
   public firstName: string;
   public birthdate: Date;
-  public film: Film[];
-  idDirector: any;
+  public filmPlayed: Film[];
 
-  constructor() {
-    this.film = [];
-  }
+  constructor() {}
 }

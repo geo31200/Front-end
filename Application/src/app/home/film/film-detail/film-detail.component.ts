@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FilmService } from '../../../service/film.service';
-import { PersonService } from '../../../service/person.service';
+
 import { Film } from 'src/app/model/film';
 import { Person } from 'src/app/model/person';
-import { Observable } from 'rxjs';
+
 import { ActivatedRoute, Router } from '@angular/router';
 import { Genre } from 'src/app/model/genre';
 

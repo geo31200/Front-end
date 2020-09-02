@@ -1,11 +1,7 @@
 <div id="tableDirector">
+  <h1>Director</h1>
   <table>
     <span (click)="goToAddDirector()">add new director</span>
-    <thead>
-      <tr>
-        <h1>Director</h1>
-      </tr>
-    </thead>
     <tbody>
       <tr id="director" *ngFor="let person of alldirector">
         <td (click)="detailDirector(person)">
@@ -15,9 +11,6 @@
             >
             {{ person.birthdate }}
           </div>
-          <button (click)="deleteDirector(person)" class="btn btn-danger">
-            Delete
-          </button>
         </td>
       </tr>
     </tbody>
@@ -26,13 +19,9 @@
 </div>
 
 <div id="tableActor">
+  <h1>Actor</h1>
   <table>
     <span (click)="goToAddActor()">add new actor</span>
-    <thead>
-      <tr>
-        <h1>Actor</h1>
-      </tr>
-    </thead>
     <tbody>
       <tr id="actor" *ngFor="let person of allactor">
         <td (click)="detailActor(person)">
@@ -42,9 +31,6 @@
             >
             {{ person.birthdate }}
           </div>
-          <button (click)="deleteActor(person)" class="btn btn-danger">
-            Delete
-          </button>
         </td>
       </tr>
     </tbody>

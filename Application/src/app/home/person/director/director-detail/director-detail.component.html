@@ -1,1 +1,43 @@
-<p>director-detail works!</p>
+<h1>Details of the director</h1>
+
+<div>
+  <table>
+    <tbody>
+      <tr>
+        Firstname :
+        <td id="firstName">{{ person.firstName }}</td>
+      </tr>
+
+      <tr>
+        Lastname :
+        <td id="lastName">{{ person.lastName }}</td>
+      </tr>
+
+      <tr>
+        Birthdate :
+        <td id="birthdate">{{ person.birthdate }}</td>
+      </tr>
+
+      <tr>
+        Films played :
+        <td id="films">{{ person.filmPlayed }}</td>
+        <!-- <td *ngFor ="let person of persons | async" > </td> -->
+      </tr>
+      <tr>
+        <button (click)="goToUpgrateActor(person)" class="btn btn-info">
+          Upgrate this actor
+        </button>
+      </tr>
+      <br />
+      <tr>
+        <button (click)="deleteDirector(person)" class="btn btn-danger">
+          Delete
+        </button>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- <button (click)="goToUpgrateActor(actor)" class="btn btn-info">
+    Upgrate this actor
+  </button> -->
+</div>

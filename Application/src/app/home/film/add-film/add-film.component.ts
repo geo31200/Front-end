@@ -16,13 +16,17 @@ import { GenreService } from 'src/app/service/genre.service';
 export class AddFilmComponent implements OnInit {
   public film: Film;
   public director: Person;
-  public genre: Genre;
   public alldirector: Person[];
-  public movieForm: FormGroup;
+
+  public genre: Genre;
+  public genres: Genre[];
   public allgenre: Genre[];
+
   public allactor: Person[];
   public actors: Person[];
   public actor: Person;
+
+  public movieForm: FormGroup;
   public show: boolean = false;
 
   constructor(
@@ -36,6 +40,7 @@ export class AddFilmComponent implements OnInit {
     this.director = new Person();
     this.genre = new Genre();
     this.actors = [];
+    this.genres = [];
   }
 
   ngOnInit(): void {
@@ -43,7 +48,6 @@ export class AddFilmComponent implements OnInit {
       title: ['', Validators.required],
       year: ['', Validators.required],
       duration: ['', Validators.required],
-      nameGenres: ['', Validators.required],
       director: ['', Validators.required],
     });
 
@@ -58,9 +62,7 @@ export class AddFilmComponent implements OnInit {
     this.film.year = this.movieForm.value.year;
     this.film.duration = this.movieForm.value.duration;
 
-    this.genre = this.movieForm.value.nameGenres;
-    console.log('le genre est', this.genre);
-    this.film.genres.push(this.genre);
+    this.film.genres.push(...this.genres);
 
     this.film.director = this.movieForm.value.director;
     console.log('le director est', this.film.director);
@@ -141,6 +143,31 @@ export class AddFilmComponent implements OnInit {
       this.actors.splice(index, 1);
       console.log(
         `The actor, ${person.lastName}, ${person.firstName} has been deleted on the list of actors`
+      );
+    }
+  }
+
+  // addGenresOnList
+
+  public addGenreOnList(genre: Genre) {
+    const index = this.genres.indexOf(genre);
+    if (index < 0) {
+      this.genres.push(genre);
+      this.show = true;
+      console.log(genre);
+    } else {
+      alert(` The genre, ${genre.nameGenres}, has been already added`);
+    }
+  }
+
+  //deleteActorOnList
+
+  public deleteGenreOnList(genre: Genre) {
+    const index = this.genres.indexOf(genre);
+    if (index >= 0) {
+      this.genres.splice(index, 1);
+      console.log(
+        `The actor, ${genre.nameGenres}, has been deleted on the list of genres`
       );
     }
   }

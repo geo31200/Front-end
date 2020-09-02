@@ -32,7 +32,10 @@ export class PersonService {
 
   //put
   public putActor(person: Person): Observable<Person> {
-    return this.http.put<Person>(`${this.apiRoute}/actor/modifyActor`, person);
+    return this.http.put<Person>(
+      `${this.apiRoute}/actor/modifyActor?id=${person.idPerson}`,
+      person
+    );
   }
 
   //delete

@@ -37,21 +37,53 @@
       />
     </div>
 
-    <div class="form-group">
-      <label for="nameGenres">Genre</label>
-
-      <select id="nameGenres" class="form-control" formControlName="nameGenres">
-        <option *ngFor="let genre of allgenre" [ngValue]="genre">
-          {{ genre.nameGenres }} -
-        </option>
-      </select>
+    <div id="tableGenre">
+      <table>
+        <thead>
+          <tr>
+            Genre
+          </tr>
+        </thead>
+        <tbody>
+          <tr id="genre" *ngFor="let genre of allgenre">
+            <td>
+              {{ genre.nameGenres }}
+            </td>
+            <td>
+              <button (click)="addGenreOnList(genre)" class="btn btn-success">
+                addGenreOnList
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
       <span (click)="goToAddGenre()">add new genre</span>
+    </div>
+
+    <div *ngIf="show">
+      <label for="genre"> </label>
+      <div id="panier">
+        <h4>Genre added</h4>
+        <ul *ngFor="let genre of genres">
+          <li>
+            {{ genre.nameGenres }}
+            <button class="btn btn-danger" (click)="deleteGenreOnList(genre)">
+              Delete
+            </button>
+          </li>
+        </ul>
+      </div>
     </div>
 
     <div class="form-group">
       <label for="director">Director</label>
 
-      <select id="director" class="form-control" formControlName="director">
+      <select
+        id="director"
+        class="form-control"
+        formControlName="director"
+        data-live-search="true"
+      >
         <option *ngFor="let person of alldirector" [ngValue]="person">
           <span class="personName">
             {{ person.lastName }} - {{ person.firstName }}</span
