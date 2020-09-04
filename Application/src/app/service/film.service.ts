@@ -21,6 +21,18 @@ export class FilmService {
   public getFilmByTitle(title: string): Observable<any> {
     return this.http.get(`${this.apiRoute}/title?t=${title}`);
   }
+
+  public getFilmByActor(idPerson: string): Observable<any> {
+    return this.http.get(`${this.apiRoute}/idActor?id=${idPerson}`);
+  }
+
+  public getFilmByDirector(idPerson: string): Observable<any> {
+    return this.http.get(`${this.apiRoute}/idDirector?id=${idPerson}`);
+  }
+  public getFilmByGenre(idGenre: string): Observable<any> {
+    return this.http.get(`${this.apiRoute}/idGenre?id=${idGenre}`);
+  }
+
   public postFilm(film: Film): Observable<Film> {
     return this.http.post<Film>(`${this.apiRoute}/addFilm`, film);
   }

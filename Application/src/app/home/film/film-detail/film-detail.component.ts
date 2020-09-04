@@ -16,8 +16,8 @@ export class FilmDetailComponent implements OnInit {
   public film: Film;
   public idFilm: string;
   public director: Person;
-  public genre: Genre;
-  public actor: Person;
+  public genres: Genre[];
+  public actors: Person[];
 
   constructor(
     private filmservice: FilmService,

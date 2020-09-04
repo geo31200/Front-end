@@ -18,16 +18,22 @@ export class AddFilmComponent implements OnInit {
   public director: Person;
   public alldirector: Person[];
 
+  public namegenres: string;
   public genre: Genre;
   public genres: Genre[];
   public allgenre: Genre[];
+  public genreFiltered: Genre[];
 
+  public firstNameActors: string;
+  public lastNameActors: string;
   public allactor: Person[];
   public actors: Person[];
   public actor: Person;
+  public actorFiltered: Person[];
 
   public movieForm: FormGroup;
-  public show: boolean = false;
+  public showGenre: boolean = false;
+  public showActor: boolean = false;
 
   constructor(
     private genreService: GenreService,
@@ -49,11 +55,47 @@ export class AddFilmComponent implements OnInit {
       year: ['', Validators.required],
       duration: ['', Validators.required],
       director: ['', Validators.required],
+      genre: ['', Validators.minLength(2)],
+      actor: [''],
     });
 
     this.allDirector();
     this.allGenre();
     this.allActor();
+  }
+
+  //search genre
+  public searchGenre(): void {
+    if (this.namegenres) {
+      this.genreFiltered = this.allgenre.filter((g) =>
+        g.nameGenres
+
+          .toLocaleLowerCase()
+          .match(this.namegenres.toLocaleLowerCase())
+      );
+    } else {
+      this.genreFiltered = this.allgenre;
+    }
+  }
+
+  //search actor
+  public searchActor(): void {
+    if (this.lastNameActors || this.firstNameActors) {
+      this.actorFiltered = this.allactor.filter(
+        (a) => {
+          a.lastName
+            .toLocaleLowerCase()
+            .match(this.lastNameActors.toLocaleLowerCase());
+        },
+        (a) => {
+          a.firstName
+            .toLocaleLowerCase()
+            .match(this.firstNameActors.toLocaleLowerCase());
+        }
+      );
+    } else {
+      this.actorFiltered = this.allactor;
+    }
   }
 
   //add film
@@ -81,6 +123,7 @@ export class AddFilmComponent implements OnInit {
   // get genres
   public allGenre() {
     this.genreService.getAllGenre().subscribe((genre) => {
+      this.genreFiltered = genre;
       this.allgenre = genre;
       console.log('genre', genre);
     });
@@ -97,6 +140,7 @@ export class AddFilmComponent implements OnInit {
   // get actor
   public allActor() {
     this.personService.getAllActor().subscribe((actor) => {
+      this.actorFiltered = actor;
       this.allactor = actor;
       console.log('Actors : ', actor);
     });
@@ -126,7 +170,7 @@ export class AddFilmComponent implements OnInit {
     const index = this.actors.indexOf(person);
     if (index < 0) {
       this.actors.push(person);
-      this.show = true;
+      this.showActor = true;
       console.log(person);
     } else {
       alert(
@@ -141,6 +185,7 @@ export class AddFilmComponent implements OnInit {
     const index = this.actors.indexOf(person);
     if (index >= 0) {
       this.actors.splice(index, 1);
+      this.showActor = false;
       console.log(
         `The actor, ${person.lastName}, ${person.firstName} has been deleted on the list of actors`
       );
@@ -153,7 +198,7 @@ export class AddFilmComponent implements OnInit {
     const index = this.genres.indexOf(genre);
     if (index < 0) {
       this.genres.push(genre);
-      this.show = true;
+      this.showGenre = true;
       console.log(genre);
     } else {
       alert(` The genre, ${genre.nameGenres}, has been already added`);
@@ -166,6 +211,7 @@ export class AddFilmComponent implements OnInit {
     const index = this.genres.indexOf(genre);
     if (index >= 0) {
       this.genres.splice(index, 1);
+      this.showGenre = false;
       console.log(
         `The actor, ${genre.nameGenres}, has been deleted on the list of genres`
       );

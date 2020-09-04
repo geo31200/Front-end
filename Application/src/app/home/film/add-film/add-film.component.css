@@ -8,16 +8,33 @@ div {
   border: solid #32a1ce;
 }
 
-span {
+button {
   cursor: pointer;
+}
+
+span {
   color: blue;
 }
 .personName {
   font-size: 14px;
-  font-family: fantasy;
+
+  color: white;
+  cursor: default;
+}
+.personName2 {
+  font-size: 14px;
+
   color: black;
   cursor: default;
 }
 h4 {
   color: purple;
+}
+h3 {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: royalblue;
+}
+#birthdate {
+  font-size: 11px;
+  color: black;
 }

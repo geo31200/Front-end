@@ -9,6 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ConnexionComponent } from './connexion/connexion.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
@@ -33,6 +34,8 @@ import { ActorDetailComponent } from './home/person/actor/actor-detail/actor-det
 import { DirectorDetailComponent } from './home/person/director/director-detail/director-detail.component';
 import { PersonComponent } from './home/person/person.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { SearchComponent } from './search/search.component';
+import { MaterialModule } from './material-module/material-module';
 
 @NgModule({
   declarations: [
@@ -70,6 +73,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
     NationalityComponent,
     AddNationalityComponent,
+    SearchComponent,
   ],
   imports: [
     BrowserModule,
@@ -81,6 +85,9 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     ReactiveFormsModule,
     OrderModule,
     Ng2SearchPipeModule,
+    BrowserAnimationsModule,
+    MatFormFieldModule,
+    MaterialModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

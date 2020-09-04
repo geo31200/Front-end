@@ -18,7 +18,8 @@
       <tr>
         Director :
         <td id="director">
-          {{ film.director | json }}
+          {{ film.director.firstName | json }} -
+          {{ film.director.lastName | json }}
         </td>
       </tr>
       <tr>

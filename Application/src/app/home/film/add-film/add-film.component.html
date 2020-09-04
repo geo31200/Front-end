@@ -1,8 +1,8 @@
-<h3>Add Movie</h3>
+<h1>Add Movie</h1>
 <div>
   <form [formGroup]="movieForm">
     <div class="form-group">
-      <label for="title">Title</label>
+      <label for="title"><h3>Title</h3></label>
       <input
         type="text"
         class="form-control"
@@ -11,9 +11,9 @@
         placeholder="Enter a title"
       />
     </div>
-
+    <hr />
     <div class="form-group">
-      <label for="year">Year</label>
+      <label for="year"><h3>Year</h3></label>
       <input
         type="date"
         min="1900-01-01"
@@ -23,9 +23,9 @@
         placeholder="Enter the year of movie's parution"
       />
     </div>
-
+    <hr />
     <div class="form-group">
-      <label for="duration">Duration</label>
+      <label for="duration"><h3>Duration</h3></label>
       <input
         type="number"
         class="form-control"
@@ -36,47 +36,9 @@
         max="240"
       />
     </div>
-
-    <div id="tableGenre">
-      <table>
-        <thead>
-          <tr>
-            Genre
-          </tr>
-        </thead>
-        <tbody>
-          <tr id="genre" *ngFor="let genre of allgenre">
-            <td>
-              {{ genre.nameGenres }}
-            </td>
-            <td>
-              <button (click)="addGenreOnList(genre)" class="btn btn-success">
-                addGenreOnList
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <span (click)="goToAddGenre()">add new genre</span>
-    </div>
-
-    <div *ngIf="show">
-      <label for="genre"> </label>
-      <div id="panier">
-        <h4>Genre added</h4>
-        <ul *ngFor="let genre of genres">
-          <li>
-            {{ genre.nameGenres }}
-            <button class="btn btn-danger" (click)="deleteGenreOnList(genre)">
-              Delete
-            </button>
-          </li>
-        </ul>
-      </div>
-    </div>
-
+    <hr />
     <div class="form-group">
-      <label for="director">Director</label>
+      <label for="director"><h3>Director</h3></label>
 
       <select
         id="director"
@@ -94,26 +56,70 @@
       </select>
       <span (click)="goToAddDirector()">add new director</span>
     </div>
-
-    <div id="tableActor">
-      <table>
-        <thead>
-          <tr>
-            Actor
-          </tr>
-        </thead>
+    <hr />
+    <h3>Genre</h3>
+    <input
+      type="text"
+      [(ngModel)]="namegenres"
+      (input)="searchGenre()"
+      placeholder="search a genre"
+      class="form-control"
+      formControlName="genre"
+    />
+    <div id="tableGenre">
+      <table classe="table">
         <tbody>
-          <tr id="actor" *ngFor="let person of allactor">
+          <tr id="genre" *ngFor="let genre of genreFiltered">
             <td>
-              <span class="personName">
-                {{ person.lastName }} - {{ person.firstName }}</span
-              >
-              {{ person.birthdate }}
+              <button (click)="addGenreOnList(genre)" class="btn btn-success">
+                {{ genre.nameGenres }}
+              </button>
             </td>
+          </tr>
+        </tbody>
+      </table>
+      <span (click)="goToAddGenre()">add new genre</span>
+    </div>
+
+    <div *ngIf="showGenre">
+      <label for="genre"> </label>
+      <div id="panier">
+        <h4>Genre added</h4>
+        <ul *ngFor="let genre of genres">
+          <li>
+            {{ genre.nameGenres }}
+            <button class="btn btn-danger" (click)="deleteGenreOnList(genre)">
+              Delete
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <hr />
+    <div id="tableActor">
+      <h3>Actor</h3>
+      <input
+        type="text"
+        [(ngModel)]="lastNameActors"
+        (input)="searchActor()"
+        placeholder="search a actor"
+        class="form-control"
+        formControlName="actor"
+      />
+      <table>
+        <tbody>
+          <tr id="actor" *ngFor="let person of actorFiltered">
             <td>
               <button (click)="addActorOnList(person)" class="btn btn-success">
-                addActorOnShop
+                <span class="personName">
+                  {{ person.lastName }} - {{ person.firstName }}</span
+                >
               </button>
+            </td>
+            <td>
+              <span id="birthdate">
+                {{ person.birthdate }}
+              </span>
             </td>
           </tr>
         </tbody>
@@ -121,13 +127,13 @@
       <span (click)="goToAddActor()">add new actor</span>
     </div>
 
-    <div *ngIf="show">
+    <div *ngIf="showActor">
       <label for="actor"> </label>
       <div id="panier">
         <h4>Actor added</h4>
         <ul *ngFor="let person of actors">
           <li>
-            <span class="personName">
+            <span class="personName2">
               {{ person.lastName }} - {{ person.firstName }}</span
             >
 
@@ -139,12 +145,14 @@
         </ul>
       </div>
     </div>
-
+    <hr />
     <button
       class="btn btn-success"
       (click)="addFilm()"
       [disabled]="movieForm.invalid"
       type="button"
-    ></button>
+    >
+      Add Film
+    </button>
   </form>
 </div>

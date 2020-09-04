@@ -1,0 +1,60 @@
+<form [formGroup]="searchForm">
+  <div class="formGroup">
+    <fieldset>
+      <label for="title"><h3>Title</h3></label>
+      <input
+        type="search"
+        matInput
+        class="form-control"
+        id="title"
+        formControlName="search"
+        placeholder="search a movie by title"
+      />
+    </fieldset>
+  </div>
+</form>
+<form [formGroup]="searchForm">
+  <div class="formGroup">
+    <fieldset>
+      <label for="year"><h3>Year</h3></label>
+      <input
+        type="search"
+        matInput
+        class="form-control"
+        id="year"
+        formControlName="search"
+        placeholder="search movies by year"
+      />
+    </fieldset>
+  </div>
+</form>
+<form [formGroup]="searchForm">
+  <div class="formGroup">
+    <fieldset>
+      <label for="actor"><h3>Actor</h3></label>
+      <input
+        type="search"
+        matInput
+        class="form-control"
+        id="actor"
+        formControlName="search"
+        placeholder="search movies by actor"
+      />
+    </fieldset>
+  </div>
+</form>
+<form [formGroup]="searchForm">
+  <div class="formGroup">
+    <fieldset>
+      <label for="genre"><h3>Genre</h3></label>
+      <input
+        type="search"
+        matInput
+        class="form-control"
+        id="genre"
+        formControlName="search"
+        placeholder="search movies by genre"
+      />
+    </fieldset>
+  </div>
+</form>
