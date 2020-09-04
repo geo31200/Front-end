@@ -12,7 +12,7 @@ import { FilmService } from 'src/app/service/film.service';
 })
 export class ActorDetailComponent implements OnInit {
   public idPerson: string;
-  public filmPlayed: Film[];
+  public filmsPlayed: Film[];
   public person: Person;
 
   constructor(
@@ -30,13 +30,9 @@ export class ActorDetailComponent implements OnInit {
       this.person = actor;
     });
 
-    this.getAllFilmplayed();
-  }
-
-  //get allfilm played
-  public getAllFilmplayed() {
-    this.filmService.getAllFilm().subscribe((film) => {
-      console.log(film);
+    this.filmService.getFilmByActor(this.idPerson).subscribe((film) => {
+      this.filmsPlayed = film;
+      console.log(this.filmsPlayed);
     });
   }
 

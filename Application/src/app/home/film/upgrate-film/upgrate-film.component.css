@@ -6,3 +6,7 @@ hr {
   width: 75%;
   color: black;
 }
+.actual {
+  display: inline-block;
+  font-weight: bold;
+}

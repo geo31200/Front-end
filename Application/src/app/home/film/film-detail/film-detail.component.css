@@ -3,3 +3,27 @@ td {
   font-size: 12px;
   color: red;
 }
+.card {
+  display: block;
+  flex-grow: 1;
+  height: 100%;
+  width: 50%;
+  background-image: radial-gradient(#eee, rgb(88, 90, 241, 70%));
+  text-shadow: grey 50px;
+  margin: 0 auto;
+}
+ul {
+  list-style-type: none;
+}
+#genre {
+  display: inline-block;
+}
+
+span {
+  font-size: 14px;
+  color: white;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+button {
+  margin: 10px 150px;
+}

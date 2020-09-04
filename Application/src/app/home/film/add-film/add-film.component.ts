@@ -28,7 +28,7 @@ export class AddFilmComponent implements OnInit {
   public lastNameActors: string;
   public allactor: Person[];
   public actors: Person[];
-  public actor: Person;
+
   public actorFiltered: Person[];
 
   public movieForm: FormGroup;

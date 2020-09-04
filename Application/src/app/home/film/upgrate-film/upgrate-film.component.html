@@ -43,12 +43,13 @@
     <div id="tableGenre">
       <table>
         <thead>
-          <tr>
-            <h3>Genre</h3>
-            <p>{{ film.genres | json }}</p>
+          <h3>Genre(s) actual</h3>
+          <tr class="actual" *ngFor="let genre of film.genres">
+            <td>- {{ genre.nameGenres }}</td>
           </tr>
         </thead>
         <tbody>
+          <h3>Genre(s) too add (Optional)</h3>
           <tr id="genre" *ngFor="let genre of allgenre">
             <td>
               {{ genre.nameGenres }}
@@ -81,12 +82,13 @@
     <div id="tableActor">
       <table>
         <thead>
-          <tr>
-            <h3>Actor</h3>
-            <p>{{ film.actors | json }}</p>
+          <h3>Actor actual</h3>
+          <tr class="actual" *ngFor="let person of film.actors">
+            <td>- {{ person.lastName }} {{ person.firstName }}</td>
           </tr>
         </thead>
         <tbody>
+          <h3>Actor too add (Optional)</h3>
           <tr id="actor" *ngFor="let person of allactor">
             <td>
               <span class="personName">

@@ -32,14 +32,6 @@ export class FilmComponent implements OnInit {
     this.router.navigate(['/film-detail', film.idFilm]);
   }
 
-  public deleteFilm(film: Film) {
-    this.FilmService.deleteFilm(film).subscribe((data) => {
-      console.log('le film', film, ' a été supprimé');
-    });
-
-    this.ngOnInit();
-  }
-
   public goToAddFilm() {
     this.router.navigate(['/add-film']);
   }

@@ -1,60 +1,69 @@
 <form [formGroup]="searchForm">
-  <div class="formGroup">
-    <fieldset>
-      <label for="title"><h3>Title</h3></label>
+  <!-- <mat-form-field appearance="fill">
+    <mat-label>All</mat-label>
+    <mat-select>
       <input
-        type="search"
-        matInput
+        type="text"
+        [(ngModel)]="lastNameActors"
+        (input)="searchActor()"
+        placeholder="search a actor"
         class="form-control"
-        id="title"
-        formControlName="search"
-        placeholder="search a movie by title"
+        formControlName="actors"
       />
-    </fieldset>
-  </div>
-</form>
-<form [formGroup]="searchForm">
-  <div class="formGroup">
-    <fieldset>
-      <label for="year"><h3>Year</h3></label>
+      <mat-option *ngFor="let person of actorFiltered" [value]="person">
+        {{ person.firstName }} {{ person.lastName }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field> -->
+
+  <mat-form-field appearance="fill">
+    <mat-label>Actors</mat-label>
+    <mat-select>
       <input
-        type="search"
-        matInput
+        type="text"
+        [(ngModel)]="lastNameActors"
+        (input)="searchActor()"
+        placeholder="search a actor"
         class="form-control"
-        id="year"
-        formControlName="search"
-        placeholder="search movies by year"
+        formControlName="actors"
       />
-    </fieldset>
-  </div>
-</form>
-<form [formGroup]="searchForm">
-  <div class="formGroup">
-    <fieldset>
-      <label for="actor"><h3>Actor</h3></label>
+      <mat-option *ngFor="let person of actorFiltered" [value]="person">
+        {{ person.firstName }} {{ person.lastName }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <!-- <mat-form-field appearance="fill">
+    <mat-label>Directors</mat-label>
+    <mat-select>
       <input
-        type="search"
-        matInput
+        type="text"
+        [(ngModel)]="lastNameActors"
+        (input)="searchActor()"
+        placeholder="search a actor"
         class="form-control"
-        id="actor"
-        formControlName="search"
-        placeholder="search movies by actor"
+        formControlName="actors"
       />
-    </fieldset>
-  </div>
-</form>
-<form [formGroup]="searchForm">
-  <div class="formGroup">
-    <fieldset>
-      <label for="genre"><h3>Genre</h3></label>
+      <mat-option *ngFor="let person of actorFiltered" [value]="person">
+        {{ person.firstName }} {{ person.lastName }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field> -->
+
+  <!-- <mat-form-field appearance="fill">
+    <mat-label>Films</mat-label>
+    <mat-select>
       <input
-        type="search"
-        matInput
+        type="text"
+        [(ngModel)]="lastNameActors"
+        (input)="searchActor()"
+        placeholder="search a actor"
         class="form-control"
-        id="genre"
-        formControlName="search"
-        placeholder="search movies by genre"
+        formControlName="actors"
       />
-    </fieldset>
-  </div>
+      <mat-option *ngFor="let person of actorFiltered" [value]="person">
+        {{ person.firstName }} {{ person.lastName }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field> -->
 </form>

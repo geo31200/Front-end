@@ -18,9 +18,9 @@
         <td id="birthdate">{{ person.birthdate }}</td>
       </tr>
 
-      <tr>
+      <tr *ngFor="let film of filmsPlayed">
         Films played :
-        <td id="films">{{ person.filmPlayed }}</td>
+        <td id="films">{{ film.title }}</td>
         <!-- <td *ngFor ="let person of persons | async" > </td> -->
       </tr>
       <tr>

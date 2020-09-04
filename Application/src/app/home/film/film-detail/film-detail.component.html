@@ -1,40 +1,34 @@
-<h1>Le détail du film</h1>
+<h1>Le détail du film : {{ film.title }}</h1>
 
-<div>
-  <table>
-    <tbody>
-      <tr>
-        Title :
-        <td id="title">{{ film.title }}</td>
-      </tr>
-      <tr>
-        Date :
-        <td id="year">{{ film.year }}</td>
-      </tr>
-      <tr>
-        Duration :
-        <td id="duration">{{ film.duration }} min</td>
-      </tr>
-      <tr>
-        Director :
-        <td id="director">
-          {{ film.director.firstName | json }} -
-          {{ film.director.lastName | json }}
-        </td>
-      </tr>
-      <tr>
-        Genre :
-        <td id="genre">{{ film.genres | json }}</td>
-      </tr>
-      <tr>
-        Actors :
-        <td id="actor">{{ film.actors | json }}</td>
-        <!-- <td *ngFor ="let person of persons | async" > </td> -->
-      </tr>
-    </tbody>
-  </table>
+<div id="card">
+  <mat-card class="card">
+    <ul>
+      <li id="year"><span>Date :</span> {{ film.year }}</li>
+      <li id="duration"><span>Duration :</span> {{ film.duration }}minutes</li>
+      <li id="director">
+        <span>Directed by :</span> {{ film.director.firstName }}
+        {{ film.director.lastName }}
+      </li>
+      <li>
+        <span>Genres :</span>
+        <ul *ngFor="let genre of film.genres" id="genre">
+          <li>{{ genre.nameGenres }}</li>
+        </ul>
+      </li>
+      <li>
+        <span>Actors :</span>
+        <ul *ngFor="let person of film.actors" id="actor">
+          <li>- {{ person.lastName }} {{ person.firstName }}</li>
+        </ul>
+      </li>
+    </ul>
+  </mat-card>
 
   <button (click)="goToUpgrateFilm(film)" class="btn btn-info">
     Upgrate this movie
+  </button>
+
+  <button (click)="deleteFilm(film)" class="btn btn-danger">
+    Delete
   </button>
 </div>

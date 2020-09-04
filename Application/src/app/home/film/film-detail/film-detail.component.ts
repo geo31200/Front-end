@@ -38,6 +38,13 @@ export class FilmDetailComponent implements OnInit {
       (error) => console.log(error)
     );
   }
+  public deleteFilm(film: Film) {
+    this.filmservice.deleteFilm(film).subscribe((data) => {
+      console.log('le film', film, ' a été supprimé');
+    });
+
+    this.router.navigate(['/film']);
+  }
 
   public goToUpgrateFilm(film: Film) {
     console.log('En route pour modifier le film', film);
