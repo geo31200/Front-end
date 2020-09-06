@@ -6,6 +6,7 @@ import { Person } from '../model/person';
 import { Genre } from '../model/genre';
 import { PersonService } from '../service/person.service';
 import { FilmService } from '../service/film.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search',
@@ -13,36 +14,45 @@ import { FilmService } from '../service/film.service';
   styleUrls: ['./search.component.css'],
 })
 export class SearchComponent implements OnInit {
-  public films: Observable<Film[]>;
   public searchForm: FormGroup;
-  public actors: Observable<Person[]>;
-  public directors: Observable<Person[]>;
-  public genres: Observable<Genre>;
+
+  public allfilm: Film[];
+  public titleFilm: string;
+  public filmFiltered: Film[];
 
   public lastNameActors: string;
   public allactor: Person[];
   public actorFiltered: Person[];
 
+  public lastNameDirector: string;
+  public alldirector: Person[];
+  public directorFiltered: Person[];
+
+  public show: boolean = false;
+
   constructor(
     private formBuilder: FormBuilder,
     private personService: PersonService,
-    private filmService: FilmService
+    private filmService: FilmService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
     this.searchForm = this.formBuilder.group({
-      search: [
+      allItems: [
         '',
         Validators.compose([Validators.required, Validators.minLength(2)]),
       ],
-      actors: [''],
     });
     this.allActor(), this.allFilm(), this.allDirector();
   }
 
   // get all films
   public allFilm() {
-    this.films = this.filmService.getAllFilm();
+    this.filmService.getAllFilm().subscribe((film) => {
+      this.allfilm = film;
+      this.filmFiltered = film;
+    });
   }
 
   //get all actors
@@ -51,11 +61,13 @@ export class SearchComponent implements OnInit {
       this.actorFiltered = actor;
       this.allactor = actor;
     });
-    this.actors = this.personService.getAllActor();
   }
   // get all directors
   public allDirector() {
-    this.directors = this.personService.getAllDirector();
+    this.personService.getAllDirector().subscribe((director) => {
+      this.directorFiltered = director;
+      this.alldirector = director;
+    });
   }
 
   //search actor
@@ -66,8 +78,57 @@ export class SearchComponent implements OnInit {
           .toLocaleLowerCase()
           .match(this.lastNameActors.toLocaleLowerCase())
       );
+      this.show = true;
     } else {
       this.actorFiltered = this.allactor;
+      this.show = false;
     }
+  }
+  //search director
+  public searchDirector(): void {
+    if (this.lastNameDirector) {
+      this.directorFiltered = this.alldirector.filter((a) =>
+        a.lastName
+          .toLocaleLowerCase()
+          .match(this.lastNameDirector.toLocaleLowerCase())
+      );
+      this.show = true;
+    } else {
+      this.directorFiltered = this.alldirector;
+      this.show = false;
+    }
+  }
+
+  //search film
+  public searchFilm(): void {
+    if (this.titleFilm) {
+      this.filmFiltered = this.allfilm.filter((f) =>
+        f.title.toLocaleLowerCase().match(this.titleFilm.toLocaleLowerCase())
+      );
+      this.show = true;
+    } else {
+      this.filmFiltered = this.allfilm;
+      this.show = false;
+    }
+  }
+
+  // go to detail actor
+  public detailActor(person: Person) {
+    console.log(person.idPerson, person.firstName, person.lastName);
+    this.router.navigate(['/detail-actor', person.idPerson]);
+    this.ngOnInit();
+  }
+
+  // go to detail actor
+  public detailDirector(person: Person) {
+    console.log(person.idPerson, person.firstName, person.lastName);
+    this.router.navigate(['/detail-director', person.idPerson]);
+    this.ngOnInit();
+  }
+  // go to detail film
+  public detailFilm(film: Film) {
+    console.log(film.idFilm, film.title);
+    this.router.navigate(['/film-detail', film.idFilm]);
+    this.ngOnInit();
   }
 }

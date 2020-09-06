@@ -1,13 +1,22 @@
-nav{
-
-padding: 20px;    
-margin-top: 10px;
-margin-bottom: 25px;
-font-size: 18px;
-background-color: rgba(117, 190, 218, 0.5);
+nav {
+  padding: 20px;
+  margin-top: 10px;
+  margin-bottom: 25px;
+  font-size: 18px;
+  background-color: rgba(117, 190, 218, 0.5);
 }
 
-a{
-margin-left: 10px;
+a {
+  margin-left: 15px;
+  text-decoration: none;
+}
 
+#search {
+  width: 50%;
+  margin: 0 auto;
+}
+
+#login {
+  position: absolute;
+  left: 85%;
 }

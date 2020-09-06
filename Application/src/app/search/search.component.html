@@ -1,69 +1,41 @@
 <form [formGroup]="searchForm">
-  <!-- <mat-form-field appearance="fill">
-    <mat-label>All</mat-label>
-    <mat-select>
-      <input
-        type="text"
-        [(ngModel)]="lastNameActors"
-        (input)="searchActor()"
-        placeholder="search a actor"
-        class="form-control"
-        formControlName="actors"
-      />
+  <input
+    type="text"
+    [(ngModel)]="titleFilm"
+    (input)="searchFilm()"
+    [(ngModel)]="lastNameActors"
+    (input)="searchActor()"
+    [(ngModel)]="lastNameDirector"
+    (input)="searchDirector()"
+    placeholder="search a actor, a director or a film"
+    class="form-control"
+    formControlName="allItems"
+    [matAutocomplete]="auto"
+  />
+  <mat-autocomplete #auto="matAutocomplete">
+    <mat-optgroup *ngIf="show"
+      >Actor
       <mat-option *ngFor="let person of actorFiltered" [value]="person">
-        {{ person.firstName }} {{ person.lastName }}
+        <a (click)="detailActor(person)">
+          {{ person.firstName }} {{ person.lastName }}
+        </a>
       </mat-option>
-    </mat-select>
-  </mat-form-field> -->
-
-  <mat-form-field appearance="fill">
-    <mat-label>Actors</mat-label>
-    <mat-select>
-      <input
-        type="text"
-        [(ngModel)]="lastNameActors"
-        (input)="searchActor()"
-        placeholder="search a actor"
-        class="form-control"
-        formControlName="actors"
-      />
-      <mat-option *ngFor="let person of actorFiltered" [value]="person">
-        {{ person.firstName }} {{ person.lastName }}
+    </mat-optgroup>
+    <mat-optgroup *ngIf="show"
+      >Director
+      <mat-option *ngFor="let person of directorFiltered" [value]="person">
+        <a (click)="detailDirector(person)">
+          {{ person.firstName }} {{ person.lastName }}
+        </a>
       </mat-option>
-    </mat-select>
-  </mat-form-field>
-
-  <!-- <mat-form-field appearance="fill">
-    <mat-label>Directors</mat-label>
-    <mat-select>
-      <input
-        type="text"
-        [(ngModel)]="lastNameActors"
-        (input)="searchActor()"
-        placeholder="search a actor"
-        class="form-control"
-        formControlName="actors"
-      />
-      <mat-option *ngFor="let person of actorFiltered" [value]="person">
-        {{ person.firstName }} {{ person.lastName }}
+    </mat-optgroup>
+    <mat-optgroup *ngIf="show"
+      >Film
+      <mat-option *ngFor="let film of filmFiltered" [value]="film">
+        <a (click)="detailFilm(film)">
+          {{ film.title }}
+        </a>
       </mat-option>
-    </mat-select>
-  </mat-form-field> -->
-
-  <!-- <mat-form-field appearance="fill">
-    <mat-label>Films</mat-label>
-    <mat-select>
-      <input
-        type="text"
-        [(ngModel)]="lastNameActors"
-        (input)="searchActor()"
-        placeholder="search a actor"
-        class="form-control"
-        formControlName="actors"
-      />
-      <mat-option *ngFor="let person of actorFiltered" [value]="person">
-        {{ person.firstName }} {{ person.lastName }}
-      </mat-option>
-    </mat-select>
-  </mat-form-field> -->
+    </mat-optgroup>
+  </mat-autocomplete>
 </form>

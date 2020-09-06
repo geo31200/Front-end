@@ -1,13 +1,16 @@
 <nav>
   <div class="scrollmenu">
-    <a routerLink="/home">Home</a>
-    <a routerLink="/film">Film</a>
-    <a routerLink="/serie">Série</a>
-    <a routerLink="/livre">Livre</a>
-    <a routerLink="/genre">Genre</a>
-    <a routerLink="/person">Person</a>
-    <a routerLink="/contact">Contact</a>
-    <a routerLink="/connexion"> Se connecter</a>
+    <mat-icon id="home"><a routerLink="/home">home </a></mat-icon>
+
+    <a id="film" routerLink="/film">Film</a>
+    <a id="serie" routerLink="/serie">Série</a>
+    <a id="livre" routerLink="/livre">Livre</a>
+    <a id="genre" routerLink="/genre">Genre</a>
+    <a id="person" routerLink="/person">Person</a>
+    <a id="contact" routerLink="/contact">Contact</a>
+    <mat-icon id="login"
+      ><a routerLink="/connexion"> account_circle </a></mat-icon
+    >
   </div>
-  <app-search></app-search>
+  <app-search id="search"></app-search>
 </nav>
