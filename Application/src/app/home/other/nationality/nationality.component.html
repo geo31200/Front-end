@@ -1,1 +1,15 @@
-<p>nationality works!</p>
+<h1>Nationality</h1>
+
+<div>
+  <span (click)="goToAddNationality()">add new Nationality</span>
+  <ul *ngFor="let nationality of nationalities">
+    <li>
+      {{ nationality.country }}
+      <button class="btn btn-danger" (click)="deleteNationality(nationality)">
+        Delete
+      </button>
+    </li>
+  </ul>
+
+  <span (click)="goToAddNationality()">add new genre</span>
+</div>

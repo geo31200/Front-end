@@ -8,7 +8,7 @@ import { FilmDetailComponent } from './home/film/film-detail/film-detail.compone
 import { LivreDetailComponent } from './home/livre/livre-detail/livre-detail.component';
 import { SerieDetailComponent } from './home/serie/serie-detail/serie-detail.component';
 import { ContactComponent } from './home/contact/Contact.component';
-import { ConnexionComponent } from './connexion/connexion.component';
+
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AddFilmComponent } from './home/film/add-film/add-film.component';
 import { UpgrateFilmComponent } from './home/film/upgrate-film/upgrate-film.component';
@@ -21,6 +21,13 @@ import { AddGenreComponent } from './home/other/genre/add-genre/add-genre.compon
 import { DirectorDetailComponent } from './home/person/director/director-detail/director-detail.component';
 import { ActorDetailComponent } from './home/person/actor/actor-detail/actor-detail.component';
 import { PersonComponent } from './home/person/person.component';
+import { LoginComponent } from './user/login/login.component';
+import { AdminComponent } from './user/admin/admin.component';
+import { SimpleUserComponent } from './user/simple-user/simple-user.component';
+import { UserComponent } from './user/user.component';
+import { SearchComponent } from './shared/search/search.component';
+import { NationalityComponent } from './home/other/nationality/nationality.component';
+import { AddNationalityComponent } from './home/other/nationality/add-nationality/add-nationality.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -50,9 +57,15 @@ const routes: Routes = [
   { path: 'genre', component: GenreComponent },
   { path: 'add-genre', component: AddGenreComponent },
 
+  { path: 'nationality', component: NationalityComponent },
+  { path: 'add-nationality', component: AddNationalityComponent },
+
+  { path: 'user', component: UserComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'admin', component: AdminComponent },
+  { path: 'simpleUser', component: SimpleUserComponent },
   { path: 'contact', component: ContactComponent },
 
-  { path: 'connexion', component: ConnexionComponent },
   { path: '**', component: PageNotFoundComponent },
 ];
 
@@ -80,5 +93,11 @@ export const routingComponent = [
   DirectorDetailComponent,
   AddDirectorComponent,
   ContactComponent,
-  ConnexionComponent,
+  NationalityComponent,
+  AddNationalityComponent,
+
+  UserComponent,
+  AdminComponent,
+  SimpleUserComponent,
+  LoginComponent,
 ];

@@ -14,11 +14,12 @@ button {
 
 span {
   color: blue;
+  cursor: pointer;
 }
 .personName {
   font-size: 14px;
 
-  color: white;
+  color: black;
   cursor: default;
 }
 .personName2 {
@@ -37,4 +38,9 @@ h3 {
 #birthdate {
   font-size: 11px;
   color: black;
+}
+
+#span {
+  position: relative;
+  margin-left: 80%;
 }

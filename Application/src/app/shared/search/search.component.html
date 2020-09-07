@@ -15,7 +15,7 @@
   <mat-autocomplete #auto="matAutocomplete">
     <mat-optgroup *ngIf="show"
       >Actor
-      <mat-option *ngFor="let person of actorFiltered" [value]="person">
+      <mat-option *ngFor="let person of actorFiltered">
         <a (click)="detailActor(person)">
           {{ person.firstName }} {{ person.lastName }}
         </a>
@@ -23,7 +23,7 @@
     </mat-optgroup>
     <mat-optgroup *ngIf="show"
       >Director
-      <mat-option *ngFor="let person of directorFiltered" [value]="person">
+      <mat-option *ngFor="let person of directorFiltered">
         <a (click)="detailDirector(person)">
           {{ person.firstName }} {{ person.lastName }}
         </a>
@@ -31,7 +31,7 @@
     </mat-optgroup>
     <mat-optgroup *ngIf="show"
       >Film
-      <mat-option *ngFor="let film of filmFiltered" [value]="film">
+      <mat-option *ngFor="let film of filmFiltered">
         <a (click)="detailFilm(film)">
           {{ film.title }}
         </a>

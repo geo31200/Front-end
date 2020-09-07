@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ConnexionComponent } from './connexion/connexion.component';
+
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -34,14 +34,18 @@ import { ActorDetailComponent } from './home/person/actor/actor-detail/actor-det
 import { DirectorDetailComponent } from './home/person/director/director-detail/director-detail.component';
 import { PersonComponent } from './home/person/person.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
-import { SearchComponent } from './search/search.component';
+import { SearchComponent } from './shared/search/search.component';
 import { MaterialModule } from './material-module/material-module';
+import { UserComponent } from './user/user.component';
+import { AdminComponent } from './user/admin/admin.component';
+import { SimpleUserComponent } from './user/simple-user/simple-user.component';
+import { LoginComponent } from './user/login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    ConnexionComponent,
+
     HeaderComponent,
     FooterComponent,
     routingComponent,
@@ -74,6 +78,10 @@ import { MaterialModule } from './material-module/material-module';
     NationalityComponent,
     AddNationalityComponent,
     SearchComponent,
+    UserComponent,
+    AdminComponent,
+    SimpleUserComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

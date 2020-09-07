@@ -7,6 +7,8 @@ import { Genre } from 'src/app/model/genre';
 import { Person } from 'src/app/model/person';
 import { PersonService } from 'src/app/service/person.service';
 import { GenreService } from 'src/app/service/genre.service';
+import { MatDialog, MatDialogContent } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-add-film',
@@ -32,6 +34,13 @@ export class AddFilmComponent implements OnInit {
   public actorFiltered: Person[];
 
   public movieForm: FormGroup;
+  public titleFormGroup: FormGroup;
+  public yearFormGroup: FormGroup;
+  public durationFormGroup: FormGroup;
+  public directorFormGroup: FormGroup;
+  public genreFormGroup: FormGroup;
+  public actorFormGroup: FormGroup;
+
   public showGenre: boolean = false;
   public showActor: boolean = false;
 
@@ -40,7 +49,9 @@ export class AddFilmComponent implements OnInit {
     private personService: PersonService,
     private filmService: FilmService,
     private router: Router,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    public dialog: MatDialog,
+    public snackbar: MatSnackBar
   ) {
     this.film = new Film();
     this.director = new Person();
@@ -50,14 +61,33 @@ export class AddFilmComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.movieForm = this.formBuilder.group({
+    this.titleFormGroup = this.formBuilder.group({
       title: ['', Validators.required],
+    });
+    this.yearFormGroup = this.formBuilder.group({
       year: ['', Validators.required],
+    });
+    this.durationFormGroup = this.formBuilder.group({
       duration: ['', Validators.required],
+    });
+    this.directorFormGroup = this.formBuilder.group({
       director: ['', Validators.required],
+    });
+    this.genreFormGroup = this.formBuilder.group({
       genre: ['', Validators.minLength(2)],
+    });
+    this.actorFormGroup = this.formBuilder.group({
       actor: [''],
     });
+
+    // this.movieForm = this.formBuilder.group({
+    //   title: ['', Validators.required],
+    //   year: ['', Validators.required],
+    //   duration: ['', Validators.required],
+    //   director: ['', Validators.required],
+    //   genre: ['', Validators.minLength(2)],
+    //   actor: [''],
+    // });
 
     this.allDirector();
     this.allGenre();
@@ -80,18 +110,11 @@ export class AddFilmComponent implements OnInit {
 
   //search actor
   public searchActor(): void {
-    if (this.lastNameActors || this.firstNameActors) {
-      this.actorFiltered = this.allactor.filter(
-        (a) => {
-          a.lastName
-            .toLocaleLowerCase()
-            .match(this.lastNameActors.toLocaleLowerCase());
-        },
-        (a) => {
-          a.firstName
-            .toLocaleLowerCase()
-            .match(this.firstNameActors.toLocaleLowerCase());
-        }
+    if (this.lastNameActors) {
+      this.actorFiltered = this.allactor.filter((a) =>
+        a.lastName
+          .toLocaleLowerCase()
+          .match(this.lastNameActors.toLocaleLowerCase())
       );
     } else {
       this.actorFiltered = this.allactor;
@@ -100,24 +123,33 @@ export class AddFilmComponent implements OnInit {
 
   //add film
   public addFilm() {
-    this.film.title = this.movieForm.value.title;
-    this.film.year = this.movieForm.value.year;
-    this.film.duration = this.movieForm.value.duration;
+    this.film.title = this.titleFormGroup.value.title;
+    this.film.year = this.yearFormGroup.value.year;
+    this.film.duration = this.durationFormGroup.value.duration;
 
+    this.film.director = this.directorFormGroup.value.director;
     this.film.genres.push(...this.genres);
-
-    this.film.director = this.movieForm.value.director;
-    console.log('le director est', this.film.director);
-
-    // this.actors = this.movieForm.value.actor;
-    // console.log('les acteurs choisi sont : ', this.actors);
     this.film.actors.push(...this.actors);
 
-    this.filmService.postFilm(this.film).subscribe((data) => {
-      console.log('le film est ', data);
-    });
+    this.filmService.postFilm(this.film).subscribe(
+      (data) => {
+        console.log('le film est ', data);
+      },
+      (err) => {
+        console.log(err);
+        alert('Tous les champs ne sont pas bien rempli');
+      }
+    );
 
-    this.router.navigate(['/film']);
+    this.snackbar
+      .open('Your movie has been created', '', {
+        duration: 2000,
+        verticalPosition: 'top',
+      })
+      .afterDismissed()
+      .subscribe((a) => {
+        this.router.navigate(['/film']);
+      });
   }
 
   // get genres

@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { Film } from '../model/film';
-import { Person } from '../model/person';
-import { Genre } from '../model/genre';
-import { PersonService } from '../service/person.service';
-import { FilmService } from '../service/film.service';
+import { Film } from '../../model/film';
+import { Person } from '../../model/person';
+import { Genre } from '../../model/genre';
+import { PersonService } from '../../service/person.service';
+import { FilmService } from '../../service/film.service';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-search',
@@ -34,7 +35,8 @@ export class SearchComponent implements OnInit {
     private formBuilder: FormBuilder,
     private personService: PersonService,
     private filmService: FilmService,
-    private router: Router
+    private router: Router,
+    private snackbar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -115,20 +117,49 @@ export class SearchComponent implements OnInit {
   // go to detail actor
   public detailActor(person: Person) {
     console.log(person.idPerson, person.firstName, person.lastName);
-    this.router.navigate(['/detail-actor', person.idPerson]);
-    this.ngOnInit();
+    this.snackbar
+      .open(
+        'You will be directed to this actor : ',
+        `${person.lastName}, ${person.firstName}`,
+        {
+          duration: 3000,
+          verticalPosition: 'top',
+        }
+      )
+      .afterDismissed()
+      .subscribe((a) => {
+        this.router.navigate(['/detail-actor', person.idPerson]);
+      });
   }
 
   // go to detail actor
   public detailDirector(person: Person) {
     console.log(person.idPerson, person.firstName, person.lastName);
-    this.router.navigate(['/detail-director', person.idPerson]);
-    this.ngOnInit();
+    this.snackbar
+      .open(
+        'You will be directed to this director : ',
+        `${person.lastName},${person.firstName}`,
+        {
+          duration: 3000,
+          verticalPosition: 'top',
+        }
+      )
+      .afterDismissed()
+      .subscribe((a) => {
+        this.router.navigate(['/director-detail', person.idPerson]);
+      });
   }
   // go to detail film
   public detailFilm(film: Film) {
     console.log(film.idFilm, film.title);
-    this.router.navigate(['/film-detail', film.idFilm]);
-    this.ngOnInit();
+    this.snackbar
+      .open('You will be directed to this film', `${film.title}`, {
+        duration: 3000,
+        verticalPosition: 'top',
+      })
+      .afterDismissed()
+      .subscribe((a) => {
+        this.router.navigate(['/film-detail', film.idFilm]);
+      });
   }
 }

@@ -1,5 +1,208 @@
 <h1>Add Movie</h1>
-<div>
+
+<mat-vertical-stepper #stepper>
+  <mat-step [stepControl]="titleFormGroup">
+    <form [formGroup]="titleFormGroup">
+      <ng-template matStepLabel>Title</ng-template>
+      <mat-form-field>
+        <mat-label>Title</mat-label>
+        <input
+          matInput
+          type="text"
+          placeholder="title"
+          formControlName="title"
+          required
+        />
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="yearFormGroup" label="Date">
+    <form [formGroup]="yearFormGroup">
+      <mat-form-field>
+        <mat-label>Date</mat-label>
+        <input
+          matInput
+          type="date"
+          formControlName="year"
+          placeholder="Choose a date"
+          required
+        />
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="durationFormGroup" label="Duration">
+    <form [formGroup]="durationFormGroup">
+      <mat-form-field>
+        <mat-label>Duration</mat-label>
+        <input
+          matInput
+          type="number"
+          formControlName="duration"
+          placeholder="Choose a duration"
+          required
+        />
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step [stepControl]="directorFormGroup" label="Director">
+    <form [formGroup]="directorFormGroup">
+      <mat-form-field>
+        <mat-select id="director" formControlName="director" required>
+          <mat-option *ngFor="let person of alldirector" [value]="person">
+            <span class="personName">
+              {{ person.lastName }} - {{ person.firstName }}</span
+            >
+
+            {{ person.birthdate }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+    <span class="span" (click)="goToAddDirector()">add new director</span>
+  </mat-step>
+
+  <mat-step label="Genre" [stepControl]="genreFormGroup">
+    <form [formGroup]="genreFormGroup">
+      <input
+        matInput
+        type="text"
+        [(ngModel)]="namegenres"
+        (input)="searchGenre()"
+        placeholder="search a genre"
+        formControlName="genre"
+        required
+      />
+      <div id="tableGenre">
+        <table classe="table">
+          <tbody>
+            <tr id="genre" *ngFor="let genre of genreFiltered">
+              <td>
+                <button (click)="addGenreOnList(genre)" class="btn btn-success">
+                  {{ genre.nameGenres }}
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div *ngIf="showGenre">
+        <label for="genre"> </label>
+        <div id="panier">
+          <h4>Genre added</h4>
+          <ul *ngFor="let genre of genres">
+            <li>
+              {{ genre.nameGenres }}
+              <button class="btn btn-danger" (click)="deleteGenreOnList(genre)">
+                Delete
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+    <span (click)="goToAddGenre()">add new genre</span>
+  </mat-step>
+
+  <mat-step label="Actor" [stepControl]="actorFormGroup">
+    <form [formGroup]="actorFormGroup">
+      <div id="tableActor">
+        <input
+          type="text"
+          matInput
+          [(ngModel)]="lastNameActors"
+          (input)="searchActor()"
+          placeholder="search a actor"
+          formControlName="actor"
+          required
+        />
+        <table>
+          <tbody>
+            <tr id="actor" *ngFor="let person of actorFiltered">
+              <td>
+                <button
+                  (click)="addActorOnList(person)"
+                  class="btn btn-success"
+                >
+                  <span class="personName">
+                    {{ person.lastName }} - {{ person.firstName }}</span
+                  >
+                </button>
+              </td>
+              <td>
+                <span id="birthdate">
+                  {{ person.birthdate }}
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div *ngIf="showActor">
+        <label for="actor"> </label>
+        <div id="panier">
+          <h4>Actor added</h4>
+          <ul *ngFor="let person of actors">
+            <li>
+              <span class="personName2">
+                {{ person.lastName }} - {{ person.firstName }}</span
+              >
+
+              {{ person.birthdate }}
+              <button
+                class="btn btn-danger"
+                (click)="deleteActorOnList(person)"
+              >
+                Delete
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+    <span (click)="goToAddActor()">add new actor</span>
+  </mat-step>
+
+  <mat-step>
+    <ng-template matStepLabel>Add Film</ng-template>
+    <p>You are now done.</p>
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button (click)="stepper.reset()">Reset</button>
+      <button mat-button (click)="addFilm()">
+        Add Film
+      </button>
+    </div>
+  </mat-step>
+</mat-vertical-stepper>
+
+<!-- <div>
   <form [formGroup]="movieForm">
     <div class="form-group">
       <label for="title"><h3>Title</h3></label>
@@ -155,4 +358,4 @@
       Add Film
     </button>
   </form>
-</div>
+</div> -->
