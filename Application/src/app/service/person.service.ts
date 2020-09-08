@@ -25,6 +25,12 @@ export class PersonService {
   public getActorByLastName(lastName: string): Observable<any> {
     return this.http.get(`${this.apiRoute}/actor/byLastName?l=${lastName}`);
   }
+
+  public getActorByNationality(idNationality: string): Observable<any> {
+    return this.http.get(
+      `${this.apiRoute}/actor/idNationality?id=${idNationality}`
+    );
+  }
   //post
   public postActor(person: Person): Observable<Person> {
     return this.http.post<Person>(`${this.apiRoute}/actor/addActor`, person);
@@ -59,6 +65,13 @@ export class PersonService {
   public getDirectorByLastName(lastName: string): Observable<any> {
     return this.http.get(`${this.apiRoute}/director/byLastName?l=${lastName}`);
   }
+
+  public getDirectorByNationality(idNationality: string): Observable<any> {
+    return this.http.get(
+      `${this.apiRoute}/director/idNationality?id=${idNationality}`
+    );
+  }
+
   //post
   public postDirector(person: Person): Observable<Person> {
     return this.http.post<Person>(

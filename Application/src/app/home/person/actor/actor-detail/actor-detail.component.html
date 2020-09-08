@@ -1,43 +1,35 @@
-<h1>Details of the actor</h1>
+<h1>Actor detail's : {{ person.lastName }}</h1>
 
 <div>
-  <table>
-    <tbody>
-      <tr>
-        Firstname :
-        <td id="firstName">{{ person.firstName }}</td>
-      </tr>
+  <ul>
+    <li id="firstName">
+      Firstname :
+      {{ person.firstName }}
+    </li>
 
-      <tr>
-        Lastname :
-        <td id="lastName">{{ person.lastName }}</td>
-      </tr>
+    <li id="lastName">
+      Lastname :
+      {{ person.lastName }}
+    </li>
 
-      <tr>
-        Birthdate :
-        <td id="birthdate">{{ person.birthdate }}</td>
-      </tr>
-
-      <tr *ngFor="let film of filmsPlayed">
-        Films played :
-        <td id="films">{{ film.title }}</td>
-        <!-- <td *ngFor ="let person of persons | async" > </td> -->
-      </tr>
-      <tr>
-        <button (click)="goToUpgrateActor(person)" class="btn btn-info">
-          Upgrate this actor
-        </button>
-      </tr>
-      <br />
-      <tr>
-        <button (click)="deleteActor(person)" class="btn btn-danger">
-          Delete
-        </button>
-      </tr>
-    </tbody>
-  </table>
-
-  <!-- <button (click)="goToUpgrateActor(actor)" class="btn btn-info">
-    Upgrate this actor
-  </button> -->
+    <li id="birthdate">Birthdate : {{ person.birthdate }}</li>
+    <br />
+    <h4>Films played :</h4>
+    <ul *ngFor="let film of filmsPlayed">
+      <li id="films">{{ film.title }}</li>
+      <!-- <td *ngFor ="let person of persons | async" > </td> -->
+    </ul>
+    <br />
+    <li>
+      <button (click)="goToUpgrateActor(person)" class="btn btn-info">
+        Upgrate this actor
+      </button>
+    </li>
+    <br />
+    <li>
+      <button (click)="deleteActor(person)" class="btn btn-danger">
+        Delete
+      </button>
+    </li>
+  </ul>
 </div>

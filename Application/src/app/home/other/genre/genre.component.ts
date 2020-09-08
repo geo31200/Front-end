@@ -27,16 +27,15 @@ export class GenreComponent implements OnInit {
     });
   }
 
-  public deleteGenre(genre: Genre) {
-    this.genreService.deleteGenre(genre).subscribe((data) => {
-      console.log('The genders has been deleted');
-    });
-    this.getAllGenre();
-  }
-
   //go To Add Genre
 
   public goToAddGenre() {
     this.router.navigate(['add-genre']);
+  }
+
+  // go to detail Genre
+
+  public detailGenre(genre: Genre) {
+    this.router.navigate(['detail-genre', genre.idGenre]);
   }
 }

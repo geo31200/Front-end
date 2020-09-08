@@ -18,6 +18,8 @@ import { AddActorComponent } from './home/person/actor/add-actor/add-actor.compo
 import { UpgrateActorComponent } from './home/person/actor/upgrate-actor/upgrate-actor.component';
 import { GenreComponent } from './home/other/genre/genre.component';
 import { AddGenreComponent } from './home/other/genre/add-genre/add-genre.component';
+import { DetailGenreComponent } from './home/other/genre/detail-genre/detail-genre.component';
+import { ModifyGenreComponent } from './home/other/genre/modify-genre/modify-genre.component';
 import { DirectorDetailComponent } from './home/person/director/director-detail/director-detail.component';
 import { ActorDetailComponent } from './home/person/actor/actor-detail/actor-detail.component';
 import { PersonComponent } from './home/person/person.component';
@@ -25,7 +27,7 @@ import { LoginComponent } from './user/login/login.component';
 import { AdminComponent } from './user/admin/admin.component';
 import { SimpleUserComponent } from './user/simple-user/simple-user.component';
 import { UserComponent } from './user/user.component';
-import { SearchComponent } from './shared/search/search.component';
+
 import { NationalityComponent } from './home/other/nationality/nationality.component';
 import { AddNationalityComponent } from './home/other/nationality/add-nationality/add-nationality.component';
 
@@ -56,6 +58,8 @@ const routes: Routes = [
 
   { path: 'genre', component: GenreComponent },
   { path: 'add-genre', component: AddGenreComponent },
+  { path: 'detail-genre/:idGenre', component: DetailGenreComponent },
+  { path: 'modify-genre/:idGenre', component: ModifyGenreComponent },
 
   { path: 'nationality', component: NationalityComponent },
   { path: 'add-nationality', component: AddNationalityComponent },
@@ -95,6 +99,8 @@ export const routingComponent = [
   ContactComponent,
   NationalityComponent,
   AddNationalityComponent,
+  DetailGenreComponent,
+  ModifyGenreComponent,
 
   UserComponent,
   AdminComponent,

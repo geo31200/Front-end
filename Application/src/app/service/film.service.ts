@@ -33,6 +33,10 @@ export class FilmService {
     return this.http.get(`${this.apiRoute}/idGenre?id=${idGenre}`);
   }
 
+  public getFilmByNationality(idNationality: string): Observable<any> {
+    return this.http.get(`${this.apiRoute}/idNationality?id=${idNationality}`);
+  }
+
   public postFilm(film: Film): Observable<Film> {
     return this.http.post<Film>(`${this.apiRoute}/addFilm`, film);
   }

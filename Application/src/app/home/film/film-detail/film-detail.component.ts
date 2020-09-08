@@ -27,8 +27,6 @@ export class FilmDetailComponent implements OnInit {
 
   ngOnInit(): void {
     // get id film from route
-    window.location.reload();
-
     this.idFilm = this.route.snapshot.params['idFilm'];
     this.film = new Film();
     this.filmservice.getFilmById(this.idFilm).subscribe(

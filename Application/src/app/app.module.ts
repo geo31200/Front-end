@@ -40,6 +40,10 @@ import { UserComponent } from './user/user.component';
 import { AdminComponent } from './user/admin/admin.component';
 import { SimpleUserComponent } from './user/simple-user/simple-user.component';
 import { LoginComponent } from './user/login/login.component';
+import { DetailGenreComponent } from './home/other/genre/detail-genre/detail-genre.component';
+import { ModifyGenreComponent } from './home/other/genre/modify-genre/modify-genre.component';
+import { DetailNationalityComponent } from './home/other/nationality/detail-nationality/detail-nationality.component';
+import { ModifyNationalityComponent } from './home/other/nationality/modify-nationality/modify-nationality.component';
 
 @NgModule({
   declarations: [
@@ -82,6 +86,10 @@ import { LoginComponent } from './user/login/login.component';
     AdminComponent,
     SimpleUserComponent,
     LoginComponent,
+    DetailGenreComponent,
+    ModifyGenreComponent,
+    DetailNationalityComponent,
+    ModifyNationalityComponent,
   ],
   imports: [
     BrowserModule,

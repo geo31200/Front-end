@@ -1,4 +1,5 @@
 import { Film } from './film';
+import { Nationality } from './nationality';
 
 export class Person {
   public idPerson: string;
@@ -6,8 +7,10 @@ export class Person {
   public firstName: string;
   public birthdate: Date;
   public filmsPlayed: Film[];
+  public nationalities: Nationality[];
 
   constructor() {
     this.filmsPlayed = [];
+    this.nationalities = [];
   }
 }
