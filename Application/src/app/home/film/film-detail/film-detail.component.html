@@ -3,28 +3,40 @@
 <div id="card">
   <mat-card class="card">
     <ul>
-      <li id="year"><span>Date :</span> {{ film.year }}</li>
-      <li id="duration"><span>Duration :</span> {{ film.duration }}minutes</li>
-      <li id="director">
-        <span>Directed by :</span> {{ film.director.firstName }}
-        {{ film.director.lastName }}
+      <li id="year"><span class="li">Date :</span> {{ film.year }}</li>
+      <li id="duration">
+        <span class="li">Duration :</span> {{ film.duration }}minutes
+      </li>
+      <li id="director" (click)="detailDirector(film)">
+        <span class="li">Directed by :</span>
+        <span class="list"
+          >- {{ film.director.firstName }} {{ film.director.lastName }}</span
+        >
       </li>
       <li>
-        <span>Genres :</span>
+        <span class="li">Genres :</span>
         <ul *ngFor="let genre of film.genres" id="genre">
-          <li>{{ genre.nameGenres }}</li>
+          <li (click)="detailGenre(genre)">
+            <span class="list">- {{ genre.nameGenres }}</span>
+          </li>
         </ul>
       </li>
       <li>
-        <span>Nationalities :</span>
-        <ul *ngFor="let Nationlity of film.nationalities" id="genre">
-          <li>{{ Nationlity.country }}</li>
+        <span class="li">Nationalities :</span>
+        <ul *ngFor="let Nationlity of film.nationalities" id="nationality">
+          <li (click)="detailNationality(nationality)">
+            <span class="list">- {{ Nationlity.country }}</span>
+          </li>
         </ul>
       </li>
       <li>
-        <span>Actors :</span>
+        <span class="li">Actors :</span>
         <ul *ngFor="let person of film.actors" id="actor">
-          <li>- {{ person.lastName }} {{ person.firstName }}</li>
+          <li (click)="detailActor(person)">
+            <span class="list"
+              >- {{ person.lastName }} {{ person.firstName }}</span
+            >
+          </li>
         </ul>
       </li>
     </ul>

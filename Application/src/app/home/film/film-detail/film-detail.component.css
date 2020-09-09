@@ -19,11 +19,15 @@ ul {
   display: inline-block;
 }
 
-span {
+.li {
   font-size: 14px;
   color: white;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 button {
   margin: 10px 150px;
+}
+.list:hover {
+  cursor: pointer;
+  color: blue;
 }

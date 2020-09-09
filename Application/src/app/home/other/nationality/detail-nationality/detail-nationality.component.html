@@ -6,19 +6,33 @@
 
 <ul>
   <h2>List of {{ nationality.country }}'s movies</h2>
-  <li *ngFor="let film of filmByNationality">{{ film.title }}</li>
+  <li
+    *ngFor="let film of filmByNationality"
+    (click)="detailFilm(film)"
+    class="li"
+  >
+    {{ film.title }}
+  </li>
 </ul>
 
 <ul>
   <h2>List of {{ nationality.country }}'s actors</h2>
-  <li *ngFor="let person of actorsByNationality">
+  <li
+    *ngFor="let person of actorsByNationality"
+    (click)="detailActor(person)"
+    class="li"
+  >
     {{ person.firstName }} {{ person.lastName }}
   </li>
 </ul>
 
 <ul>
   <h2>List of {{ nationality.country }}'s directors</h2>
-  <li *ngFor="let person of directorsByNationality">
+  <li
+    *ngFor="let person of directorsByNationality"
+    (click)="detailDirector(person)"
+    class="li"
+  >
     {{ person.firstName }} {{ person.lastName }}
   </li>
 </ul>

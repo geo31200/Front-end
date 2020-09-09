@@ -1,4 +1,4 @@
-<h1>Actor detail's : {{ person.lastName }}</h1>
+<h1>Actor detail's : {{ person.firstName }} {{ person.lastName }}</h1>
 
 <div>
   <ul>
@@ -14,10 +14,16 @@
 
     <li id="birthdate">Birthdate : {{ person.birthdate }}</li>
     <br />
+    <h4>Nationality :</h4>
+    <ul *ngFor="let nationality of person.nationalities">
+      <li id="nationality" (click)="detailNationality(nationality)" class="li">
+        {{ nationality.country }}
+      </li>
+    </ul>
+    <br />
     <h4>Films played :</h4>
     <ul *ngFor="let film of filmsPlayed">
-      <li id="films">{{ film.title }}</li>
-      <!-- <td *ngFor ="let person of persons | async" > </td> -->
+      <li id="films" (click)="detailFilm(film)" class="li">{{ film.title }}</li>
     </ul>
     <br />
     <li>

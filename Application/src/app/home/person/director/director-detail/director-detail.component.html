@@ -1,43 +1,41 @@
-<h1>Details of the director</h1>
+<h1>Director detail's : {{ person.firstName }} {{ person.lastName }}</h1>
 
 <div>
-  <table>
-    <tbody>
-      <tr>
-        Firstname :
-        <td id="firstName">{{ person.firstName }}</td>
-      </tr>
+  <ul>
+    <li id="firstName">
+      Firstname :
+      {{ person.firstName }}
+    </li>
 
-      <tr>
-        Lastname :
-        <td id="lastName">{{ person.lastName }}</td>
-      </tr>
+    <li id="lastName">
+      Lastname :
+      {{ person.lastName }}
+    </li>
 
-      <tr>
-        Birthdate :
-        <td id="birthdate">{{ person.birthdate }}</td>
-      </tr>
-
-      <tr>
-        Films played :
-        <td id="films">{{ person.filmsPlayed }}</td>
-        <!-- <td *ngFor ="let person of persons | async" > </td> -->
-      </tr>
-      <tr>
-        <button (click)="goToUpgrateActor(person)" class="btn btn-info">
-          Upgrate this actor
-        </button>
-      </tr>
-      <br />
-      <tr>
-        <button (click)="deleteDirector(person)" class="btn btn-danger">
-          Delete
-        </button>
-      </tr>
-    </tbody>
-  </table>
-
-  <!-- <button (click)="goToUpgrateActor(actor)" class="btn btn-info">
-    Upgrate this actor
-  </button> -->
+    <li id="birthdate">Birthdate : {{ person.birthdate }}</li>
+    <br />
+    <h4>Nationality :</h4>
+    <ul *ngFor="let nationality of person.nationalities">
+      <li id="nationality" (click)="detailNationality(nationality)" class="li">
+        {{ nationality.country }}
+      </li>
+    </ul>
+    <br />
+    <h4>Films directed :</h4>
+    <ul *ngFor="let film of filmsDirected">
+      <li id="films" (click)="detailFilm(film)" class="li">{{ film.title }}</li>
+    </ul>
+    <br />
+    <li>
+      <button (click)="goToUpgrateDirector(person)" class="btn btn-info">
+        Upgrate this diector
+      </button>
+    </li>
+    <br />
+    <li>
+      <button (click)="deleteDirector(person)" class="btn btn-danger">
+        Delete
+      </button>
+    </li>
+  </ul>
 </div>

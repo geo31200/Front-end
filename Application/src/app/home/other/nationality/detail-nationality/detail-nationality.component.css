@@ -2,3 +2,7 @@ ul {
   display: inline-block;
   width: 33%;
 }
+.li:hover {
+  cursor: pointer;
+  color: blue;
+}

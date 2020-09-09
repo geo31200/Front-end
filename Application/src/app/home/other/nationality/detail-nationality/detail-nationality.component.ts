@@ -71,4 +71,31 @@ export class DetailNationalityComponent implements OnInit {
   public goToModifyNationality(nationality: Nationality) {
     this.router.navigate(['/modify-nationality', nationality.idNationality]);
   }
+
+  //detail Actor
+  public detailActor(person: Person) {
+    console.log(
+      "l'actor est : ",
+      person.idPerson,
+      person.firstName,
+      person.lastName
+    );
+    this.router.navigate(['/detail-actor', person.idPerson]);
+  }
+
+  //detail Actor
+  public detailDirector(person: Person) {
+    console.log(
+      'le director est : ',
+      person.idPerson,
+      person.firstName,
+      person.lastName
+    );
+    this.router.navigate(['/director-detail', person.idPerson]);
+  }
+  // detail film
+  public detailFilm(film: Film) {
+    console.log(film.idFilm, film.title);
+    this.router.navigate(['/film-detail', film.idFilm]);
+  }
 }

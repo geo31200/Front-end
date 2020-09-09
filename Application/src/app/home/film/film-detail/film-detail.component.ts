@@ -17,6 +17,9 @@ export class FilmDetailComponent implements OnInit {
   public film: Film;
   public idFilm: string;
   public director: Person;
+  public actor: Person;
+  public nationality: Nationality;
+  public genre: Genre;
   public genres: Genre[];
   public actors: Person[];
   public nationalities: Nationality[];
@@ -48,6 +51,42 @@ export class FilmDetailComponent implements OnInit {
     this.router.navigate(['/film']);
   }
 
+  //detail genre
+  public detailGenre(genre: Genre) {
+    console.log('le genre est : ', genre.idGenre, genre.nameGenres);
+    this.router.navigate(['/detail-genre', genre.idGenre]);
+  }
+
+  //detail nationality
+  public detailNationality(nationality: Nationality) {
+    console.log(
+      'le pays est : ',
+      nationality.idNationality,
+      nationality.country
+    );
+    this.router.navigate(['/detail-nationality', nationality.idNationality]);
+  }
+  //detail Actor
+  public detailActor(person: Person) {
+    console.log(
+      "l'actor est : ",
+      person.idPerson,
+      person.firstName,
+      person.lastName
+    );
+    this.router.navigate(['/detail-actor', person.idPerson]);
+  }
+  //detail director
+  public detailDirector(film: Film) {
+    console.log(
+      'le director est : ',
+      film.director.firstName,
+      film.director.lastName
+    );
+    this.router.navigate(['/director-detail', film.director.idPerson]);
+  }
+
+  // got to upgrate film
   public goToUpgrateFilm(film: Film) {
     console.log('En route pour modifier le film', film);
     this.router.navigate(['/upgrate-film', film.idFilm]);

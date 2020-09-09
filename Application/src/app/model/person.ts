@@ -7,10 +7,12 @@ export class Person {
   public firstName: string;
   public birthdate: Date;
   public filmsPlayed: Film[];
+  public filmDirited: Film[];
   public nationalities: Nationality[];
 
   constructor() {
     this.filmsPlayed = [];
     this.nationalities = [];
+    this.filmDirited = [];
   }
 }

@@ -9,5 +9,5 @@
 </h3>
 
 <ul *ngFor="let film of FilmByGenre">
-  <li>{{ film.title }}</li>
+  <li class="li" (click)="detailFilm(film)">{{ film.title }}</li>
 </ul>

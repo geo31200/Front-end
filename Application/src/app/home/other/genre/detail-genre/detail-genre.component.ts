@@ -37,6 +37,11 @@ export class DetailGenreComponent implements OnInit {
     });
   }
 
+  public detailFilm(film: Film) {
+    console.log(film.idFilm, film.title);
+    this.router.navigate(['/film-detail', film.idFilm]);
+  }
+
   public goToModifyGenre(genre: Genre) {
     console.log('En route pour modifier le genre', genre);
     this.router.navigate(['/modify-genre', genre.idGenre]);
