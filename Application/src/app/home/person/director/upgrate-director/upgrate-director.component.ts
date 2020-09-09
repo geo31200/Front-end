@@ -13,6 +13,7 @@ export class UpgrateDirectorComponent implements OnInit {
   public person: Person;
   public idPerson: string;
   public personForm: FormGroup;
+
   constructor(
     private personService: PersonService,
     private activatedRoute: ActivatedRoute,
@@ -35,6 +36,8 @@ export class UpgrateDirectorComponent implements OnInit {
   }
 
   public upgrateDirector() {
+    this.person.idPerson = this.idPerson;
+
     this.person.lastName = this.personForm.value.lastName;
     this.person.firstName = this.personForm.value.firstName;
     this.person.birthdate = this.personForm.value.birthdate;

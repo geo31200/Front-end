@@ -1,1 +1,23 @@
-<p>modify-nationality works!</p>
+<form [formGroup]="nationalityForm">
+  <div class="form-group">
+    <label for="nationality"></label>
+    You want modify the nationality :
+    <h3>{{ nationality.country }}</h3>
+
+    <input
+      type="text"
+      class="form-control"
+      id="nationality"
+      formControlName="country"
+      placeholder="Enter a nationality"
+    />
+    <button
+      type="button"
+      class="btn btn-success"
+      (click)="upgrateNationality()"
+      [disabled]="nationalityForm.invalid"
+    >
+      Upgrate Nationality
+    </button>
+  </div>
+</form>

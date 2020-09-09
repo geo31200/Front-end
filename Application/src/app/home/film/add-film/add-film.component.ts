@@ -9,6 +9,8 @@ import { PersonService } from 'src/app/service/person.service';
 import { GenreService } from 'src/app/service/genre.service';
 import { MatDialog, MatDialogContent } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Nationality } from 'src/app/model/nationality';
+import { NationalityService } from 'src/app/service/nationality.service';
 
 @Component({
   selector: 'app-add-film',
@@ -26,25 +28,34 @@ export class AddFilmComponent implements OnInit {
   public allgenre: Genre[];
   public genreFiltered: Genre[];
 
+  public country: string;
+  public nationality: Nationality;
+  public nationalities: Nationality[];
+  public allnationality: Nationality[];
+  public nationalityFiltered: Nationality[];
+
   public firstNameActors: string;
   public lastNameActors: string;
   public allactor: Person[];
   public actors: Person[];
-
   public actorFiltered: Person[];
 
   public movieForm: FormGroup;
+
   public titleFormGroup: FormGroup;
   public yearFormGroup: FormGroup;
   public durationFormGroup: FormGroup;
   public directorFormGroup: FormGroup;
   public genreFormGroup: FormGroup;
+  public nationalityFormGroup: FormGroup;
   public actorFormGroup: FormGroup;
 
   public showGenre: boolean = false;
   public showActor: boolean = false;
+  public showNationality: boolean = false;
 
   constructor(
+    private nationalityService: NationalityService,
     private genreService: GenreService,
     private personService: PersonService,
     private filmService: FilmService,
@@ -58,6 +69,7 @@ export class AddFilmComponent implements OnInit {
     this.genre = new Genre();
     this.actors = [];
     this.genres = [];
+    this.nationalities = [];
   }
 
   ngOnInit(): void {
@@ -74,7 +86,11 @@ export class AddFilmComponent implements OnInit {
       director: ['', Validators.required],
     });
     this.genreFormGroup = this.formBuilder.group({
-      genre: ['', Validators.minLength(2)],
+      genre: [''],
+    });
+
+    this.nationalityFormGroup = this.formBuilder.group({
+      nationality: [''],
     });
     this.actorFormGroup = this.formBuilder.group({
       actor: [''],
@@ -92,6 +108,7 @@ export class AddFilmComponent implements OnInit {
     this.allDirector();
     this.allGenre();
     this.allActor();
+    this.allNationality();
   }
 
   //search genre
@@ -105,6 +122,16 @@ export class AddFilmComponent implements OnInit {
       );
     } else {
       this.genreFiltered = this.allgenre;
+    }
+  }
+  //search nationality
+  public searchNationality(): void {
+    if (this.country) {
+      this.nationalityFiltered = this.allnationality.filter((n) =>
+        n.country.toLocaleLowerCase().match(this.country.toLocaleLowerCase())
+      );
+    } else {
+      this.nationalityFiltered = this.allnationality;
     }
   }
 
@@ -128,6 +155,7 @@ export class AddFilmComponent implements OnInit {
     this.film.duration = this.durationFormGroup.value.duration;
 
     this.film.director = this.directorFormGroup.value.director;
+    this.film.nationalities.push(...this.nationalities);
     this.film.genres.push(...this.genres);
     this.film.actors.push(...this.actors);
 
@@ -158,6 +186,15 @@ export class AddFilmComponent implements OnInit {
       this.genreFiltered = genre;
       this.allgenre = genre;
       console.log('genre', genre);
+    });
+  }
+
+  //get nationality
+  public allNationality() {
+    this.nationalityService.getAllNationality().subscribe((nationality) => {
+      this.nationalityFiltered = nationality;
+      this.allnationality = nationality;
+      console.log('nationality', nationality);
     });
   }
 
@@ -196,6 +233,12 @@ export class AddFilmComponent implements OnInit {
     this.router.navigate(['add-genre']);
   }
 
+  //go To Add nationality
+
+  public goToAddNationality() {
+    this.router.navigate(['add-nationality']);
+  }
+
   // addActorsOnList
 
   public addActorOnList(person: Person) {
@@ -217,7 +260,7 @@ export class AddFilmComponent implements OnInit {
     const index = this.actors.indexOf(person);
     if (index >= 0) {
       this.actors.splice(index, 1);
-      this.showActor = false;
+
       console.log(
         `The actor, ${person.lastName}, ${person.firstName} has been deleted on the list of actors`
       );
@@ -237,15 +280,41 @@ export class AddFilmComponent implements OnInit {
     }
   }
 
-  //deleteActorOnList
+  //deleteGenreOnList
 
   public deleteGenreOnList(genre: Genre) {
-    const index = this.genres.indexOf(genre);
+    let index = this.genres.indexOf(genre);
     if (index >= 0) {
       this.genres.splice(index, 1);
-      this.showGenre = false;
+
       console.log(
-        `The actor, ${genre.nameGenres}, has been deleted on the list of genres`
+        `The genre, ${genre.nameGenres}, has been deleted on the list of genres`
+      );
+    }
+  }
+
+  // addNationalitiesOnList
+
+  public addNationalityOnList(nationality: Nationality) {
+    const index = this.nationalities.indexOf(nationality);
+    if (index < 0) {
+      this.nationalities.push(nationality);
+      this.showNationality = true;
+      console.log(nationality);
+    } else {
+      alert(` The nationality, ${nationality.country}, has been already added`);
+    }
+  }
+
+  //deleteNationalityOnList
+
+  public deleteNationalityOnList(nationality: Nationality) {
+    const index = this.nationalities.indexOf(nationality);
+    if (index >= 0) {
+      this.nationalities.splice(index, 1);
+
+      console.log(
+        `The nationality, ${nationality.country}, has been deleted on the list of nationaties`
       );
     }
   }

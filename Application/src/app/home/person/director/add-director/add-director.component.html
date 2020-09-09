@@ -1,46 +1,123 @@
-<h2>Add Director</h2>
-<div>
-  <form [formGroup]="directorForm">
-    <div class="form-group">
-      <label for="lastName">Lastname</label>
+<h1>Add Director</h1>
+
+<mat-vertical-stepper #stepper>
+  <mat-step [stepControl]="lastNameFormGroup">
+    <form [formGroup]="lastNameFormGroup">
+      <ng-template matStepLabel>Lastname</ng-template>
+      <mat-form-field>
+        <mat-label>Lastname</mat-label>
+        <input
+          matInput
+          type="text"
+          placeholder="lastName"
+          formControlName="lastName"
+          required
+        />
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="birthdateFormGroup" label="Date">
+    <form [formGroup]="birthdateFormGroup">
+      <mat-form-field>
+        <mat-label>Date</mat-label>
+        <input
+          matInput
+          type="date"
+          formControlName="birthdate"
+          placeholder="Choose a birthdate"
+          required
+        />
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="firstNameFormGroup" label="Firstname">
+    <form [formGroup]="firstNameFormGroup">
+      <mat-form-field>
+        <mat-label>Firstname</mat-label>
+        <input
+          matInput
+          type="text"
+          formControlName="firstName"
+          placeholder="Choose a firstName"
+          required
+        />
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step label="Nationality" [stepControl]="nationalityFormGroup">
+    <form [formGroup]="nationalityFormGroup">
       <input
+        matInput
         type="text"
-        class="form-control"
-        id="lastName"
-        formControlName="lastName"
-        placeholder="Enter a lastName"
+        [(ngModel)]="country"
+        (input)="searchNationality()"
+        placeholder="search a nationality"
+        formControlName="nationality"
+        required
       />
+      <div id="tableNationality">
+        <table classe="table">
+          <tbody>
+            <tr
+              id="nationality"
+              *ngFor="let nationality of nationalityFiltered"
+            >
+              <td>
+                <button
+                  (click)="addNationalityOnList(nationality)"
+                  class="btn btn-success"
+                >
+                  {{ nationality.country }}
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div *ngIf="showNationality">
+        <label for="nationality"> </label>
+        <div class="panier">
+          <h4>Nationality added</h4>
+          <ul *ngFor="let nationality of nationalities">
+            <li>
+              {{ nationality.country }}
+              <button
+                class="btn btn-danger"
+                (click)="deleteNationalityOnList(nationality)"
+              >
+                Delete
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Add Director</ng-template>
+    <p>You are now done.</p>
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button (click)="stepper.reset()">Reset</button>
+      <button mat-button (click)="addDirector()">
+        Add Direcor
+      </button>
     </div>
-
-    <div class="form-group">
-      <label for="firstName">Firstname</label>
-      <input
-        type="text"
-        class="form-control"
-        id="firstName"
-        formControlName="firstName"
-        placeholder="Enter a firstName"
-      />
-    </div>
-
-    <div class="form-group">
-      <label for="birthdate">Birthdate</label>
-      <input
-        type="date"
-        min="1900-01-01"
-        max="2002-12-31"
-        class="form-control"
-        id="birthdate"
-        formControlName="birthdate"
-        placeholder="Enter a birthdate"
-      />
-    </div>
-
-    <button
-      class="btn btn-success"
-      (click)="addDirector()"
-      [disabled]="directorForm.invalid"
-      type="button"
-    ></button>
-  </form>
-</div>
+  </mat-step>
+</mat-vertical-stepper>

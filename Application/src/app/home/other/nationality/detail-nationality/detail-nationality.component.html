@@ -1,1 +1,29 @@
-<p>detail-nationality works!</p>
+<h1>{{ nationality.country }}</h1>
+<button (click)="goToModifyNationality(nationality)" class="btn btn-info">
+  modify this nationality
+</button>
+<hr />
+
+<ul>
+  <h2>List of {{ nationality.country }}'s movies</h2>
+  <li *ngFor="let film of filmByNationality">{{ film.title }}</li>
+</ul>
+
+<ul>
+  <h2>List of {{ nationality.country }}'s actors</h2>
+  <li *ngFor="let person of actorsByNationality">
+    {{ person.firstName }} {{ person.lastName }}
+  </li>
+</ul>
+
+<ul>
+  <h2>List of {{ nationality.country }}'s directors</h2>
+  <li *ngFor="let person of directorsByNationality">
+    {{ person.firstName }} {{ person.lastName }}
+  </li>
+</ul>
+<hr />
+
+<button (click)="deleteNationality(nationality)" class="btn btn-danger">
+  delete this nationality
+</button>

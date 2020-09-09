@@ -16,6 +16,12 @@
         </ul>
       </li>
       <li>
+        <span>Nationalities :</span>
+        <ul *ngFor="let Nationlity of film.nationalities" id="genre">
+          <li>{{ Nationlity.country }}</li>
+        </ul>
+      </li>
+      <li>
         <span>Actors :</span>
         <ul *ngFor="let person of film.actors" id="actor">
           <li>- {{ person.lastName }} {{ person.firstName }}</li>

@@ -125,6 +125,62 @@
     <span (click)="goToAddGenre()">add new genre</span>
   </mat-step>
 
+  <mat-step label="Nationality" [stepControl]="nationalityFormGroup">
+    <form [formGroup]="nationalityFormGroup">
+      <input
+        matInput
+        type="text"
+        [(ngModel)]="country"
+        (input)="searchNationality()"
+        placeholder="search a nationality"
+        formControlName="nationality"
+        required
+      />
+      <div id="tableNationality">
+        <table classe="table">
+          <tbody>
+            <tr
+              id="nationality"
+              *ngFor="let nationality of nationalityFiltered"
+            >
+              <td>
+                <button
+                  (click)="addNationalityOnList(nationality)"
+                  class="btn btn-success"
+                >
+                  {{ nationality.country }}
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div *ngIf="showNationality">
+        <label for="nationality"> </label>
+        <div class="panier">
+          <h4>Nationality added</h4>
+          <ul *ngFor="let nationality of nationalities">
+            <li>
+              {{ nationality.country }}
+              <button
+                class="btn btn-danger"
+                (click)="deleteNationalityOnList(nationality)"
+              >
+                Delete
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+    <span (click)="goToAddNationality()">add new nationality</span>
+  </mat-step>
+
   <mat-step label="Actor" [stepControl]="actorFormGroup">
     <form [formGroup]="actorFormGroup">
       <div id="tableActor">

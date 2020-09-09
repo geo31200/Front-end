@@ -1,1 +1,20 @@
-<p>modify-genre works!</p>
+<form [formGroup]="genreForm">
+  <div class="form-group">
+    <label for="genre"><h3>Genre</h3></label>
+    <input
+      type="text"
+      class="form-control"
+      id="nameGenres"
+      formControlName="nameGenres"
+      placeholder="Enter a genre"
+    />
+    <button
+      type="button"
+      class="btn btn-success"
+      (click)="upgrateGenre()"
+      [disabled]="genreForm.invalid"
+    >
+      Upgrate Genre
+    </button>
+  </div>
+</form>

@@ -6,6 +6,7 @@ import { Person } from 'src/app/model/person';
 
 import { ActivatedRoute, Router } from '@angular/router';
 import { Genre } from 'src/app/model/genre';
+import { Nationality } from 'src/app/model/nationality';
 
 @Component({
   selector: 'app-film-detail',
@@ -18,6 +19,7 @@ export class FilmDetailComponent implements OnInit {
   public director: Person;
   public genres: Genre[];
   public actors: Person[];
+  public nationalities: Nationality[];
 
   constructor(
     private filmservice: FilmService,

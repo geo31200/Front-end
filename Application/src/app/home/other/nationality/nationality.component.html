@@ -1,15 +1,14 @@
 <h1>Nationality</h1>
 
 <div>
-  <span (click)="goToAddNationality()">add new Nationality</span>
+  <span (click)="goToAddNationality()">add new nationality</span>
   <ul *ngFor="let nationality of nationalities">
     <li>
-      {{ nationality.country }}
-      <button class="btn btn-danger" (click)="deleteNationality(nationality)">
-        Delete
+      <button class="btn btn-primary" (click)="detailNationality(nationality)">
+        {{ nationality.country }}
       </button>
     </li>
   </ul>
 
-  <span (click)="goToAddNationality()">add new genre</span>
+  <span (click)="goToAddNationality()">add new nationality</span>
 </div>

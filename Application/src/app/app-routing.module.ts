@@ -30,6 +30,8 @@ import { UserComponent } from './user/user.component';
 
 import { NationalityComponent } from './home/other/nationality/nationality.component';
 import { AddNationalityComponent } from './home/other/nationality/add-nationality/add-nationality.component';
+import { DetailNationalityComponent } from './home/other/nationality/detail-nationality/detail-nationality.component';
+import { ModifyNationalityComponent } from './home/other/nationality/modify-nationality/modify-nationality.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -63,6 +65,14 @@ const routes: Routes = [
 
   { path: 'nationality', component: NationalityComponent },
   { path: 'add-nationality', component: AddNationalityComponent },
+  {
+    path: 'detail-nationality/:idNationality',
+    component: DetailNationalityComponent,
+  },
+  {
+    path: 'modify-nationality/:idNationality',
+    component: ModifyNationalityComponent,
+  },
 
   { path: 'user', component: UserComponent },
   { path: 'login', component: LoginComponent },

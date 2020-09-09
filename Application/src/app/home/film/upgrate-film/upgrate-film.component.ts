@@ -50,13 +50,13 @@ export class UpgrateFilmComponent implements OnInit {
 
   ngOnInit(): void {
     this.idFilm = this.route.snapshot.params['idFilm'];
-    this.film = new Film();
-    console.log(this.film);
-    this.filmservice.getFilmById(this.idFilm).subscribe((data) => {
-      console.log('le film est ', data);
-      this.film = data;
-    });
-    console.log("l'id du film est", this.idFilm);
+    // this.film = new Film();
+    // console.log(this.film);
+    // this.filmservice.getFilmById(this.idFilm).subscribe((data) => {
+    //   console.log('le film est ', data);
+    //   this.film = data;
+    // });
+    // console.log("l'id du film est", this.idFilm);
 
     this.movieForm = this.formBuilder.group({
       title: ['', Validators.required],
@@ -69,6 +69,7 @@ export class UpgrateFilmComponent implements OnInit {
   }
 
   public upgrateFilm() {
+    this.film.idFilm = this.idFilm;
     this.film.title = this.movieForm.value.title;
     this.film.year = this.movieForm.value.year;
     this.film.duration = this.movieForm.value.duration;

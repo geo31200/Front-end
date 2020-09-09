@@ -29,11 +29,8 @@ export class NationalityComponent implements OnInit {
     });
   }
 
-  public deleteNationality(nationality: Nationality) {
-    this.nationalityService.deleteNationality(nationality).subscribe((data) => {
-      console.log('The genders has been deleted');
-    });
-    this.getAllNationality();
+  public detailNationality(nationality: Nationality) {
+    this.router.navigate(['detail-nationality', nationality.idNationality]);
   }
 
   //go To Add Genre
