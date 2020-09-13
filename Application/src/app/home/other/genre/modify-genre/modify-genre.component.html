@@ -1,6 +1,9 @@
 <form [formGroup]="genreForm">
   <div class="form-group">
-    <label for="genre"><h3>Genre</h3></label>
+    <label for="genre">
+      You want modify the genre :
+      <h3>{{ genre.nameGenres }}</h3></label
+    >
     <input
       type="text"
       class="form-control"
@@ -8,6 +11,7 @@
       formControlName="nameGenres"
       placeholder="Enter a genre"
     />
+    <br />
     <button
       type="button"
       class="btn btn-success"

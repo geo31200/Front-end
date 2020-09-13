@@ -1,27 +1,44 @@
+<h1>LIST OF MOVIES</h1>
+<div>
+  <p>
+    Add movie
+    <mat-icon (click)="goToAddFilm()" id="iconAdd"> add_circle</mat-icon>
+  </p>
+</div>
+<hr />
+<form [formGroup]="searchForm">
+  <input
+    type="text"
+    [(ngModel)]="titleFilm"
+    (input)="searchFilm()"
+    placeholder="search a movie"
+    class="form-control"
+    formControlName="film"
+  />
+  <mat-autocomplete #auto="matAutocomplete" *ngIf="show">
+    <mat-option *ngFor="let film of filmFiltered"> </mat-option>
+  </mat-autocomplete>
+</form>
+<br />
 <div id="body">
+  <ul *ngFor="let film of filmFiltered">
+    <mat-card class="card">
+      <li>
+        {{ film.title }}
+      </li>
+      <li>
+        {{ film.year | date: "yyyy" }}
+      </li>
+      <mat-icon (click)="detailFilm(film)" id="iconDetail">
+        visibility
+      </mat-icon>
+    </mat-card>
+  </ul>
+  <hr />
   <div>
-    <button (click)="goToAddFilm()" class="btn btn-success">Add movie</button>
-  </div>
-
-  <table>
-    <thead>
-      <tr>
-        <th id="title">Title</th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <tr id="films" *ngFor="let film of films | async">
-        <td>{{ film.title }} ({{ film.year | date: "yyyy" }})</td>
-        <td>
-          <button (click)="detailFilm(film)" class="btn btn-info">
-            Detail's movie
-          </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <div>
-    <button (click)="goToAddFilm()" class="btn btn-success">Add movie</button>
+    <p>
+      Add movie
+      <mat-icon (click)="goToAddFilm()" id="iconAdd"> add_circle</mat-icon>
+    </p>
   </div>
 </div>

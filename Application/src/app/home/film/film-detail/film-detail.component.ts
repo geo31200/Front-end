@@ -16,8 +16,7 @@ import { Nationality } from 'src/app/model/nationality';
 export class FilmDetailComponent implements OnInit {
   public film: Film;
   public idFilm: string;
-  public director: Person;
-  public actor: Person;
+
   public nationality: Nationality;
   public genre: Genre;
   public genres: Genre[];
@@ -38,7 +37,6 @@ export class FilmDetailComponent implements OnInit {
       (data) => {
         console.log(data);
         this.film = data;
-        console.log(this.film.genres);
       },
       (error) => console.log(error)
     );
@@ -59,6 +57,7 @@ export class FilmDetailComponent implements OnInit {
 
   //detail nationality
   public detailNationality(nationality: Nationality) {
+    console.log(nationality);
     console.log(
       'le pays est : ',
       nationality.idNationality,

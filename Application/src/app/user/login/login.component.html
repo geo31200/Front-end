@@ -1,1 +1,187 @@
-<p>login works!</p>
+<div class="login">
+  <h1>Login</h1>
+  <mat-vertical-stepper #stepper>
+    <mat-step [stepControl]="emailFormGroup">
+      <form [formGroup]="emailFormGroup">
+        <ng-template matStepLabel>Email</ng-template>
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          <input
+            matInput
+            type="email"
+            placeholder="email"
+            formControlName="email"
+            required
+          />
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="passwordFormGroup" label="password">
+      <form [formGroup]="passwordFormGroup">
+        <mat-form-field>
+          <mat-label>Password</mat-label>
+          <input
+            matInput
+            type="password"
+            formControlName="password"
+            placeholder="Enter your password"
+            required
+          />
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button (click)="stepper.reset()">Reset</button>
+          <button mat-button (click)="connexion()">
+            Connexion
+          </button>
+        </div>
+      </form>
+    </mat-step>
+  </mat-vertical-stepper>
+</div>
+
+<div class="login">
+  <h1>Sign In</h1>
+  <mat-vertical-stepper>
+    <mat-step [stepControl]="firstNameFormGroup">
+      <form [formGroup]="firstNameFormGroup">
+        <ng-template matStepLabel>FirstName</ng-template>
+        <mat-form-field>
+          <mat-label>firstName</mat-label>
+          <input
+            matInput
+            type="text"
+            placeholder="Enter your firstName"
+            formControlName="firstName"
+            required
+          />
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="lastNameFormGroup" label="lastName">
+      <form [formGroup]="lastNameFormGroup">
+        <mat-form-field>
+          <mat-label>LastName</mat-label>
+          <input
+            matInput
+            type="text"
+            formControlName="lastName"
+            placeholder="Enter your lastName"
+            required
+          />
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step label="Nationality" [stepControl]="nationalityFormGroup">
+      <form [formGroup]="nationalityFormGroup">
+        <div id="nationality">
+          <mat-form-field>
+            <mat-select
+              id="nationality"
+              formControlName="nationality"
+              required
+              placeholder="select a nationality"
+            >
+              <input
+                type="text"
+                [(ngModel)]="country"
+                (input)="searchNationality()"
+                placeholder="search a nationality"
+                formControlName="nationality"
+                required
+              />
+              <mat-option
+                *ngFor="let nationality of nationalityFiltered"
+                [value]="nationality"
+              >
+                {{ nationality.country }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+
+    <mat-step [stepControl]="birthdateFormGroup" label="Bithdate">
+      <form [formGroup]="birthdateFormGroup">
+        <mat-form-field>
+          <mat-label>Bithdate</mat-label>
+          <input
+            matInput
+            type="date"
+            formControlName="birthdate"
+            placeholder="Choose your birthdate"
+            required
+          />
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="emailFormGroup">
+      <form [formGroup]="emailFormGroup">
+        <ng-template matStepLabel>Email</ng-template>
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          <input
+            matInput
+            type="email"
+            placeholder="email"
+            formControlName="email"
+            required
+          />
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="passwordFormGroup" label="password">
+      <form [formGroup]="passwordFormGroup">
+        <mat-form-field>
+          <mat-label>Password</mat-label>
+          <input
+            matInput
+            type="password"
+            formControlName="password"
+            placeholder="Enter your password"
+            required
+          />
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Sign In</ng-template>
+      <p>You are now done.</p>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)="stepper.reset()">Reset</button>
+        <button mat-button (click)="addUser()">
+          Sign In
+        </button>
+      </div>
+    </mat-step>
+  </mat-vertical-stepper>
+</div>

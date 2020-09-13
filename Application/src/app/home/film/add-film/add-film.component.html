@@ -28,6 +28,8 @@
           type="date"
           formControlName="year"
           placeholder="Choose a date"
+          min="1899-12-31"
+          max="{{ date | date: 'yyyy-MM-dd' }}"
           required
         />
       </mat-form-field>
@@ -45,9 +47,11 @@
           matInput
           type="number"
           formControlName="duration"
-          placeholder="Choose a duration"
+          placeholder="Choose a duration minimum 20 and maximum 240 minutes"
+          min="30"
+          max="240"
           required
-        />
+        />min
       </mat-form-field>
       <div>
         <button mat-button matStepperPrevious>Back</button>
@@ -103,19 +107,16 @@
         </table>
       </div>
 
-      <div *ngIf="showGenre">
-        <label for="genre"> </label>
-        <div id="panier">
-          <h4>Genre added</h4>
-          <ul *ngFor="let genre of genres">
-            <li>
-              {{ genre.nameGenres }}
-              <button class="btn btn-danger" (click)="deleteGenreOnList(genre)">
-                Delete
-              </button>
-            </li>
-          </ul>
-        </div>
+      <div *ngIf="showGenre" class="panier">
+        <h4>Genre added</h4>
+        <ul *ngFor="let genre of genres">
+          <li>
+            {{ genre.nameGenres }}
+            <button class="btn btn-danger" (click)="deleteGenreOnList(genre)">
+              Delete
+            </button>
+          </li>
+        </ul>
       </div>
       <div>
         <button mat-button matStepperPrevious>Back</button>
@@ -156,22 +157,19 @@
         </table>
       </div>
 
-      <div *ngIf="showNationality">
-        <label for="nationality"> </label>
-        <div class="panier">
-          <h4>Nationality added</h4>
-          <ul *ngFor="let nationality of nationalities">
-            <li>
-              {{ nationality.country }}
-              <button
-                class="btn btn-danger"
-                (click)="deleteNationalityOnList(nationality)"
-              >
-                Delete
-              </button>
-            </li>
-          </ul>
-        </div>
+      <div *ngIf="showNationality" class="panier">
+        <h4>Nationality added</h4>
+        <ul *ngFor="let nationality of nationalities">
+          <li>
+            {{ nationality.country }}
+            <button
+              class="btn btn-danger"
+              (click)="deleteNationalityOnList(nationality)"
+            >
+              Delete
+            </button>
+          </li>
+        </ul>
       </div>
       <div>
         <button mat-button matStepperPrevious>Back</button>
@@ -193,6 +191,7 @@
           formControlName="actor"
           required
         />
+
         <table>
           <tbody>
             <tr id="actor" *ngFor="let person of actorFiltered">
@@ -214,11 +213,7 @@
             </tr>
           </tbody>
         </table>
-      </div>
-
-      <div *ngIf="showActor">
-        <label for="actor"> </label>
-        <div id="panier">
+        <div *ngIf="showActor" class="panier">
           <h4>Actor added</h4>
           <ul *ngFor="let person of actors">
             <li>
@@ -237,6 +232,7 @@
           </ul>
         </div>
       </div>
+
       <div>
         <button mat-button matStepperPrevious>Back</button>
         <button mat-button matStepperNext>Next</button>
@@ -257,161 +253,3 @@
     </div>
   </mat-step>
 </mat-vertical-stepper>
-
-<!-- <div>
-  <form [formGroup]="movieForm">
-    <div class="form-group">
-      <label for="title"><h3>Title</h3></label>
-      <input
-        type="text"
-        class="form-control"
-        id="title"
-        formControlName="title"
-        placeholder="Enter a title"
-      />
-    </div>
-    <hr />
-    <div class="form-group">
-      <label for="year"><h3>Year</h3></label>
-      <input
-        type="date"
-        min="1900-01-01"
-        class="form-control"
-        id="year"
-        formControlName="year"
-        placeholder="Enter the year of movie's parution"
-      />
-    </div>
-    <hr />
-    <div class="form-group">
-      <label for="duration"><h3>Duration</h3></label>
-      <input
-        type="number"
-        class="form-control"
-        id="duration"
-        formControlName="duration"
-        placeholder="Enter the movie's duration"
-        min="60"
-        max="240"
-      />
-    </div>
-    <hr />
-    <div class="form-group">
-      <label for="director"><h3>Director</h3></label>
-
-      <select
-        id="director"
-        class="form-control"
-        formControlName="director"
-        data-live-search="true"
-      >
-        <option *ngFor="let person of alldirector" [ngValue]="person">
-          <span class="personName">
-            {{ person.lastName }} - {{ person.firstName }}</span
-          >
-
-          {{ person.birthdate }}
-        </option>
-      </select>
-      <span (click)="goToAddDirector()">add new director</span>
-    </div>
-    <hr />
-    <h3>Genre</h3>
-    <input
-      type="text"
-      [(ngModel)]="namegenres"
-      (input)="searchGenre()"
-      placeholder="search a genre"
-      class="form-control"
-      formControlName="genre"
-    />
-    <div id="tableGenre">
-      <table classe="table">
-        <tbody>
-          <tr id="genre" *ngFor="let genre of genreFiltered">
-            <td>
-              <button (click)="addGenreOnList(genre)" class="btn btn-success">
-                {{ genre.nameGenres }}
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <span (click)="goToAddGenre()">add new genre</span>
-    </div>
-
-    <div *ngIf="showGenre">
-      <label for="genre"> </label>
-      <div id="panier">
-        <h4>Genre added</h4>
-        <ul *ngFor="let genre of genres">
-          <li>
-            {{ genre.nameGenres }}
-            <button class="btn btn-danger" (click)="deleteGenreOnList(genre)">
-              Delete
-            </button>
-          </li>
-        </ul>
-      </div>
-    </div>
-    <hr />
-    <div id="tableActor">
-      <h3>Actor</h3>
-      <input
-        type="text"
-        [(ngModel)]="lastNameActors"
-        (input)="searchActor()"
-        placeholder="search a actor"
-        class="form-control"
-        formControlName="actor"
-      />
-      <table>
-        <tbody>
-          <tr id="actor" *ngFor="let person of actorFiltered">
-            <td>
-              <button (click)="addActorOnList(person)" class="btn btn-success">
-                <span class="personName">
-                  {{ person.lastName }} - {{ person.firstName }}</span
-                >
-              </button>
-            </td>
-            <td>
-              <span id="birthdate">
-                {{ person.birthdate }}
-              </span>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <span (click)="goToAddActor()">add new actor</span>
-    </div>
-
-    <div *ngIf="showActor">
-      <label for="actor"> </label>
-      <div id="panier">
-        <h4>Actor added</h4>
-        <ul *ngFor="let person of actors">
-          <li>
-            <span class="personName2">
-              {{ person.lastName }} - {{ person.firstName }}</span
-            >
-
-            {{ person.birthdate }}
-            <button class="btn btn-danger" (click)="deleteActorOnList(person)">
-              Delete
-            </button>
-          </li>
-        </ul>
-      </div>
-    </div>
-    <hr />
-    <button
-      class="btn btn-success"
-      (click)="addFilm()"
-      [disabled]="movieForm.invalid"
-      type="button"
-    >
-      Add Film
-    </button>
-  </form>
-</div> -->

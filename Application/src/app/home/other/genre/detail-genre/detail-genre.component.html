@@ -2,12 +2,14 @@
 <button (click)="goToModifyGenre(genre)" class="btn btn-info">
   modify this genre
 </button>
-
+<hr />
 <h3>
-  List
-  {{ genre.nameGenres }} film's
+  List of
+  {{ genre.nameGenres }} film's ({{ filmLength }})
 </h3>
 
 <ul *ngFor="let film of FilmByGenre">
-  <li class="li" (click)="detailFilm(film)">{{ film.title }}</li>
+  <li class="li">
+    <p (click)="detailFilm(film)">{{ film.title }}</p>
+  </li>
 </ul>

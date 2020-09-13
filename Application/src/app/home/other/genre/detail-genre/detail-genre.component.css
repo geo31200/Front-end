@@ -1,4 +1,15 @@
-.li:hover {
+p:hover {
   cursor: pointer;
   color: blue;
+}
+
+h1 {
+  font-style: oblique;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: brown;
+  text-decoration: underline;
+  text-align: center;
+}
+li {
+  list-style-type: none;
 }

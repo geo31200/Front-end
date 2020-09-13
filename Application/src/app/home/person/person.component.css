@@ -2,15 +2,14 @@ div {
   display: inline-block;
   width: 50%;
 }
-span {
+.add {
   cursor: pointer;
   color: blue;
 }
-.personName {
-  font-size: 14px;
+.personName:hover {
   font-family: fantasy;
-  color: black;
-  text-align: center;
+  color: blue;
+  cursor: pointer;
 }
 
 td {

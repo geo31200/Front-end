@@ -8,33 +8,33 @@
         <span class="li">Duration :</span> {{ film.duration }}minutes
       </li>
       <li id="director" (click)="detailDirector(film)">
-        <span class="li">Directed by :</span>
+        <span class="li">Directed by : </span>-
         <span class="list"
-          >- {{ film.director.firstName }} {{ film.director.lastName }}</span
+          >{{ film.director.firstName }} {{ film.director.lastName }}</span
         >
       </li>
       <li>
-        <span class="li">Genres :</span>
+        <span class="li">Genres : </span>
         <ul *ngFor="let genre of film.genres" id="genre">
           <li (click)="detailGenre(genre)">
-            <span class="list">- {{ genre.nameGenres }}</span>
+            -<span class="list"> {{ genre.nameGenres }}</span>
           </li>
         </ul>
       </li>
       <li>
-        <span class="li">Nationalities :</span>
-        <ul *ngFor="let Nationlity of film.nationalities" id="nationality">
+        <span class="li">Nationalities : </span>
+        <ul *ngFor="let nationlity of film.nationalities" id="nationality">
           <li (click)="detailNationality(nationality)">
-            <span class="list">- {{ Nationlity.country }}</span>
+            -<span class="list"> {{ nationlity.country }}</span>
           </li>
         </ul>
       </li>
       <li>
-        <span class="li">Actors :</span>
+        <span class="li">Actors : </span>
         <ul *ngFor="let person of film.actors" id="actor">
           <li (click)="detailActor(person)">
-            <span class="list"
-              >- {{ person.lastName }} {{ person.firstName }}</span
+            -<span class="list">
+              {{ person.lastName }} {{ person.firstName }}</span
             >
           </li>
         </ul>

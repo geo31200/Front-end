@@ -1,7 +1,7 @@
 <div id="tableDirector">
   <h1>Director</h1>
   <table>
-    <span (click)="goToAddDirector()">add new director</span>
+    <span class="add" (click)="goToAddDirector()">add new director</span>
     <tbody>
       <tr id="director" *ngFor="let person of alldirector">
         <td (click)="detailDirector(person)">
@@ -9,19 +9,19 @@
             <span class="personName">
               {{ person.lastName }} - {{ person.firstName }}</span
             >
-            {{ person.birthdate }}
+            ({{ person.birthdate }})
           </div>
         </td>
       </tr>
     </tbody>
   </table>
-  <span (click)="goToAddDirector()">add new director</span>
+  <span class="add" (click)="goToAddDirector()">add new director</span>
 </div>
 
 <div id="tableActor">
   <h1>Actor</h1>
   <table>
-    <span (click)="goToAddActor()">add new actor</span>
+    <span class="add" (click)="goToAddActor()">add new actor</span>
     <tbody>
       <tr id="actor" *ngFor="let person of allactor">
         <td (click)="detailActor(person)">
@@ -29,11 +29,11 @@
             <span class="personName">
               {{ person.lastName }} - {{ person.firstName }}</span
             >
-            {{ person.birthdate }}
+            ({{ person.birthdate }})
           </div>
         </td>
       </tr>
     </tbody>
   </table>
-  <span (click)="goToAddActor()">add new actor</span>
+  <span class="add" (click)="goToAddActor()">add new actor</span>
 </div>

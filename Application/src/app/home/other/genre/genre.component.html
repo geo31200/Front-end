@@ -1,14 +1,23 @@
-<h1>Genre</h1>
+<h1>List of genre ({{ genreLength }})</h1>
 
 <div>
-  <span (click)="goToAddGenre()">add new genre</span>
+  <br />
+  <p>
+    Add genre
+    <mat-icon (click)="goToAddGenre()" id="iconAdd"> add_circle</mat-icon>
+  </p>
+  <hr />
   <ul *ngFor="let genre of genres">
     <li>
-      <button class="btn btn-primary" (click)="detailGenre(genre)">
-        {{ genre.nameGenres }}
-      </button>
+      <mat-icon (click)="detailGenre(genre)" id="iconDetail">
+        visibility
+      </mat-icon>
+      {{ genre.nameGenres }}
     </li>
   </ul>
-
-  <span (click)="goToAddGenre()">add new genre</span>
+  <hr />
+  <p>
+    Add genre
+    <mat-icon (click)="goToAddGenre()" id="iconAdd"> add_circle</mat-icon>
+  </p>
 </div>

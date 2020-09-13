@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Genre } from 'src/app/model/genre';
 import { GenreService } from 'src/app/service/genre.service';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-genre',
@@ -13,8 +14,13 @@ export class GenreComponent implements OnInit {
   public genre: Genre;
   public genres: Genre[];
   public idGenre: string;
+  public genreLength: number;
 
-  constructor(private genreService: GenreService, private router: Router) {}
+  constructor(
+    private genreService: GenreService,
+    private router: Router,
+    private snackbar: MatSnackBar
+  ) {}
 
   ngOnInit(): void {
     this.getAllGenre();
@@ -23,7 +29,8 @@ export class GenreComponent implements OnInit {
   public getAllGenre() {
     this.genreService.getAllGenre().subscribe((genre) => {
       this.genres = genre;
-      console.log(genre);
+      this.genreLength = genre.length;
+      console.log(genre, genre.length);
     });
   }
 
@@ -36,6 +43,14 @@ export class GenreComponent implements OnInit {
   // go to detail Genre
 
   public detailGenre(genre: Genre) {
-    this.router.navigate(['detail-genre', genre.idGenre]);
+    this.snackbar
+      .open('You will be directed to this genre', `${genre.nameGenres}`, {
+        duration: 3000,
+        verticalPosition: 'top',
+      })
+      .afterDismissed()
+      .subscribe((a) => {
+        this.router.navigate(['/detail-genre', genre.idGenre]);
+      });
   }
 }

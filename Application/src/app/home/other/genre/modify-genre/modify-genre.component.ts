@@ -33,6 +33,9 @@ export class ModifyGenreComponent implements OnInit {
     this.genreForm = this.formBuilder.group({
       nameGenres: ['', Validators.required],
     });
+    this.genreService.getGenreById(this.idGenre).subscribe((genre) => {
+      this.genre = genre;
+    });
   }
 
   public upgrateGenre() {

@@ -1,5 +1,6 @@
 <h1>
-  Upgrate Movie - {{ film.title }} by {{ film.director.firstName }}
+  Upgrate Movie - {{ film.title }} ({{ film.year }}) by
+  {{ film.director.firstName }}
   {{ film.director.lastName }}
 </h1>
 <div>
@@ -16,7 +17,7 @@
     </div>
     <hr />
     <div class="form-group">
-      <label for="date">Date</label>
+      <label for="date"><h3>Date</h3></label>
       <input
         type="date"
         min="1900-01-01"
@@ -46,6 +47,11 @@
           <h3>Genre(s) actual</h3>
           <tr class="actual" *ngFor="let genre of film.genres">
             <td>- {{ genre.nameGenres }}</td>
+            <td>
+              <button (click)="removeGenre(genre)" class="btn btn-danger">
+                Remove
+              </button>
+            </td>
           </tr>
         </thead>
         <tbody>
@@ -64,7 +70,7 @@
       </table>
     </div>
 
-    <div *ngIf="show">
+    <div *ngIf="showGenre">
       <label for="genre"> </label>
       <div id="panier">
         <h4>Genre added</h4>
@@ -79,12 +85,71 @@
       </div>
     </div>
     <hr />
+    <div id="tableNationality">
+      <table>
+        <thead>
+          <h3>Nationality(ies) actual(s)</h3>
+          <tr class="actual" *ngFor="let nationality of film.nationalities">
+            <td>- {{ nationality.country }}</td>
+            <td>
+              <button
+                (click)="removeNationality(nationality)"
+                class="btn btn-danger"
+              >
+                Remove
+              </button>
+            </td>
+          </tr>
+        </thead>
+        <tbody>
+          <h3>Nationalities too add (Optional)</h3>
+          <tr id="nationality" *ngFor="let nationality of allnationality">
+            <td>
+              {{ nationality.country }}
+            </td>
+            <td>
+              <button
+                (click)="addNationalityOnList(nationality)"
+                class="btn btn-success"
+              >
+                addNationalityOnShop
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div *ngIf="showNationality">
+      <label for="nationality"> </label>
+      <div id="panier">
+        <h4>Nationality added</h4>
+        <ul *ngFor="let nationality of nationalities">
+          <li>
+            {{ nationality.country }}
+
+            <button
+              class="btn btn-danger"
+              (click)="deleteNationalityOnList(nationality)"
+            >
+              Delete
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <hr />
     <div id="tableActor">
       <table>
         <thead>
           <h3>Actor actual</h3>
           <tr class="actual" *ngFor="let person of film.actors">
             <td>- {{ person.lastName }} {{ person.firstName }}</td>
+            <td>
+              <button (click)="removeActor(person)" class="btn btn-danger">
+                Remove
+              </button>
+            </td>
           </tr>
         </thead>
         <tbody>
@@ -106,7 +171,7 @@
       </table>
     </div>
 
-    <div *ngIf="show">
+    <div *ngIf="showActor">
       <label for="actor"> </label>
       <div id="panier">
         <h4>Actor added</h4>

@@ -15,6 +15,9 @@ export class DetailGenreComponent implements OnInit {
   public genre: Genre;
   public genres: Genre[];
   public FilmByGenre: Film[];
+
+  public filmLength: number;
+
   constructor(
     private genreService: GenreService,
     private filmService: FilmService,
@@ -34,6 +37,9 @@ export class DetailGenreComponent implements OnInit {
 
     this.filmService.getFilmByGenre(this.idGenre).subscribe((genre) => {
       this.FilmByGenre = genre;
+      this.filmLength = genre.length;
+
+      console.log(genre);
     });
   }
 

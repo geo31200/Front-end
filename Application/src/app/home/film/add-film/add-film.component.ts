@@ -18,7 +18,10 @@ import { NationalityService } from 'src/app/service/nationality.service';
   styleUrls: ['./add-film.component.css'],
 })
 export class AddFilmComponent implements OnInit {
+  public date: string;
+
   public film: Film;
+
   public director: Person;
   public alldirector: Person[];
 
@@ -73,6 +76,9 @@ export class AddFilmComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // date : today
+    this.date = new Date().toISOString();
+    // form required
     this.titleFormGroup = this.formBuilder.group({
       title: ['', Validators.required],
     });
@@ -88,7 +94,6 @@ export class AddFilmComponent implements OnInit {
     this.genreFormGroup = this.formBuilder.group({
       genre: [''],
     });
-
     this.nationalityFormGroup = this.formBuilder.group({
       nationality: [''],
     });
@@ -96,15 +101,7 @@ export class AddFilmComponent implements OnInit {
       actor: [''],
     });
 
-    // this.movieForm = this.formBuilder.group({
-    //   title: ['', Validators.required],
-    //   year: ['', Validators.required],
-    //   duration: ['', Validators.required],
-    //   director: ['', Validators.required],
-    //   genre: ['', Validators.minLength(2)],
-    //   actor: [''],
-    // });
-
+    // get all director, genre, actor and nationalty
     this.allDirector();
     this.allGenre();
     this.allActor();
@@ -162,22 +159,24 @@ export class AddFilmComponent implements OnInit {
     this.filmService.postFilm(this.film).subscribe(
       (data) => {
         console.log('le film est ', data);
+        this.snackbar
+          .open('Your movie has been created', '', {
+            duration: 2000,
+            verticalPosition: 'top',
+          })
+          .afterDismissed()
+          .subscribe((a) => {
+            this.router.navigate(['/film']);
+          });
       },
       (err) => {
         console.log(err);
-        alert('Tous les champs ne sont pas bien rempli');
+
+        alert(
+          'Tous les champs ne sont pas bien rempli ou le titre du film existe déjà '
+        );
       }
     );
-
-    this.snackbar
-      .open('Your movie has been created', '', {
-        duration: 2000,
-        verticalPosition: 'top',
-      })
-      .afterDismissed()
-      .subscribe((a) => {
-        this.router.navigate(['/film']);
-      });
   }
 
   // get genres

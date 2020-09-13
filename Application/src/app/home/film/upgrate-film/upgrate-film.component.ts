@@ -6,8 +6,9 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Genre } from 'src/app/model/genre';
 import { GenreService } from 'src/app/service/genre.service';
 import { Person } from 'src/app/model/person';
-import { Observable } from 'rxjs';
 import { PersonService } from 'src/app/service/person.service';
+import { Nationality } from 'src/app/model/nationality';
+import { NationalityService } from 'src/app/service/nationality.service';
 
 @Component({
   selector: 'app-upgrate-film',
@@ -26,15 +27,23 @@ export class UpgrateFilmComponent implements OnInit {
   public actors: Person[];
   public actor: Person;
 
+  public country: string;
+  public nationality: Nationality;
+  public nationalities: Nationality[];
+  public allnationality: Nationality[];
+
   public genre: Genre;
   public genres: Genre[];
   public allgenre: Genre[];
 
   public movieForm: FormGroup;
 
-  public show: boolean = false;
+  public showGenre: boolean = false;
+  public showActor: boolean = false;
+  public showNationality: boolean = false;
 
   constructor(
+    private nationalityService: NationalityService,
     private personService: PersonService,
     private genreService: GenreService,
     private filmservice: FilmService,
@@ -46,17 +55,18 @@ export class UpgrateFilmComponent implements OnInit {
     this.genre = new Genre();
     this.actors = [];
     this.genres = [];
+    this.nationalities = [];
   }
 
   ngOnInit(): void {
     this.idFilm = this.route.snapshot.params['idFilm'];
-    // this.film = new Film();
-    // console.log(this.film);
-    // this.filmservice.getFilmById(this.idFilm).subscribe((data) => {
-    //   console.log('le film est ', data);
-    //   this.film = data;
-    // });
-    // console.log("l'id du film est", this.idFilm);
+    this.film = new Film();
+
+    this.filmservice.getFilmById(this.idFilm).subscribe((data) => {
+      console.log('le film est ', data);
+      this.film = data;
+    });
+    console.log("l'id du film est", this.idFilm);
 
     this.movieForm = this.formBuilder.group({
       title: ['', Validators.required],
@@ -66,6 +76,7 @@ export class UpgrateFilmComponent implements OnInit {
 
     this.allGenre();
     this.allActor();
+    this.allNationality();
   }
 
   public upgrateFilm() {
@@ -75,6 +86,7 @@ export class UpgrateFilmComponent implements OnInit {
     this.film.duration = this.movieForm.value.duration;
     this.film.genres.push(...this.genres);
     this.film.actors.push(...this.actors);
+    this.film.nationalities.push(...this.nationalities);
 
     this.filmservice.upgrateFilm(this.film).subscribe((data) => {
       console.log("c'est", data);
@@ -85,26 +97,25 @@ export class UpgrateFilmComponent implements OnInit {
     this.router.navigate(['/film']);
   }
 
-  public allGenre() {
-    this.genreService.getAllGenre().subscribe((genre) => {
-      this.allgenre = genre;
-    });
-  }
   // get actor
   public allActor() {
     this.personService.getAllActor().subscribe((actor) => {
       this.allactor = actor;
-      console.log('Actors : ', actor);
     });
   }
 
+  // remove Genre
+  public removeActor(person: Person) {
+    const index = this.actors.indexOf(person);
+    this.film.actors.splice(index, 1);
+  }
   // addActorsOnList
 
   public addActorOnList(person: Person) {
     const index = this.actors.indexOf(person);
     if (index < 0) {
       this.actors.push(person);
-      this.show = true;
+      this.showActor = true;
       console.log(person);
     } else {
       alert(
@@ -125,13 +136,25 @@ export class UpgrateFilmComponent implements OnInit {
     }
   }
 
+  //get all genre
+  public allGenre() {
+    this.genreService.getAllGenre().subscribe((genre) => {
+      this.allgenre = genre;
+    });
+  }
+  // remove Genre
+  public removeGenre(genre: Genre) {
+    const index = this.genres.indexOf(genre);
+    this.film.genres.splice(index, 1);
+  }
+
   // addGenresOnList
 
   public addGenreOnList(genre: Genre) {
     const index = this.genres.indexOf(genre);
     if (index < 0) {
       this.genres.push(genre);
-      this.show = true;
+      this.showGenre = true;
       console.log(genre);
     } else {
       alert(` The genre, ${genre.nameGenres}, has been already added`);
@@ -146,6 +169,46 @@ export class UpgrateFilmComponent implements OnInit {
       this.genres.splice(index, 1);
       console.log(
         `The actor, ${genre.nameGenres}, has been deleted on the list of genres`
+      );
+    }
+  }
+
+  //get nationality
+  public allNationality() {
+    this.nationalityService.getAllNationality().subscribe((nationality) => {
+      this.allnationality = nationality;
+      console.log('nationality', nationality);
+    });
+  }
+
+  // remove Nationality
+  public removeNationality(nationality: Nationality) {
+    const index = this.nationalities.indexOf(nationality);
+    this.film.nationalities.splice(index, 1);
+  }
+
+  // addNationalitiesOnList
+
+  public addNationalityOnList(nationality: Nationality) {
+    const index = this.nationalities.indexOf(nationality);
+    if (index < 0) {
+      this.nationalities.push(nationality);
+      this.showNationality = true;
+      console.log(nationality);
+    } else {
+      alert(` The nationality, ${nationality.country}, has been already added`);
+    }
+  }
+
+  //deleteNationalityOnList
+
+  public deleteNationalityOnList(nationality: Nationality) {
+    const index = this.nationalities.indexOf(nationality);
+    if (index >= 0) {
+      this.nationalities.splice(index, 1);
+
+      console.log(
+        `The nationality, ${nationality.country}, has been deleted on the list of nationaties`
       );
     }
   }
