@@ -11,7 +11,6 @@ import { Router } from '@angular/router';
 export class NationalityComponent implements OnInit {
   public nationality: Nationality;
   public nationalities: Nationality[];
-  public idNationality: string;
 
   constructor(
     private nationalityService: NationalityService,

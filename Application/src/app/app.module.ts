@@ -44,6 +44,7 @@ import { DetailGenreComponent } from './home/other/genre/detail-genre/detail-gen
 import { ModifyGenreComponent } from './home/other/genre/modify-genre/modify-genre.component';
 import { DetailNationalityComponent } from './home/other/nationality/detail-nationality/detail-nationality.component';
 import { ModifyNationalityComponent } from './home/other/nationality/modify-nationality/modify-nationality.component';
+import { DeleteFilmComponent } from './home/film/delete-film/delete-film.component';
 
 @NgModule({
   declarations: [
@@ -90,6 +91,7 @@ import { ModifyNationalityComponent } from './home/other/nationality/modify-nati
     ModifyGenreComponent,
     DetailNationalityComponent,
     ModifyNationalityComponent,
+    DeleteFilmComponent,
   ],
   imports: [
     BrowserModule,

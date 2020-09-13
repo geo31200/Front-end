@@ -1,0 +1,6 @@
+<h1>Delete Film</h1>
+<mat-dialog-content> You will delete {{ data.title }}</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button mat-dialog-close (click)="deleteFilm(film)">delete</button>
+</mat-dialog-actions>

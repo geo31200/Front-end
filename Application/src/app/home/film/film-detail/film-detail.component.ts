@@ -7,6 +7,8 @@ import { Person } from 'src/app/model/person';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Genre } from 'src/app/model/genre';
 import { Nationality } from 'src/app/model/nationality';
+import { MatDialog } from '@angular/material/dialog';
+import { DeleteFilmComponent } from '../delete-film/delete-film.component';
 
 @Component({
   selector: 'app-film-detail',
@@ -26,7 +28,8 @@ export class FilmDetailComponent implements OnInit {
   constructor(
     private filmservice: FilmService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -41,6 +44,8 @@ export class FilmDetailComponent implements OnInit {
       (error) => console.log(error)
     );
   }
+
+  // delete film
   public deleteFilm(film: Film) {
     this.filmservice.deleteFilm(film).subscribe((data) => {
       console.log('le film', film, ' a été supprimé');
@@ -57,7 +62,6 @@ export class FilmDetailComponent implements OnInit {
 
   //detail nationality
   public detailNationality(nationality: Nationality) {
-    console.log(nationality);
     console.log(
       'le pays est : ',
       nationality.idNationality,
@@ -65,6 +69,7 @@ export class FilmDetailComponent implements OnInit {
     );
     this.router.navigate(['/detail-nationality', nationality.idNationality]);
   }
+
   //detail Actor
   public detailActor(person: Person) {
     console.log(
@@ -89,5 +94,16 @@ export class FilmDetailComponent implements OnInit {
   public goToUpgrateFilm(film: Film) {
     console.log('En route pour modifier le film', film);
     this.router.navigate(['/upgrate-film', film.idFilm]);
+  }
+
+  // dialog
+  public openDialog() {
+    let dialogRef = this.dialog.open(DeleteFilmComponent, {
+      data: { title: this.film.title },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(`delete this ${result} `);
+    });
   }
 }
