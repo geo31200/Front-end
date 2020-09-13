@@ -9,6 +9,7 @@ import { Genre } from 'src/app/model/genre';
 import { Nationality } from 'src/app/model/nationality';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteFilmComponent } from '../delete-film/delete-film.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-film-detail',
@@ -29,7 +30,8 @@ export class FilmDetailComponent implements OnInit {
     private filmservice: FilmService,
     private route: ActivatedRoute,
     private router: Router,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private snackbar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -98,12 +100,26 @@ export class FilmDetailComponent implements OnInit {
 
   // dialog
   public openDialog() {
-    let dialogRef = this.dialog.open(DeleteFilmComponent, {
-      data: { title: this.film.title },
-    });
+    this.dialog
+      .open(DeleteFilmComponent, {
+        data: { title: this.film },
+      })
+      .afterClosed()
+      .subscribe((result) => {
+        console.log(result);
 
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log(`delete this ${result} `);
-    });
+        if (result) {
+          this.deleteFilm(this.film);
+          this.snackbar
+            .open(`the movie ${this.film.title} has been deleted`, '', {
+              duration: 3000,
+              verticalPosition: 'top',
+            })
+            .afterDismissed()
+            .subscribe((a) => {
+              this.router.navigate(['/film']);
+            });
+        }
+      });
   }
 }

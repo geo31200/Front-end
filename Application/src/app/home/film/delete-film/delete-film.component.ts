@@ -1,8 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { Film } from 'src/app/model/film';
 import { FilmService } from 'src/app/service/film.service';
-import { Router, ActivatedRoute } from '@angular/router';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Router } from '@angular/router';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-delete-film',
@@ -14,20 +14,21 @@ export class DeleteFilmComponent implements OnInit {
   public idFilm: string;
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: any,
+    @Inject(MAT_DIALOG_DATA) public data,
+    public matDialogRef: MatDialogRef<DeleteFilmComponent>,
     private filmService: FilmService,
     private router: Router
   ) {}
 
-  ngOnInit(): void {
-    // get id film from route
-  }
+  ngOnInit(): void {}
+
   // delete film
   public deleteFilm(film: Film) {
-    this.filmService.deleteFilm(film).subscribe((data) => {
-      console.log('le film', film, ' a été supprimé');
-    });
-
+    this.filmService.deleteFilm(film).subscribe((de) => {});
     this.router.navigate(['/film']);
+  }
+
+  public closeDialog() {
+    this.matDialogRef.close(false);
   }
 }
