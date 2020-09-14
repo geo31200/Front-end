@@ -6,6 +6,9 @@ import { FilmService } from 'src/app/service/film.service';
 import { PersonService } from 'src/app/service/person.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NationalityService } from 'src/app/service/nationality.service';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { DeleteNationalityComponent } from '../delete-nationality/delete-nationality.component';
 
 @Component({
   selector: 'app-detail-nationality',
@@ -25,7 +28,9 @@ export class DetailNationalityComponent implements OnInit {
     private nationalityService: NationalityService,
     private personService: PersonService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private dialog: MatDialog,
+    private snackbar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -63,11 +68,14 @@ export class DetailNationalityComponent implements OnInit {
         this.directorsByNationality = dataDirectorByNationality;
       });
   }
+  // delete nationalty
   public deleteNationality(nationality: Nationality) {
     this.nationalityService.deleteNationality(nationality).subscribe((data) => {
       console.log('The genders has been deleted');
     });
   }
+
+  // go to modify nationality
   public goToModifyNationality(nationality: Nationality) {
     this.router.navigate(['/modify-nationality', nationality.idNationality]);
   }
@@ -97,5 +105,32 @@ export class DetailNationalityComponent implements OnInit {
   public detailFilm(film: Film) {
     console.log(film.idFilm, film.title);
     this.router.navigate(['/film-detail', film.idFilm]);
+  }
+
+  // dialog
+  public openDialog() {
+    this.dialog
+      .open(DeleteNationalityComponent, {
+        data: { name: this.nationality },
+      })
+      .afterClosed()
+      .subscribe((result) => {
+        if (result) {
+          this.deleteNationality(this.nationality);
+          this.snackbar
+            .open(
+              `the nationality "${this.nationality.country}" has been deleted`,
+              '',
+              {
+                duration: 3000,
+                verticalPosition: 'top',
+              }
+            )
+            .afterDismissed()
+            .subscribe((a) => {
+              this.router.navigate(['/nationality']);
+            });
+        }
+      });
   }
 }

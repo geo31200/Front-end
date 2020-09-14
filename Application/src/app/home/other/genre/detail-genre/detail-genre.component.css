@@ -13,3 +13,7 @@ h1 {
 li {
   list-style-type: none;
 }
+
+button {
+  margin-right: 100px;
+}

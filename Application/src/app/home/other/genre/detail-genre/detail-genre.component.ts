@@ -4,6 +4,9 @@ import { GenreService } from 'src/app/service/genre.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FilmService } from 'src/app/service/film.service';
 import { Film } from 'src/app/model/film';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { DeleteGenreComponent } from '../delete-genre/delete-genre.component';
 
 @Component({
   selector: 'app-detail-genre',
@@ -22,7 +25,9 @@ export class DetailGenreComponent implements OnInit {
     private genreService: GenreService,
     private filmService: FilmService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private dialog: MatDialog,
+    private snackbar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -51,5 +56,33 @@ export class DetailGenreComponent implements OnInit {
   public goToModifyGenre(genre: Genre) {
     console.log('En route pour modifier le genre', genre);
     this.router.navigate(['/modify-genre', genre.idGenre]);
+  }
+
+  // delete film
+  public deleteGenre(genre: Genre) {
+    this.genreService.deleteGenre(genre).subscribe((de) => {});
+  }
+
+  // dialog
+  public openDialog() {
+    this.dialog
+      .open(DeleteGenreComponent, {
+        data: { name: this.genre },
+      })
+      .afterClosed()
+      .subscribe((result) => {
+        if (result) {
+          this.deleteGenre(this.genre);
+          this.snackbar
+            .open(`the genre "${this.genre.nameGenres}" has been deleted`, '', {
+              duration: 3000,
+              verticalPosition: 'top',
+            })
+            .afterDismissed()
+            .subscribe((a) => {
+              this.router.navigate(['/genre']);
+            });
+        }
+      });
   }
 }

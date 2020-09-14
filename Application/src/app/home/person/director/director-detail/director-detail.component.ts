@@ -5,6 +5,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Film } from 'src/app/model/film';
 import { Nationality } from 'src/app/model/nationality';
 import { FilmService } from 'src/app/service/film.service';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { DeleteDirectorComponent } from '../delete-director/delete-director.component';
 
 @Component({
   selector: 'app-director-detail',
@@ -21,7 +24,9 @@ export class DirectorDetailComponent implements OnInit {
     private personService: PersonService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private filmService: FilmService
+    private filmService: FilmService,
+    private dialog: MatDialog,
+    private snackbar: MatSnackBar
   ) {
     this.person = new Person();
   }
@@ -50,8 +55,6 @@ export class DirectorDetailComponent implements OnInit {
         ' has been deleted'
       );
     });
-
-    this.router.navigate(['/person']);
   }
 
   // go to upgrate director
@@ -73,5 +76,32 @@ export class DirectorDetailComponent implements OnInit {
       nationality.country
     );
     this.router.navigate(['/detail-nationality', nationality.idNationality]);
+  }
+
+  // dialog
+  public openDialog() {
+    this.dialog
+      .open(DeleteDirectorComponent, {
+        data: { name: this.person },
+      })
+      .afterClosed()
+      .subscribe((result) => {
+        if (result) {
+          this.deleteDirector(this.person);
+          this.snackbar
+            .open(
+              `the director "${this.person.firstName} ${this.person.lastName} - ${this.person.birthdate}" has been deleted`,
+              '',
+              {
+                duration: 3000,
+                verticalPosition: 'top',
+              }
+            )
+            .afterDismissed()
+            .subscribe((a) => {
+              this.router.navigate(['/person']);
+            });
+        }
+      });
   }
 }

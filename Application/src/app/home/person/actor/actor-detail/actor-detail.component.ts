@@ -5,6 +5,9 @@ import { PersonService } from 'src/app/service/person.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FilmService } from 'src/app/service/film.service';
 import { Nationality } from 'src/app/model/nationality';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { DeleteActorComponent } from '../delete-actor/delete-actor.component';
 
 @Component({
   selector: 'app-actor-detail',
@@ -21,7 +24,9 @@ export class ActorDetailComponent implements OnInit {
     private personService: PersonService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private filmService: FilmService
+    private filmService: FilmService,
+    private dialog: MatDialog,
+    private snackbar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -43,8 +48,6 @@ export class ActorDetailComponent implements OnInit {
     this.personService.deleteActor(person).subscribe((person) => {
       console.log('The actor', person, ' has been deleted');
     });
-
-    this.ngOnInit();
   }
 
   // go to upgrate actor
@@ -66,5 +69,31 @@ export class ActorDetailComponent implements OnInit {
       nationality.country
     );
     this.router.navigate(['/detail-nationality', nationality.idNationality]);
+  }
+  // dialog
+  public openDialog() {
+    this.dialog
+      .open(DeleteActorComponent, {
+        data: { name: this.person },
+      })
+      .afterClosed()
+      .subscribe((result) => {
+        if (result) {
+          this.deleteActor(this.person);
+          this.snackbar
+            .open(
+              `the actor "${this.person.firstName} ${this.person.lastName} - ${this.person.birthdate}" has been deleted`,
+              '',
+              {
+                duration: 3000,
+                verticalPosition: 'top',
+              }
+            )
+            .afterDismissed()
+            .subscribe((a) => {
+              this.router.navigate(['/person']);
+            });
+        }
+      });
   }
 }

@@ -1,39 +1,101 @@
-<div id="tableDirector">
-  <h1>Director</h1>
-  <table>
-    <span class="add" (click)="goToAddDirector()">add new director</span>
-    <tbody>
-      <tr id="director" *ngFor="let person of alldirector">
-        <td (click)="detailDirector(person)">
-          <div class="person">
-            <span class="personName">
-              {{ person.lastName }} - {{ person.firstName }}</span
-            >
-            ({{ person.birthdate }})
-          </div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="add" (click)="goToAddDirector()">add new director</span>
-</div>
+<div>
+  <div class="table" id="tableDirector">
+    <h1>List of Directors ({{ directorLength }})</h1>
 
-<div id="tableActor">
-  <h1>Actor</h1>
-  <table>
-    <span class="add" (click)="goToAddActor()">add new actor</span>
-    <tbody>
-      <tr id="actor" *ngFor="let person of allactor">
-        <td (click)="detailActor(person)">
-          <div class="person">
-            <span class="personName">
-              {{ person.lastName }} - {{ person.firstName }}</span
-            >
-            ({{ person.birthdate }})
-          </div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="add" (click)="goToAddActor()">add new actor</span>
+    <p>
+      Add director
+      <mat-icon (click)="goToAddDirector()" id="iconAdd"> add_circle</mat-icon>
+    </p>
+    <hr />
+    <ul id="director" *ngFor="let person of alldirector">
+      <li (click)="detailDirector(person)">
+        <div class="person">
+          <span class="personName">
+            {{ person.lastName }} - {{ person.firstName }}</span
+          >
+          ({{ person.birthdate }})
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <div class="table" id="tableActor">
+    <h1>List of Actors ({{ actorLength }})</h1>
+
+    <p>
+      Add actor
+      <mat-icon (click)="goToAddActor()" id="iconAdd"> add_circle</mat-icon>
+    </p>
+    <hr />
+    <ul id="actor" *ngFor="let person of allactor">
+      <li (click)="detailActor(person)">
+        <div class="person">
+          <span class="personName">
+            {{ person.lastName }} - {{ person.firstName }}</span
+          >
+          ({{ person.birthdate }})
+        </div>
+      </li>
+    </ul>
+  </div>
 </div>
+<!-- <div>
+  <h1>List of actors ({{ actorLength }})</h1>
+
+  <div>
+    <br />
+    <p class="add">
+      add new actor
+      <mat-icon (click)="goToAddActor()" id="iconAdd"> add_circle</mat-icon>
+    </p>
+    <hr />
+    <ul *ngFor="let person of allactor">
+      <li>
+        <mat-icon (click)="detailActor(person)" id="iconDetail">
+          visibility
+        </mat-icon>
+        <div class="person">
+          <span class="personName">
+            {{ person.lastName }} - {{ person.firstName }}</span
+          >
+          ({{ person.birthdate }})
+        </div>
+      </li>
+    </ul>
+    <hr />
+    <p class="add">
+      Add new actor
+      <mat-icon (click)="goToAddActor()" id="iconAdd"> add_circle</mat-icon>
+    </p>
+  </div>
+</div>
+<div>
+  <h1>List of directors ({{ directorLength }})</h1>
+
+  <div>
+    <br />
+    <p class="add">
+      add new director
+      <mat-icon (click)="goToAddDirector()" id="iconAdd"> add_circle</mat-icon>
+    </p>
+    <hr />
+    <ul *ngFor="let person of alldirector">
+      <li>
+        <mat-icon (click)="detailDirector(person)" id="iconDetail">
+          visibility
+        </mat-icon>
+        <div class="person">
+          <span class="personName">
+            {{ person.lastName }} - {{ person.firstName }}</span
+          >
+          ({{ person.birthdate }})
+        </div>
+      </li>
+    </ul>
+    <hr />
+    <p class="add">
+      Add new director
+      <mat-icon (click)="goToAddDirector()" id="iconAdd"> add_circle</mat-icon>
+    </p>
+  </div>
+</div> -->

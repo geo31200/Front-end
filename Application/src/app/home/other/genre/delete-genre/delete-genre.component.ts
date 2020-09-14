@@ -1,16 +1,15 @@
 import { Component, OnInit, Inject } from '@angular/core';
-
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-delete-film',
-  templateUrl: './delete-film.component.html',
-  styleUrls: ['./delete-film.component.css'],
+  selector: 'app-delete-genre',
+  templateUrl: './delete-genre.component.html',
+  styleUrls: ['./delete-genre.component.css'],
 })
-export class DeleteFilmComponent implements OnInit {
+export class DeleteGenreComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data,
-    public matDialogRef: MatDialogRef<DeleteFilmComponent>
+    public matDialogRef: MatDialogRef<DeleteGenreComponent>
   ) {}
 
   ngOnInit(): void {}

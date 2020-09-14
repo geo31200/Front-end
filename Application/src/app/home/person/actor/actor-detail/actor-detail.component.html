@@ -1,41 +1,47 @@
-<h1>Actor detail's : {{ person.firstName }} {{ person.lastName }}</h1>
-
 <div>
-  <ul>
-    <li id="firstName">
-      Firstname :
-      {{ person.firstName }}
-    </li>
+  <h1>Actor detail's : {{ person.firstName }} {{ person.lastName }}</h1>
 
-    <li id="lastName">
-      Lastname :
-      {{ person.lastName }}
-    </li>
+  <div>
+    <ul>
+      <li id="firstName">
+        Firstname :
+        {{ person.firstName }}
+      </li>
 
-    <li id="birthdate">Birthdate : {{ person.birthdate }}</li>
-    <br />
-    <h4>Nationality :</h4>
-    <ul *ngFor="let nationality of person.nationalities">
-      <li id="nationality" (click)="detailNationality(nationality)" class="li">
-        {{ nationality.country }}
+      <li id="lastName">
+        Lastname :
+        {{ person.lastName }}
+      </li>
+
+      <li id="birthdate">Birthdate : {{ person.birthdate }}</li>
+      <br />
+      <h4>Nationality :</h4>
+      <ul *ngFor="let nationality of person.nationalities">
+        <li
+          id="nationality"
+          (click)="detailNationality(nationality)"
+          class="li"
+        >
+          {{ nationality.country }}
+        </li>
+      </ul>
+      <br />
+      <h4>Films played :</h4>
+      <ul *ngFor="let film of filmsPlayed">
+        <li id="films" (click)="detailFilm(film)" class="li">
+          {{ film.title }}
+        </li>
+      </ul>
+      <br />
+      <li>
+        <button (click)="goToUpgrateActor(person)" class="btn btn-info">
+          Upgrate this actor
+        </button>
+      </li>
+      <br />
+      <li>
+        <button (click)="openDialog()" class="btn btn-danger">Delete</button>
       </li>
     </ul>
-    <br />
-    <h4>Films played :</h4>
-    <ul *ngFor="let film of filmsPlayed">
-      <li id="films" (click)="detailFilm(film)" class="li">{{ film.title }}</li>
-    </ul>
-    <br />
-    <li>
-      <button (click)="goToUpgrateActor(person)" class="btn btn-info">
-        Upgrate this actor
-      </button>
-    </li>
-    <br />
-    <li>
-      <button (click)="deleteActor(person)" class="btn btn-danger">
-        Delete
-      </button>
-    </li>
-  </ul>
+  </div>
 </div>

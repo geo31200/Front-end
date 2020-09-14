@@ -52,8 +52,6 @@ export class FilmDetailComponent implements OnInit {
     this.filmservice.deleteFilm(film).subscribe((data) => {
       console.log('le film', film, ' a été supprimé');
     });
-
-    this.router.navigate(['/film']);
   }
 
   //detail genre

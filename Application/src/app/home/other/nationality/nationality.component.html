@@ -1,14 +1,29 @@
-<h1>Nationality</h1>
-
 <div>
-  <span (click)="goToAddNationality()">add new nationality</span>
-  <ul *ngFor="let nationality of nationalities">
-    <li>
-      <button class="btn btn-primary" (click)="detailNationality(nationality)">
-        {{ nationality.country }}
-      </button>
-    </li>
-  </ul>
+  <h1>List of nationalities ({{ nationalityLength }})</h1>
 
-  <span (click)="goToAddNationality()">add new nationality</span>
+  <div>
+    <br />
+    <p>
+      Add nationality
+      <mat-icon (click)="goToAddNationality()" id="iconAdd">
+        add_circle</mat-icon
+      >
+    </p>
+    <hr />
+    <ul *ngFor="let nationality of nationalities">
+      <li>
+        <mat-icon (click)="detailNationality(nationality)" id="iconDetail">
+          visibility
+        </mat-icon>
+        {{ nationality.country }}
+      </li>
+    </ul>
+    <hr />
+    <p>
+      Add nationality
+      <mat-icon (click)="goToAddNationality()" id="iconAdd">
+        add_circle</mat-icon
+      >
+    </p>
+  </div>
 </div>

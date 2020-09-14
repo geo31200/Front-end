@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 export class NationalityComponent implements OnInit {
   public nationality: Nationality;
   public nationalities: Nationality[];
+  public nationalityLength: number;
 
   constructor(
     private nationalityService: NationalityService,
@@ -24,6 +25,7 @@ export class NationalityComponent implements OnInit {
   public getAllNationality() {
     this.nationalityService.getAllNationality().subscribe((nationality) => {
       this.nationalities = nationality;
+      this.nationalityLength = nationality.length;
       console.log(nationality);
     });
   }

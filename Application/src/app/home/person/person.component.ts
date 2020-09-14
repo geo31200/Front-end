@@ -13,6 +13,8 @@ export class PersonComponent implements OnInit {
   public allactor: Person[];
   public person: Person;
   public idPerson: string;
+  public directorLength: number;
+  public actorLength: number;
   constructor(private personService: PersonService, private router: Router) {}
 
   ngOnInit(): void {
@@ -24,6 +26,7 @@ export class PersonComponent implements OnInit {
   public allDirector() {
     this.personService.getAllDirector().subscribe((director) => {
       this.alldirector = director;
+      this.directorLength = director.length;
       console.log('director', director);
     });
   }
@@ -43,6 +46,7 @@ export class PersonComponent implements OnInit {
   public allActor() {
     this.personService.getAllActor().subscribe((actor) => {
       this.allactor = actor;
+      this.actorLength = actor.length;
       console.log('Actors : ', actor);
     });
   }

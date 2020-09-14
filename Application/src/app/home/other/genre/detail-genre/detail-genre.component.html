@@ -1,15 +1,21 @@
-<h1>{{ genre.nameGenres }}</h1>
-<button (click)="goToModifyGenre(genre)" class="btn btn-info">
-  modify this genre
-</button>
-<hr />
-<h3>
-  List of
-  {{ genre.nameGenres }} film's ({{ filmLength }})
-</h3>
+<div>
+  <h1>{{ genre.nameGenres }}</h1>
+  <div class="container">
+    <button (click)="goToModifyGenre(genre)" class="btn btn-info">
+      modify this genre
+    </button>
+    <button (click)="openDialog()" class="btn btn-danger">Delete</button>
+  </div>
 
-<ul *ngFor="let film of FilmByGenre">
-  <li class="li">
-    <p (click)="detailFilm(film)">{{ film.title }}</p>
-  </li>
-</ul>
+  <hr />
+  <h3>
+    List of
+    {{ genre.nameGenres }} film's ({{ filmLength }})
+  </h3>
+
+  <ul *ngFor="let film of FilmByGenre">
+    <li class="li">
+      <p (click)="detailFilm(film)">{{ film.title }}</p>
+    </li>
+  </ul>
+</div>

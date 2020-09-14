@@ -45,6 +45,10 @@ import { ModifyGenreComponent } from './home/other/genre/modify-genre/modify-gen
 import { DetailNationalityComponent } from './home/other/nationality/detail-nationality/detail-nationality.component';
 import { ModifyNationalityComponent } from './home/other/nationality/modify-nationality/modify-nationality.component';
 import { DeleteFilmComponent } from './home/film/delete-film/delete-film.component';
+import { DeleteGenreComponent } from './home/other/genre/delete-genre/delete-genre.component';
+import { DeleteNationalityComponent } from './home/other/nationality/delete-nationality/delete-nationality.component';
+import { DeleteActorComponent } from './home/person/actor/delete-actor/delete-actor.component';
+import { DeleteDirectorComponent } from './home/person/director/delete-director/delete-director.component';
 
 @NgModule({
   declarations: [
@@ -92,6 +96,10 @@ import { DeleteFilmComponent } from './home/film/delete-film/delete-film.compone
     DetailNationalityComponent,
     ModifyNationalityComponent,
     DeleteFilmComponent,
+    DeleteGenreComponent,
+    DeleteNationalityComponent,
+    DeleteActorComponent,
+    DeleteDirectorComponent,
   ],
   imports: [
     BrowserModule,

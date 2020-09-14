@@ -1,4 +1,4 @@
-div {
+.table {
   display: inline-block;
   width: 50%;
 }
@@ -11,11 +11,36 @@ div {
   color: blue;
   cursor: pointer;
 }
+#iconAdd:hover {
+  color: green;
+  cursor: pointer;
+}
+p {
+  font-size: 16px;
+  font-style: italic;
+}
 
 td {
   padding: 10px;
 }
+li {
+  list-style-type: none;
+}
 .person {
   cursor: pointer;
   width: 100%;
+}
+h1 {
+  font-style: oblique;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: brown;
+  text-decoration: underline;
+  text-align: center;
+}
+#tableActor {
+  position: absolute;
+  left: 50%;
+}
+#tableDirector {
+  position: absolute;
 }
