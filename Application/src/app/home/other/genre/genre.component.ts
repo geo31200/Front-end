@@ -15,6 +15,7 @@ export class GenreComponent implements OnInit {
   public genres: Genre[];
   public idGenre: string;
   public genreLength: number;
+  public panelOpenState: boolean = false;
 
   constructor(
     private genreService: GenreService,

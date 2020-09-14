@@ -1,25 +1,35 @@
 <div>
   <h1>List of genres ({{ genreLength }})</h1>
-
-  <div>
-    <br />
-    <p>
-      Add genre
-      <mat-icon (click)="goToAddGenre()" id="iconAdd"> add_circle</mat-icon>
-    </p>
-    <hr />
-    <ul *ngFor="let genre of genres">
-      <li>
-        <mat-icon (click)="detailGenre(genre)" id="iconDetail">
-          visibility
-        </mat-icon>
-        {{ genre.nameGenres }}
-      </li>
-    </ul>
-    <hr />
-    <p>
-      Add genre
-      <mat-icon (click)="goToAddGenre()" id="iconAdd"> add_circle</mat-icon>
-    </p>
-  </div>
+  <p>
+    Add <br />
+    genre
+    <mat-icon (click)="goToAddGenre()" id="iconAdd"> add_circle</mat-icon>
+  </p>
+  <hr />
+  <mat-accordion>
+    <mat-expansion-panel
+      (opened)="panelOpenState = true"
+      (closed)="panelOpenState = false"
+    >
+      <mat-expansion-panel-header>
+        <mat-panel-title> Genres </mat-panel-title>
+        <mat-panel-description>
+          {{ panelOpenState ? "hide" : "display" }}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <ul *ngFor="let genre of genres">
+        <li>
+          <mat-icon (click)="detailGenre(genre)" id="iconDetail">
+            visibility
+          </mat-icon>
+          {{ genre.nameGenres }}
+        </li>
+      </ul>
+    </mat-expansion-panel>
+  </mat-accordion>
+  <hr />
+  <p>
+    Add genre
+    <mat-icon (click)="goToAddGenre()" id="iconAdd"> add_circle</mat-icon>
+  </p>
 </div>

@@ -10,7 +10,23 @@
       >
     </p>
     <hr />
-    <ul *ngFor="let nationality of nationalities">
+    <form [formGroup]="searchForm">
+      <input
+        type="text"
+        [(ngModel)]="country"
+        (input)="searchNationality()"
+        placeholder="search a nationality"
+        class="form-control"
+        formControlName="nationality"
+      />
+      <mat-autocomplete #auto="matAutocomplete" *ngIf="show">
+        <mat-option *ngFor="let nationality of nationalityFiltered">
+        </mat-option>
+      </mat-autocomplete>
+    </form>
+    <br />
+
+    <ul *ngFor="let nationality of nationalityFiltered">
       <li>
         <mat-icon (click)="detailNationality(nationality)" id="iconDetail">
           visibility

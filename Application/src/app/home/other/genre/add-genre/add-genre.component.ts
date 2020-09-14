@@ -3,6 +3,7 @@ import { GenreService } from 'src/app/service/genre.service';
 import { Router } from '@angular/router';
 import { Genre } from 'src/app/model/genre';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-add-genre',
@@ -16,7 +17,8 @@ export class AddGenreComponent implements OnInit {
   constructor(
     private genreService: GenreService,
     private router: Router,
-    private formbuilder: FormBuilder
+    private formbuilder: FormBuilder,
+    public snackbar: MatSnackBar
   ) {
     this.genre = new Genre();
   }
@@ -30,10 +32,27 @@ export class AddGenreComponent implements OnInit {
   public addGenre() {
     this.genre.nameGenres = this.genreForm.value.nameGenres;
 
-    this.genreService.addGenre(this.genre).subscribe((data) => {
-      this.genre = data;
-      console.log('The genre', data.nameGenres, 'has been added');
-    });
-    this.router.navigate(['/genre']);
+    this.genreService.addGenre(this.genre).subscribe(
+      (data) => {
+        this.genre = data;
+        console.log('The genre', data.nameGenres, 'has been added');
+        this.snackbar
+          .open(`The genre "${data.nameGenres}" has been created`, '', {
+            duration: 2000,
+            verticalPosition: 'top',
+          })
+          .afterDismissed()
+          .subscribe((a) => {
+            this.router.navigate(['/genre']);
+          });
+      },
+      (err) => {
+        console.log(err);
+
+        alert(
+          `Tous les champs ne sont pas bien rempli ou le genre "${this.genreForm.value.nameGenres}" existe déjà `
+        );
+      }
+    );
   }
 }

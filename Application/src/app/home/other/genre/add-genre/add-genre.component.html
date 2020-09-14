@@ -1,20 +1,23 @@
-<h1>Add Genre</h1>
-<form [formGroup]="genreForm">
-  <div class="form-group">
-    <label for="duration">Genre</label>
-    <input
-      type="text"
-      class="form-control"
-      id="genre"
-      formControlName="nameGenres"
-      placeholder="Enter a genre"
-    />
-  </div>
+<div>
+  <h1>Add Genre</h1>
+  <form [formGroup]="genreForm">
+    <div class="form-group">
+      <label for="duration">Genre</label>
+      <input
+        type="text"
+        class="form-control"
+        id="genre"
+        formControlName="nameGenres"
+        placeholder="Enter a genre"
+      />
+    </div>
 
-  <button
-    class="btn btn-success"
-    (click)="addGenre()"
-    [disabled]="genreForm.invalid"
-    type="button"
-  ></button>
-</form>
+    <button
+      class="btn btn-success"
+      (click)="addGenre()"
+      [disabled]="genreForm.invalid"
+    >
+      Add
+    </button>
+  </form>
+</div>

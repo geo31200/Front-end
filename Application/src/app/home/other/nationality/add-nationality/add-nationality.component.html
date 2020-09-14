@@ -1,1 +1,21 @@
-<p>add-nationality works!</p>
+<h1>Add Nationilty</h1>
+<form [formGroup]="nationalityForm">
+  <div class="form-group">
+    <label for="duration">Nationality</label>
+    <input
+      type="text"
+      class="form-control"
+      id="nationality"
+      formControlName="country"
+      placeholder="Enter a nationality"
+    />
+  </div>
+
+  <button
+    class="btn btn-success"
+    (click)="addNationality()"
+    [disabled]="nationalityForm.invalid"
+  >
+    Add
+  </button>
+</form>

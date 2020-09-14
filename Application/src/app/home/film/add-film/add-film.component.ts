@@ -160,10 +160,14 @@ export class AddFilmComponent implements OnInit {
       (data) => {
         console.log('le film est ', data);
         this.snackbar
-          .open('Your movie has been created', '', {
-            duration: 2000,
-            verticalPosition: 'top',
-          })
+          .open(
+            `Your movie "${data.title}" by "${data.director.firstName} ${data.director.firstName}" has been created`,
+            '',
+            {
+              duration: 2000,
+              verticalPosition: 'top',
+            }
+          )
           .afterDismissed()
           .subscribe((a) => {
             this.router.navigate(['/film']);
@@ -173,7 +177,7 @@ export class AddFilmComponent implements OnInit {
         console.log(err);
 
         alert(
-          'Tous les champs ne sont pas bien rempli ou le titre du film existe déjà '
+          `Tous les champs ne sont pas bien rempli ou le titre "${this.titleFormGroup.value.title}" existe déjà `
         );
       }
     );
