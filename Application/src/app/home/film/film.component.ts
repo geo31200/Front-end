@@ -18,6 +18,7 @@ export class FilmComponent implements OnInit {
   public allFilms: Film[];
   public searchForm: FormGroup;
   public show: boolean = false;
+  public filmLength: number;
 
   constructor(
     private FilmService: FilmService,
@@ -36,6 +37,7 @@ export class FilmComponent implements OnInit {
   public allFilm() {
     this.FilmService.getAllFilm().subscribe((film) => {
       this.allFilms = film;
+      this.filmLength = film.length;
       this.filmFiltered = film;
     });
   }

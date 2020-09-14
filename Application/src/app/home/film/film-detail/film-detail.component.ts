@@ -106,8 +106,6 @@ export class FilmDetailComponent implements OnInit {
       })
       .afterClosed()
       .subscribe((result) => {
-        console.log(result);
-
         if (result) {
           this.deleteFilm(this.film);
           this.snackbar
