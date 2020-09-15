@@ -23,9 +23,9 @@
       </li>
       <li>
         <span class="li">Nationalities : </span>
-        <ul *ngFor="let nationlity of film.nationalities" id="nationality">
+        <ul *ngFor="let nationality of film.nationalities" id="nationality">
           <li (click)="detailNationality(nationality)">
-            -<span class="list"> {{ nationlity.country }}</span>
+            -<span class="list"> {{ nationality.country }}</span>
           </li>
         </ul>
       </li>

@@ -132,7 +132,7 @@ export class SearchComponent implements OnInit {
       });
   }
 
-  // go to detail actor
+  // go to detail director
   public detailDirector(person: Person) {
     console.log(person.idPerson, person.firstName, person.lastName);
     this.snackbar

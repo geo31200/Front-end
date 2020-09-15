@@ -47,11 +47,9 @@ export class AddGenreComponent implements OnInit {
           });
       },
       (err) => {
-        console.log(err);
+        console.log('error', err);
 
-        alert(
-          `Tous les champs ne sont pas bien rempli ou le genre "${this.genreForm.value.nameGenres}" existe déjà `
-        );
+        alert(`le genre "${this.genreForm.value.nameGenres}" existe déjà `);
       }
     );
   }

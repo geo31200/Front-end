@@ -50,7 +50,7 @@ export class AddNationalityComponent implements OnInit {
         console.log(err);
 
         alert(
-          `Tous les champs ne sont pas bien rempli ou le genre "${this.nationalityForm.value.country}" existe déjà `
+          `Cett nationalite "${this.nationalityForm.value.country}" existe déjà `
         );
       }
     );

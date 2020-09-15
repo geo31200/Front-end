@@ -54,6 +54,7 @@ export class NationalityComponent implements OnInit {
   // go to detail nationality
 
   public detailNationality(nationality: Nationality) {
+    console.log(nationality.idNationality, nationality.country);
     this.router.navigate(['detail-nationality', nationality.idNationality]);
   }
 
