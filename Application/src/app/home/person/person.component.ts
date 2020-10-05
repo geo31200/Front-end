@@ -15,6 +15,7 @@ export class PersonComponent implements OnInit {
   public idPerson: string;
   public directorLength: number;
   public actorLength: number;
+
   constructor(private personService: PersonService, private router: Router) {}
 
   ngOnInit(): void {

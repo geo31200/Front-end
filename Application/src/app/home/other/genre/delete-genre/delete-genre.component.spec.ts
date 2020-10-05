@@ -1,5 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
+import {
+  MatDialogModule,
+  MatDialogRef,
+  MAT_DIALOG_DATA,
+} from '@angular/material/dialog';
+
 import { DeleteGenreComponent } from './delete-genre.component';
 
 describe('DeleteGenreComponent', () => {
@@ -8,9 +14,10 @@ describe('DeleteGenreComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DeleteGenreComponent ]
-    })
-    .compileComponents();
+      declarations: [DeleteGenreComponent],
+      imports: [MatDialogModule, MatDialogRef, MAT_DIALOG_DATA],
+      providers: [],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

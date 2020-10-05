@@ -63,7 +63,12 @@
   <mat-step [stepControl]="directorFormGroup" label="Director">
     <form [formGroup]="directorFormGroup">
       <mat-form-field>
-        <mat-select id="director" formControlName="director" required>
+        <mat-select
+          ngDefaultControl
+          id="director"
+          formControlName="director"
+          required
+        >
           <mat-option *ngFor="let person of alldirector" [value]="person">
             <span class="personName">
               {{ person.lastName }} - {{ person.firstName }}</span
@@ -247,9 +252,7 @@
     <div>
       <button mat-button matStepperPrevious>Back</button>
       <button mat-button (click)="stepper.reset()">Reset</button>
-      <button mat-button (click)="addFilm()">
-        Add Film
-      </button>
+      <button mat-button (click)="addFilm()">Add Film</button>
     </div>
   </mat-step>
 </mat-vertical-stepper>

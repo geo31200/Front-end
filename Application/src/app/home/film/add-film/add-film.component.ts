@@ -7,7 +7,7 @@ import { Genre } from 'src/app/model/genre';
 import { Person } from 'src/app/model/person';
 import { PersonService } from 'src/app/service/person.service';
 import { GenreService } from 'src/app/service/genre.service';
-import { MatDialog, MatDialogContent } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Nationality } from 'src/app/model/nationality';
 import { NationalityService } from 'src/app/service/nationality.service';

@@ -53,11 +53,4 @@ export class ModifyGenreComponent implements OnInit {
         this.router.navigate(['/genre']);
       });
   }
-
-  public deleteGenre(genre: Genre) {
-    this.genreService.deleteGenre(genre).subscribe((data) => {
-      console.log('The genders has been deleted');
-    });
-    this.router.navigate(['/genre']);
-  }
 }

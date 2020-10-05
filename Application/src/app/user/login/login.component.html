@@ -34,9 +34,7 @@
         <div>
           <button mat-button matStepperPrevious>Back</button>
           <button mat-button (click)="stepper.reset()">Reset</button>
-          <button mat-button (click)="connexion()">
-            Connexion
-          </button>
+          <button mat-button (click)="connexion()">Connexion</button>
         </div>
       </form>
     </mat-step>
@@ -91,6 +89,7 @@
               formControlName="nationality"
               required
               placeholder="select a nationality"
+              ngDefaultControl
             >
               <input
                 type="text"
@@ -178,9 +177,7 @@
       <div>
         <button mat-button matStepperPrevious>Back</button>
         <button mat-button (click)="stepper.reset()">Reset</button>
-        <button mat-button (click)="addUser()">
-          Sign In
-        </button>
+        <button mat-button (click)="addUser()">Sign In</button>
       </div>
     </mat-step>
   </mat-vertical-stepper>
